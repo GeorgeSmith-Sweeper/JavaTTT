@@ -5,7 +5,7 @@ public class MockUi implements IUserInterface {
         return wasDisplayCalled;
     }
 
-    public void display() {
+    public void display(String message) {
         wasDisplayCalled = true;
     }
 }

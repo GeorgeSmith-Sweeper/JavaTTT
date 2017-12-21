@@ -1,3 +1,3 @@
 public interface IUserInterface {
-    void display();
+    void display(String message);
 }

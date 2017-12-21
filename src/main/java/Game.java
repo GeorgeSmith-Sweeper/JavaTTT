@@ -6,6 +6,6 @@ public class Game {
     }
 
     public void start() {
-        ui.display();
+        ui.display("Hello");
     }
 }
