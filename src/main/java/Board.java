@@ -20,4 +20,10 @@ public class Board {
     public ArrayList getSpaces() {
         return spaces;
     }
+
+    public boolean spaceWithinBounds(String userInput) {
+        int convertedInput = Integer.parseInt(userInput);
+        spaces = getSpaces();
+        return spaces.contains(convertedInput);
+    }
 }
