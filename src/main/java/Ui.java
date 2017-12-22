@@ -1,4 +1,7 @@
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -12,13 +15,23 @@ public class Ui implements IUserInterface {
         System.out.print(message);
     }
 
+    public String getInput() {
+        InputStreamReader reader = new InputStreamReader(in);
+        BufferedReader bufReader = new BufferedReader(reader);
+        try {
+            return bufReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
     public String presentBoard(ArrayList spaces) {
         int numRows = (int) Math.sqrt(spaces.size());
         String pipe = " | ";
         String divider = "=========";
         ArrayList rowHolder = new ArrayList();
         ArrayList fullBoard = new ArrayList();
-        StringBuilder sb = new StringBuilder();
 
         for (int space = 0; space < spaces.size(); space++) {
             if (spaces.get(space) instanceof Integer) {

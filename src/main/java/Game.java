@@ -8,7 +8,8 @@ public class Game {
     }
 
     public void start() {
-        ui.display("Hello");
         ui.display(ui.presentBoard(board.getSpaces()));
+        String userInput = ui.getInput();
+        ui.display(userInput);
     }
 }

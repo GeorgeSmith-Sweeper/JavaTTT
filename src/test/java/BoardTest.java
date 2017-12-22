@@ -26,6 +26,4 @@ class BoardTest {
 
         assertEquals(expectedBoard, board.getSpaces());
     }
-
-
 }

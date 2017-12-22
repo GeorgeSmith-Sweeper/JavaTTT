@@ -3,6 +3,7 @@ public class Main {
         int size = 3;
         Ui ui = new Ui(System.in);
         Board board = new Board(size);
+        board.createBoard();
         Game game = new Game(ui, board);
         game.start();
     }

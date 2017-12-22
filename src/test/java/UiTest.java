@@ -1,9 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,6 +19,14 @@ class UiTest {
     }
 
     @Test
+    void getInput() throws IOException {
+        String userInput = "Hello";
+        byte[] userInputBytes = userInput.getBytes();
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(userInputBytes);
+        Ui ui = new Ui(inputStream);
+
+        assertEquals(userInput, ui.getInput());
+    }
     void presentBoardConvertsTheBoardSpacesToAString() {
         int size = 3;
         Ui ui = new Ui(System.in);
@@ -36,5 +41,4 @@ class UiTest {
 
         assertEquals(expectedBoard, ui.presentBoard(board.getSpaces()));
     }
-
 }
