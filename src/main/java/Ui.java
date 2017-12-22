@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Ui implements IUserInterface {
     private InputStream in;
+
     public Ui(InputStream in) {
         this.in = in;
     }

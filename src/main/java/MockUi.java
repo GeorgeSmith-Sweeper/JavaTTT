@@ -2,32 +2,32 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MockUi implements IUserInterface {
-    private boolean wasDisplayCalled = false;
-    private boolean getInputWasCalled = false;
-    private String ourMessage;
+    private final InputStream in;
+    private boolean displayCalled = false;
+    private boolean inputCalled = false;
 
     public MockUi(InputStream in) {
-
+        this.in = in;
     }
 
     public boolean displayWasCalled() {
-        return wasDisplayCalled;
+        return displayCalled;
     }
 
     public void display(String message) {
-        wasDisplayCalled = true;
+        displayCalled = true;
     }
 
     public String getInput() {
-        getInputWasCalled = true;
-        return "";
+        inputCalled = true;
+        return "0";
     }
 
     public boolean inputWasCalled() {
-        return getInputWasCalled;
+        return inputCalled;
     }
 
     public String presentBoard(ArrayList spaces) {
-        return "";
+        return null;
     }
 }

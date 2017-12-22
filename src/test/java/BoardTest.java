@@ -62,4 +62,24 @@ class BoardTest {
         board.updateSpace(userInput, userSymbol);
         assertEquals(expectedBoard, board.getSpaces());
     }
+
+    @Test
+    void gameIsTieReturnsTrueIfBoardIsFull() {
+        int size = 3;
+        Board board = new Board(size);
+        board.createBoard();
+        ArrayList expectedBoard = new ArrayList(Arrays.asList("X", "X", "X", "X", "X", "X", "X", "X", "X"));
+
+        assertTrue(board.gameIsTie(expectedBoard));
+    }
+
+    @Test
+    void gameIsTieReturnsFalseIfBoardIsNotFull() {
+        int size = 3;
+        Board board = new Board(size);
+        board.createBoard();
+        ArrayList expectedBoard = new ArrayList(Arrays.asList(0, "X", "X", "X", "X", "X", "X", "X", "X"));
+
+        assertFalse(board.gameIsTie(expectedBoard));
+    }
 }

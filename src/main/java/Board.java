@@ -24,7 +24,7 @@ public class Board {
 
     public boolean spaceWithinBounds(String userInput) {
         int convertedInput = Integer.parseInt(userInput);
-        spaces = getSpaces();
+        ArrayList spaces = getSpaces();
         return spaces.contains(convertedInput);
     }
 
@@ -32,5 +32,15 @@ public class Board {
         ArrayList boardSpaces = getSpaces();
         int boardIndex = Integer.parseInt(userInput);
         boardSpaces.set(boardIndex, userSymbol);
+    }
+
+    public boolean gameIsTie(ArrayList spaces) {
+        boolean isTied = true;
+        for (Object space : spaces) {
+            if (space instanceof Integer) {
+                isTied = false;
+            }
+        }
+        return isTied;
     }
 }
