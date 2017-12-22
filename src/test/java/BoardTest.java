@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 class BoardTest {
 
@@ -48,5 +49,17 @@ class BoardTest {
         board.createBoard();
 
         assertFalse(board.spaceWithinBounds(userInput));
+    }
+
+    @Test
+    void updateSpace() {
+        String userInput = "1";
+        String userSymbol = "X";
+        int size = 3;
+        Board board = new Board(size);
+        board.createBoard();
+        ArrayList expectedBoard = new ArrayList(Arrays.asList(0, "X", 2, 3, 4, 5, 6, 7, 8));
+        board.updateSpace(userInput, userSymbol);
+        assertEquals(expectedBoard, board.getSpaces());
     }
 }

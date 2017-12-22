@@ -1,4 +1,5 @@
 import javax.management.openmbean.ArrayType;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -25,5 +26,11 @@ public class Board {
         int convertedInput = Integer.parseInt(userInput);
         spaces = getSpaces();
         return spaces.contains(convertedInput);
+    }
+
+    public void updateSpace(String userInput, String userSymbol) {
+        ArrayList boardSpaces = getSpaces();
+        int boardIndex = Integer.parseInt(userInput);
+        boardSpaces.set(boardIndex, userSymbol);
     }
 }
