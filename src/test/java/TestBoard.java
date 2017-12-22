@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class BoardTest {
+class TestBoard {
 
     @Test
     void createBoard() {
@@ -59,7 +59,8 @@ class BoardTest {
         Board board = new Board(size);
         board.createBoard();
         ArrayList expectedBoard = new ArrayList(Arrays.asList(0, "X", 2, 3, 4, 5, 6, 7, 8));
-        board.updateSpace(userInput, userSymbol);
+        MockPlayer playerOne = new MockPlayer("X");
+        board.updateSpace(userInput, playerOne);
         assertEquals(expectedBoard, board.getSpaces());
     }
 

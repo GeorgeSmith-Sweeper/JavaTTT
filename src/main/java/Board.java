@@ -28,10 +28,10 @@ public class Board {
         return spaces.contains(convertedInput);
     }
 
-    public void updateSpace(String userInput, String userSymbol) {
+    public void updateSpace(String userInput, IPlayer player) {
         ArrayList boardSpaces = getSpaces();
         int boardIndex = Integer.parseInt(userInput);
-        boardSpaces.set(boardIndex, userSymbol);
+        boardSpaces.set(boardIndex, player.getSymbol());
     }
 
     public boolean gameIsTie(ArrayList spaces) {

@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class gameTests {
 
@@ -9,7 +10,9 @@ class gameTests {
         MockUi ui = new MockUi(System.in);
         Board board = new Board(size);
         board.createBoard();
-        Game game = new Game(ui, board);
+        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer playerTwo = new MockPlayer("O");
+        MockGame game = new MockGame(ui, board, playerOne, playerTwo);
         game.start();
 
         assertEquals(true, ui.displayWasCalled());
