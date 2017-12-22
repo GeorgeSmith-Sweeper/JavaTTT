@@ -5,8 +5,10 @@ class gameTests {
 
     @Test
     void testStartCallsDisplay() {
+        int size = 3;
         MockUi ui = new MockUi();
-        Game game = new Game(ui);
+        Board board = new Board(size);
+        Game game = new Game(ui, board);
         game.start();
 
         assertEquals(true, ui.displayWasCalled());

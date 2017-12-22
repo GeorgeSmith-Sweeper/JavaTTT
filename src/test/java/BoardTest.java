@@ -16,4 +16,16 @@ class BoardTest {
 
         assertEquals(board.createBoard(), expectedBoard);
     }
+
+    @Test
+    void getSpacesReturnsTheCurrentStateOfTheBoard() {
+        int size = 3;
+        Board board = new Board(size);
+        ArrayList<Integer> expectedBoard = new ArrayList<Integer>(size * size);
+        board.createBoard();
+
+        assertEquals(expectedBoard, board.getSpaces());
+    }
+
+
 }

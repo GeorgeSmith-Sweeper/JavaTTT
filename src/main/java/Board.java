@@ -1,3 +1,4 @@
+import javax.management.openmbean.ArrayType;
 import java.util.ArrayList;
 
 
@@ -10,9 +11,13 @@ public class Board {
     }
 
     public ArrayList<Integer> createBoard() {
-        for (int i = 0; i < this.spaces.size(); i++) {
+        for (int i = 0; i < size*size; i++) {
             this.spaces.add(i);
         }
         return this.spaces;
+    }
+
+    public ArrayList getSpaces() {
+        return spaces;
     }
 }
