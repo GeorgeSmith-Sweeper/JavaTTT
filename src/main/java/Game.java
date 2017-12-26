@@ -21,19 +21,11 @@ public class Game implements IGame {
             String userInput = ui.getInput();
             inputValidation(userInput, currentPlayer);
             gameIsTie = board.gameIsTie(board.getSpaces());
-
             if (gameIsTie) {
                 ui.display("No one wins! Game over!");
             }
-
             ui.display(ui.presentBoard(board.getSpaces()));
-
-            // switch turns
-            if (this.playerOne.equals(currentPlayer)) {
-                currentPlayer = this.playerTwo;
-            } else {
-                currentPlayer = this.playerOne;
-            }
+            currentPlayer = this.playerOne.equals(currentPlayer) ? this.playerTwo : this.playerOne;
         }
 
     }
