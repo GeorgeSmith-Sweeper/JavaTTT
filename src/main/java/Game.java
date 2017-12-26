@@ -19,13 +19,7 @@ public class Game implements IGame {
         while (!gameIsTie) {
             ui.display("Please pick a spot!");
             String userInput = ui.getInput();
-
-            if (!board.spaceWithinBounds(userInput)) {
-                ui.display("Invalid spot, pick again!");
-            } else {
-                board.updateSpace(userInput, currentPlayer);
-            }
-
+            inputValidation(userInput, currentPlayer);
             gameIsTie = board.gameIsTie(board.getSpaces());
 
             if (gameIsTie) {
@@ -42,5 +36,13 @@ public class Game implements IGame {
             }
         }
 
+    }
+
+    private void inputValidation(String userInput, IPlayer currentPlayer) {
+        if (!board.spaceWithinBounds(userInput)) {
+            ui.display("Invalid spot, pick again!");
+        } else {
+            board.updateSpace(userInput, currentPlayer);
+        }
     }
 }
