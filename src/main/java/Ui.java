@@ -35,12 +35,7 @@ public class Ui implements IUserInterface {
         ArrayList fullBoard = new ArrayList();
 
         for (int space = 0; space < spaces.size(); space++) {
-            if (spaces.get(space) instanceof Integer) {
-                String convertedSpace = spaces.get(space).toString();
-                rowHolder.add(convertedSpace);
-            } else {
-                rowHolder.add(spaces.get(space));
-            }
+            rowHolder = addSpaceString(spaces, space, rowHolder);
             rowHolder.add(pipe);
             if (rowHolder.size() == (numRows * 2)) {
                 rowHolder.remove(rowHolder.size() - 1);
@@ -54,5 +49,15 @@ public class Ui implements IUserInterface {
         String finalBoard = String.join("", fullBoard);
 
         return finalBoard;
+    }
+
+    private ArrayList addSpaceString(ArrayList spaces, int space, ArrayList rowHolder) {
+        if (spaces.get(space) instanceof Integer) {
+            String convertedSpace = spaces.get(space).toString();
+            rowHolder.add(convertedSpace);
+        } else {
+            rowHolder.add(spaces.get(space));
+        }
+        return rowHolder;
     }
 }
