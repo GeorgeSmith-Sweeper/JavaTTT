@@ -6,6 +6,6 @@ public class MockPlayer implements IPlayer{
     }
 
     public String getSymbol() {
-        return this.symbol;
+        return symbol;
     }
 }

@@ -10,31 +10,34 @@ public class Game implements IGame {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
     }
+
     public void start() {
         boolean gameIsTie = false;
         ui.display(ui.presentBoard(board.getSpaces()));
-        IPlayer currentPlayer = this.playerOne;
-
+        IPlayer currentPlayer = playerOne;
 
         while (!gameIsTie) {
             ui.display("Please pick a spot!");
-            String userInput = ui.getInput();
-            inputValidation(userInput, currentPlayer);
+            inputValidation(currentPlayer);
             gameIsTie = board.gameIsTie(board.getSpaces());
             if (gameIsTie) {
                 ui.display("No one wins! Game over!");
             }
             ui.display(ui.presentBoard(board.getSpaces()));
-            currentPlayer = this.playerOne.equals(currentPlayer) ? this.playerTwo : this.playerOne;
+            currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
         }
-
     }
 
-    private void inputValidation(String userInput, IPlayer currentPlayer) {
-        if (!board.spaceWithinBounds(userInput)) {
+    private void inputValidation(IPlayer currentPlayer) {
+        String userInput = ui.getInput();
+
+
+
+
+        while (!board.spaceWithinBounds(userInput)) {
             ui.display("Invalid spot, pick again!");
-        } else {
-            board.updateSpace(userInput, currentPlayer);
+            userInput = ui.getInput();
         }
+        board.updateSpace(userInput, currentPlayer);
     }
 }
