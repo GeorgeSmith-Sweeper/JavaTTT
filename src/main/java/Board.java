@@ -2,7 +2,6 @@ import javax.management.openmbean.ArrayType;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-
 public class Board {
     private int size;
     private ArrayList<Integer> spaces = new ArrayList<Integer>(size*size);

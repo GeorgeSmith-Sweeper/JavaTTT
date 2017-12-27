@@ -1,4 +1,4 @@
-public class Main {
+public class Entry {
     public static void main (String[] args) {
         int size = 3;
         Player playerOne = new Player("X");
