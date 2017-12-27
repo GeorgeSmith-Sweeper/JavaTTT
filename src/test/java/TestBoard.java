@@ -42,8 +42,28 @@ class TestBoard {
     }
 
     @Test
-    void spaceWithinBoundsReturnsFalseIfSpaceIsWithinBounds() {
+    void spaceWithinBoundsReturnsFalseIfSpaceIsNotWithinBounds() {
         String userInput = "13";
+        int size = 3;
+        Board board = new Board(size);
+        board.createBoard();
+
+        assertFalse(board.spaceWithinBounds(userInput));
+    }
+
+    @Test
+    void spaceWithinBoundsReturnsFalseIfInputIsNotANumber() {
+        String userInput = "S";
+        int size = 3;
+        Board board = new Board(size);
+        board.createBoard();
+
+        assertFalse(board.spaceWithinBounds(userInput));
+    }
+
+    @Test
+    void spaceWithinBoundsReturnsFalseIfInputIsEmpty() {
+        String userInput = "";
         int size = 3;
         Board board = new Board(size);
         board.createBoard();

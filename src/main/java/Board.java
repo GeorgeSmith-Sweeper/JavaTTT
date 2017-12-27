@@ -13,9 +13,9 @@ public class Board {
 
     public ArrayList<Integer> createBoard() {
         for (int i = 0; i < size*size; i++) {
-            this.spaces.add(i);
+            spaces.add(i);
         }
-        return this.spaces;
+        return spaces;
     }
 
     public ArrayList getSpaces() {
@@ -23,7 +23,12 @@ public class Board {
     }
 
     public boolean spaceWithinBounds(String userInput) {
-        int convertedInput = Integer.parseInt(userInput);
+        int convertedInput;
+        try {
+            convertedInput = Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            return false;
+        }
         ArrayList spaces = getSpaces();
         return spaces.contains(convertedInput);
     }
