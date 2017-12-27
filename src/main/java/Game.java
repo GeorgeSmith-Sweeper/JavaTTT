@@ -31,9 +31,6 @@ public class Game implements IGame {
     private void inputValidation(IPlayer currentPlayer) {
         String userInput = ui.getInput();
 
-
-
-
         while (!board.spaceWithinBounds(userInput)) {
             ui.display("Invalid spot, pick again!");
             userInput = ui.getInput();
