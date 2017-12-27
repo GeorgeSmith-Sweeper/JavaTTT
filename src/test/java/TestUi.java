@@ -7,14 +7,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TestUi {
 
+    private Board testBoard;
+    private int size;
+    private Ui testUi;
+
+    @BeforeEach
+    public void setUp() {
+        size = 3;
+        testUi = new Ui(System.in);
+        testBoard = new Board(size);
+        testBoard.createBoard();
+    }
+
     @Test
     void display() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         System.setOut(printStream);
-        Ui ui = new Ui(System.in);
         String message = "Hello";
-        ui.display(message);
+        testUi.display(message);
 
         assertEquals(message, outputStream.toString());
     }
@@ -31,28 +42,19 @@ class TestUi {
 
     @Test
     void presentBoardConvertsTheBoardSpacesToAString() {
-        int size = 3;
-        Ui ui = new Ui(System.in);
-        Board board = new Board(size);
-        board.createBoard();
-
         String expectedBoard = "0 | 1 | 2\n" +
                                "=========\n" +
                                "3 | 4 | 5\n" +
                                "=========\n" +
                                "6 | 7 | 8\n";
 
-        assertEquals(expectedBoard, ui.presentBoard(board.getSpaces()));
+        assertEquals(expectedBoard, testUi.presentBoard(testBoard.getSpaces()));
     }
 
     @Test
     void presentBoardDisplaysAPlayersMove() {
-        int size = 3;
-        Ui ui = new Ui(System.in);
-        Board board = new Board(size);
-        board.createBoard();
         MockPlayer playerOne = new MockPlayer("X");
-        board.updateSpace("1", playerOne);
+        testBoard.updateSpace("1", playerOne);
 
         String expectedBoard = "0 | X | 2\n" +
                                "=========\n" +
@@ -60,6 +62,6 @@ class TestUi {
                                "=========\n" +
                                "6 | 7 | 8\n";
 
-        assertEquals(expectedBoard, ui.presentBoard(board.getSpaces()));
+        assertEquals(expectedBoard, testUi.presentBoard(testBoard.getSpaces()));
     }
 }
