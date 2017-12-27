@@ -30,25 +30,30 @@ public class Ui implements IUserInterface {
     public String presentBoard(ArrayList spaces) {
         int numRows = (int) Math.sqrt(spaces.size());
         String pipe = " | ";
-        String divider = "=========";
         ArrayList rowHolder = new ArrayList();
         ArrayList fullBoard = new ArrayList();
 
         for (int space = 0; space < spaces.size(); space++) {
             rowHolder = addSpaceString(spaces, space, rowHolder);
             rowHolder.add(pipe);
-            if (rowHolder.size() == (numRows * 2)) {
-                rowHolder.remove(rowHolder.size() - 1);
-                String rowString = String.join("", rowHolder) + "\n";
-                fullBoard.add(rowString);
-                fullBoard.add(divider + "\n");
-                rowHolder.clear();
-            }
+            fullBoard = addBuiltRow(rowHolder, fullBoard, numRows, pipe);
         }
         fullBoard.remove(fullBoard.size() - 1);
         String finalBoard = String.join("", fullBoard);
 
         return finalBoard;
+    }
+
+    private ArrayList addBuiltRow(ArrayList rowHolder, ArrayList fullBoard, int numRows, String pipe) {
+        String divider = "=========";
+        if (rowHolder.size() == (numRows * 2)) {
+            rowHolder.remove(rowHolder.size() - 1);
+            String rowString = String.join("", rowHolder) + "\n";
+            fullBoard.add(rowString);
+            fullBoard.add(divider + "\n");
+            rowHolder.clear();
+        }
+        return fullBoard;
     }
 
     private ArrayList addSpaceString(ArrayList spaces, int space, ArrayList rowHolder) {
