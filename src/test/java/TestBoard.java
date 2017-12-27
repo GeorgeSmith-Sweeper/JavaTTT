@@ -56,7 +56,7 @@ class TestBoard {
     }
 
     @Test
-    void updateSpace() {
+    void updateSpaceUpdatesSpaceWithUserInput() {
         String userInput = "1";
         String userSymbol = "X";
         ArrayList expectedBoard = new ArrayList(Arrays.asList(0, "X", 2, 3, 4, 5, 6, 7, 8));
