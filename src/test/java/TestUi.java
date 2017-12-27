@@ -27,7 +27,7 @@ class TestUi {
         String message = "Hello";
         testUi.display(message);
 
-        assertEquals(message, outputStream.toString());
+        assertEquals(message + "\n", outputStream.toString());
     }
 
     @Test

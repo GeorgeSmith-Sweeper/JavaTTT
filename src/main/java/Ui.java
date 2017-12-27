@@ -13,7 +13,7 @@ public class Ui implements IUserInterface {
     }
 
     public void display(String message) {
-        System.out.print(message);
+        System.out.println(message);
     }
 
     public String getInput() {
