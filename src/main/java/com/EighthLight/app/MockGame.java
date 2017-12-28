@@ -1,3 +1,5 @@
+package com.EighthLight.app;
+
 public class MockGame implements IGame {
 
     private IPlayer playerOne;

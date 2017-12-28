@@ -1,13 +1,15 @@
+package com.EighthLight.app;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class gameTests {
 
     @Test
     void testStartCallsTheCorrectMethods() {
         int size = 3;
-        MockUi ui = new MockUi(System.in);
+        MockUi ui;
+        ui = new MockUi(System.in);
         Board board = new Board(size);
         board.createBoard();
         MockPlayer playerOne = new MockPlayer("X");

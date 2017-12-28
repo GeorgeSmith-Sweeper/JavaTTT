@@ -1,4 +1,6 @@
-public class Game implements IGame {
+package com.EighthLight.app;
+
+public class Game implements com.EighthLight.app.IGame {
     private IPlayer playerOne;
     private IPlayer playerTwo;
     private IUserInterface ui;
@@ -28,7 +30,7 @@ public class Game implements IGame {
         }
     }
 
-    private void inputValidation(IPlayer currentPlayer) {
+    private void inputValidation(com.EighthLight.app.IPlayer currentPlayer) {
         String userInput = ui.getInput();
 
         while (!board.spaceWithinBounds(userInput)) {

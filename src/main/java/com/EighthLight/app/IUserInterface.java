@@ -1,3 +1,5 @@
+package com.EighthLight.app;
+
 import java.util.ArrayList;
 
 public interface IUserInterface {

@@ -1,7 +1,9 @@
-public class MockPlayer implements IPlayer{
+package com.EighthLight.app;
+
+public class Player implements IPlayer {
     private String symbol;
 
-    public MockPlayer(String symbol) {
+    public Player(String symbol) {
         this.symbol = symbol;
     }
 

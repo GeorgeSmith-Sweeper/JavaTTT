@@ -1,4 +1,6 @@
-public class Entry {
+package com.EighthLight.app;
+
+public class App {
     public static void main (String[] args) {
         int size = 3;
         Player playerOne = new Player("X");
