@@ -7,7 +7,7 @@ Please run `java --version` from the commandline to check if you have java.
 
 If you have Java, your output should be similar to the one below.
 
-![YouHaveJava](/images/YouHaveJava?raw=true)
+![YouHaveJava](/images/YouHaveJava.png?raw=true)
 
 If you don't get a different output, then follow the instructions at this link: [Getting Java 9](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html)
 
@@ -17,7 +17,7 @@ Please run `mvn --version` from the commandline to check if it is installed.
 
 If you have mvn, your output should be similar to the one below.
 
-![YouHaveMaven](/images/YouHaveMaven?raw=true)
+![YouHaveMaven](/images/YouHaveMaven.png?raw=true)
 
 If you don't get a different output, then follow the instructions at this link: [Installing Maven](https://maven.apache.org/download.cgi)
 
@@ -32,6 +32,7 @@ I personally believe that the eaisest way to get started is through `homebrew`, 
 ### Playing the Game
 
 The game will begin by displaying a board, and a prompt to pick a spot.
+
 ![Game Start](/images/GameStart.png?raw=true)
 
 Begin playing by selecting a spot 0-8.
