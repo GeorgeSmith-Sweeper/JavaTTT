@@ -19,9 +19,14 @@ If you have mvn, your output should be similar to the one below.
 
 ![YouHaveMaven](/images/YouHaveMaven.png?raw=true)
 
-If you don't get a different output, then follow the instructions at this link: [Installing Maven](https://maven.apache.org/download.cgi)
+If you get a different output, then there are a couple of ways for you to get up and running with maven.
 
 I personally believe that the eaisest way to get started is through `homebrew`, using the command `brew install maven`.
+
+[Installing brew](https://brew.sh/)
+
+The other, less user friendly way is to follow the instructions at this link: [Installing Maven](https://maven.apache.org/download.cgi)
+
 
 ### Getting started
 
