@@ -103,4 +103,34 @@ class TestBoard {
         assertEquals(allWinningConditions, testBoard.createWinningCombos());
     }
 
+    @Test
+    void createWinningCombosWillGenerateAllWinStatesForAGiven4x4Board() {
+        int size = 4;
+        Board fourByFour = new Board(size);
+        fourByFour.createBoard();
+
+        ArrayList firstRow = new ArrayList(Arrays.asList(0, 1, 2, 3));
+        ArrayList secondRow = new ArrayList(Arrays.asList(4, 5, 6, 7));
+        ArrayList thirdRow = new ArrayList(Arrays.asList(8, 9, 10, 11));
+        ArrayList fourthRow = new ArrayList(Arrays.asList(12, 13, 14, 15));
+        ArrayList firstColumn = new ArrayList(Arrays.asList(0, 4, 8, 12));
+        ArrayList secondColumn = new ArrayList(Arrays.asList(1, 5, 9, 13));
+        ArrayList thirdColumn = new ArrayList(Arrays.asList(2, 6, 10, 14));
+        ArrayList fourthColumn = new ArrayList(Arrays.asList(3, 7, 11, 15));
+        ArrayList firstDiagonal = new ArrayList(Arrays.asList(0, 5, 10, 15));
+        ArrayList secondDiagonal = new ArrayList(Arrays.asList(12, 9, 6, 3));
+
+        ArrayList allWinningConditions = new ArrayList(Arrays.asList(firstRow,
+                secondRow,
+                thirdRow,
+                fourthRow,
+                firstColumn,
+                secondColumn,
+                thirdColumn,
+                fourthColumn,
+                firstDiagonal,
+                secondDiagonal));
+
+        assertEquals(allWinningConditions, fourByFour.createWinningCombos());
+    }
 }
