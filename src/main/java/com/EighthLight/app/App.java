@@ -9,7 +9,6 @@ public class App {
         Board board = new Board(size);
         board.createBoard();
         board.setWinningCombos();
-        System.out.print(board.getWinningCombos());
         Game game = new Game(ui, board, playerOne, playerTwo);
         game.start();
     }
