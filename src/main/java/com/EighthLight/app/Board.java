@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Board {
     private int size;
-    private ArrayList<Integer> spaces = new ArrayList<Integer>(size*size);
+    private ArrayList spaces = new ArrayList(size*size);
     private ArrayList winningCombos;
 
     public Board(int size) {
@@ -20,6 +20,10 @@ public class Board {
 
     public ArrayList getSpaces() {
         return spaces;
+    }
+
+    public void setSpaces(ArrayList passedInState) {
+        this.spaces = passedInState;
     }
 
     public boolean spaceWithinBounds(String userInput) {
@@ -104,4 +108,16 @@ public class Board {
     public ArrayList getWinningCombos() {
         return winningCombos;
     }
+
+//    public boolean aPlayerWon(IPlayer currentPlayer) {
+//        for (int combo = 0; combo < this.winningCombos.size(); combo++) {
+//            boolean win = true;
+//            for (int spot = 0; spot < (this.winningCombos.size() / 2) - 1; spot++) {
+//                if (spaces.get(this.winningCombos.get(combo).get(spot)) == currentPlayer.getSymbol()) {
+//
+//                }
+//            }
+//        }
+//        return true;
+//    }
 }

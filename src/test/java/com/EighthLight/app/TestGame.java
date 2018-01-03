@@ -19,5 +19,6 @@ class gameTests {
 
         assertEquals(true, ui.displayWasCalled());
         assertEquals(true, ui.inputWasCalled());
+
     }
 }

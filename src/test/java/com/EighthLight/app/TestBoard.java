@@ -137,4 +137,16 @@ class TestBoard {
 
         assertEquals(allWinningConditions, fourByFour.getWinningCombos());
     }
+//
+//    @Test
+//    void aPlayerWonReturnsTrueIfAPlayerOccupiesAllSpotsInWinningCombos() {
+//        ArrayList expectedBoard = new ArrayList(Arrays.asList("X", "X", "X",
+//                                                              3, 4, 5,
+//                                                              6, 7, 8));
+//        MockPlayer playerOne = new MockPlayer("X");
+//        testBoard.setSpaces(expectedBoard);
+//        testBoard.setWinningCombos();
+//
+//        assertEquals(true, testBoard.aPlayerWon(playerOne));
+//    }
 }

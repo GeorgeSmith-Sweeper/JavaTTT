@@ -30,7 +30,7 @@ public class Game implements com.EighthLight.app.IGame {
         }
     }
 
-    private void inputValidation(com.EighthLight.app.IPlayer currentPlayer) {
+    private void inputValidation(IPlayer currentPlayer) {
         String userInput = ui.getInput();
 
         while (!board.spaceWithinBounds(userInput)) {
