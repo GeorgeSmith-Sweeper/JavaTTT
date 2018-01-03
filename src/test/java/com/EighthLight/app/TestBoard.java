@@ -100,7 +100,9 @@ class TestBoard {
                 firstDiagonal,
                 secondDiagonal));
 
-        assertEquals(allWinningConditions, testBoard.createWinningCombos());
+        testBoard.setWinningCombos();
+
+        assertEquals(allWinningConditions, testBoard.getWinningCombos());
     }
 
     @Test
@@ -131,6 +133,8 @@ class TestBoard {
                 firstDiagonal,
                 secondDiagonal));
 
-        assertEquals(allWinningConditions, fourByFour.createWinningCombos());
+        fourByFour.setWinningCombos();
+
+        assertEquals(allWinningConditions, fourByFour.getWinningCombos());
     }
 }

@@ -8,6 +8,8 @@ public class App {
         Ui ui = new Ui(System.in);
         Board board = new Board(size);
         board.createBoard();
+        board.setWinningCombos();
+        System.out.print(board.getWinningCombos());
         Game game = new Game(ui, board, playerOne, playerTwo);
         game.start();
     }

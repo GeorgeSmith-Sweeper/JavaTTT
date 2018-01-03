@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Board {
     private int size;
     private ArrayList<Integer> spaces = new ArrayList<Integer>(size*size);
+    private ArrayList winningCombos;
 
     public Board(int size) {
         this.size = size;
@@ -48,7 +49,7 @@ public class Board {
         return isTied;
     }
 
-    public ArrayList createWinningCombos() {
+    public void setWinningCombos() {
         ArrayList allWinningConditions = new ArrayList();
 
         // Calculate all winning rows
@@ -97,6 +98,10 @@ public class Board {
         }
         allWinningConditions.add(leftBottomDiagonal);
 
-        return allWinningConditions;
+        this.winningCombos = allWinningConditions;
+    }
+
+    public ArrayList getWinningCombos() {
+        return winningCombos;
     }
 }
