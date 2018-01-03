@@ -49,8 +49,27 @@ public class Board {
     }
 
     public ArrayList createWinningCombos() {
-        ArrayList test = new ArrayList();
-        return test;
+        ArrayList allWinningConditions = new ArrayList();
+
+        // Calculate all winning rows
+        ArrayList<ArrayList> winningRows = new ArrayList<ArrayList>();
+        ArrayList<Integer> singleRow = new ArrayList<Integer>();
+        for (int space = 0; space < (this.size*this.size); space++) {
+            singleRow.add(space);
+            ArrayList singleClone = (ArrayList) singleRow.clone();
+            if (singleRow.size() == this.size) {
+                winningRows.add(singleClone);
+                singleRow.clear();
+            }
+        }
+        for (ArrayList row: winningRows) {
+            allWinningConditions.add(row);
+        }
+
+
+
+
+        return allWinningConditions;
 
     }
 }
