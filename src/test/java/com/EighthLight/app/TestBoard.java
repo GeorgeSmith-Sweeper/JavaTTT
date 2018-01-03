@@ -90,7 +90,7 @@ class TestBoard {
         ArrayList secondColumn = new ArrayList(Arrays.asList(1, 4, 7));
         ArrayList thirdColumn = new ArrayList(Arrays.asList(2, 5, 8));
         ArrayList firstDiagonal = new ArrayList(Arrays.asList(0, 4, 8));
-        ArrayList secondDiagonal = new ArrayList(Arrays.asList(2, 4, 6));
+        ArrayList secondDiagonal = new ArrayList(Arrays.asList(6, 4, 2));
         ArrayList allWinningConditions = new ArrayList(Arrays.asList(firstRow,
                 secondRow,
                 thirdRow,
