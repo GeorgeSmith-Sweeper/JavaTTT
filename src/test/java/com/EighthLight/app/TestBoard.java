@@ -80,4 +80,27 @@ class TestBoard {
 
         assertFalse(testBoard.gameIsTie(expectedBoard));
     }
+
+    @Test
+    void createWinningCombosWillGenerateAllWinStatesForAGiven3x3Board() {
+        ArrayList firstRow = new ArrayList(Arrays.asList(0, 1, 2));
+        ArrayList secondRow = new ArrayList(Arrays.asList(3, 4, 5));
+        ArrayList thirdRow = new ArrayList(Arrays.asList(6, 7, 8));
+        ArrayList firstColumn = new ArrayList(Arrays.asList(0, 3, 6));
+        ArrayList secondColumn = new ArrayList(Arrays.asList(1, 4, 7));
+        ArrayList thirdColumn = new ArrayList(Arrays.asList(2, 5, 8));
+        ArrayList firstDiagonal = new ArrayList(Arrays.asList(0, 4, 8));
+        ArrayList secondDiagonal = new ArrayList(Arrays.asList(2, 4, 6));
+        ArrayList allWinningConditions = new ArrayList(Arrays.asList(firstRow,
+                secondRow,
+                thirdRow,
+                firstColumn,
+                secondColumn,
+                thirdColumn,
+                firstDiagonal,
+                secondDiagonal));
+
+        assertEquals(allWinningConditions, testBoard.createWinningCombos());
+    }
+
 }

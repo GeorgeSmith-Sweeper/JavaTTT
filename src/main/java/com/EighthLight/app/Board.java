@@ -47,4 +47,10 @@ public class Board {
         }
         return isTied;
     }
+
+    public ArrayList createWinningCombos() {
+        ArrayList test = new ArrayList();
+        return test;
+
+    }
 }
