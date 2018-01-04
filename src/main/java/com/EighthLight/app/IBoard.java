@@ -7,4 +7,6 @@ public interface IBoard {
     void updateSpace(String userInput, IPlayer player);
     boolean gameIsTie(ArrayList spaces);
     void setWinningCombos();
+    ArrayList createBoard();
+    ArrayList getSpaces();
 }

@@ -2,7 +2,7 @@ package com.EighthLight.app;
 
 import java.util.ArrayList;
 
-class Board implements IBoard{
+public class Board implements IBoard {
     private int size;
     private ArrayList spaces = new ArrayList(size*size);
     private ArrayList winningCombos;

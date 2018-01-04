@@ -5,9 +5,9 @@ public class MockGame implements IGame {
     private IPlayer playerOne;
     private IPlayer playerTwo;
     private IUserInterface ui;
-    private Board board;
+    private IBoard board;
 
-    public MockGame(IUserInterface ui, Board board, IPlayer playerOne, IPlayer playerTwo) {
+    public MockGame(IUserInterface ui, IBoard board, IPlayer playerOne, IPlayer playerTwo) {
         this.ui = ui;
         this.board = board;
         this.playerOne = playerOne;

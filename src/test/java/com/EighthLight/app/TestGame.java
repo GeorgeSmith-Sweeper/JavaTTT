@@ -8,12 +8,12 @@ class gameTests {
     @Test
     void testStartCallsTheCorrectMethods() {
         int size = 3;
-        MockUi ui;
-        ui = new MockUi();
-        Board board = new Board(size);
-        board.createBoard();
+        MockUi ui = new MockUi();
+        // anything can be supplied to the constructor
+        MockBoard board = new MockBoard(size);
         MockPlayer playerOne = new MockPlayer("X");
         MockPlayer playerTwo = new MockPlayer("O");
+        board.createBoard();
         MockGame game = new MockGame(ui, board, playerOne, playerTwo);
         game.start();
 
