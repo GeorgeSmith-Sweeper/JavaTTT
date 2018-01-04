@@ -2,11 +2,14 @@ package com.EighthLight.app;
 
 import java.util.ArrayList;
 
-public class MockBoard implements IBoard{
+public class MockBoard implements IBoard {
     private int size;
+    private boolean gameTieCalled;
+    private ArrayList spaces;
 
-    public MockBoard(int size) {
+    public MockBoard(int size, ArrayList spaces) {
         this.size = size;
+        this.spaces = spaces;
     }
 
     @Override
@@ -14,28 +17,28 @@ public class MockBoard implements IBoard{
         return false;
     }
 
-    @Override
     public void updateSpace(String userInput, IPlayer player) {
 
     }
 
-    @Override
     public boolean gameIsTie(ArrayList spaces) {
-        return false;
+        gameTieCalled = true;
+        return true;
     }
 
-    @Override
     public void setWinningCombos() {
 
     }
 
-    @Override
     public ArrayList createBoard() {
         return null;
     }
 
-    @Override
     public ArrayList getSpaces() {
-        return null;
+        return this.spaces;
+    }
+
+    public boolean gameIsTieWasCalled() {
+        return gameTieCalled;
     }
 }

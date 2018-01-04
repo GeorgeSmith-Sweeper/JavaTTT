@@ -1,6 +1,10 @@
 package com.EighthLight.app;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class gameTests {
@@ -8,18 +12,22 @@ class gameTests {
     @Test
     void testStartCallsTheCorrectMethods() {
         int size = 3;
-        MockUi ui = new MockUi();
-        // anything can be supplied to the constructor
-        MockBoard board = new MockBoard(size);
+        String providedInput = "1";
+        ArrayList spaces = new ArrayList(Arrays.asList("O", "X", "X",
+                                                       "O", "X", "O",
+                                                       "X", "O", "X"));
+        MockUi ui = new MockUi(providedInput);
+        MockBoard board = new MockBoard(size, spaces);
         MockPlayer playerOne = new MockPlayer("X");
         MockPlayer playerTwo = new MockPlayer("O");
-        board.createBoard();
         Game game = new Game(ui, board, playerOne, playerTwo);
         game.start();
 
+        assertEquals(true, board.gameIsTieWasCalled());
         assertEquals(true, ui.displayWasCalled());
         assertEquals(true, ui.presentBoardCalled());
         assertEquals(true, ui.inputWasCalled());
+
     }
 }
 

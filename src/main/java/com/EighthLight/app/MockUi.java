@@ -6,7 +6,12 @@ public class MockUi implements IUserInterface {
     private boolean displayCalled = false;
     private boolean inputCalled = false;
     private boolean presentCalled = false;
+    private String providedInput;
 
+
+    public MockUi(String providedInput) {
+        this.providedInput = providedInput;
+    }
     public boolean displayWasCalled() {
         return displayCalled;
     }
@@ -17,7 +22,7 @@ public class MockUi implements IUserInterface {
 
     public String getInput() {
         inputCalled = true;
-        return "0";
+        return this.providedInput;
     }
 
     public boolean inputWasCalled() {

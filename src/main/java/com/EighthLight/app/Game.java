@@ -20,23 +20,22 @@ public class Game implements IGame {
 
         while (!gameIsTie) {
             ui.display("Please pick a spot!");
-            inputValidation(currentPlayer);
+            String userInput = ui.getInput();
+//
+//            while (!board.spaceWithinBounds(userInput)) {
+//                ui.display("Invalid spot, pick again!");
+//                userInput = ui.getInput();
+//            }
+//            board.updateSpace(userInput, currentPlayer);
+
             gameIsTie = board.gameIsTie(board.getSpaces());
+
             if (gameIsTie) {
                 ui.display("No one wins! Game over!");
             }
+
             ui.display(ui.presentBoard(board.getSpaces()));
             currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
         }
-    }
-
-    private void inputValidation(IPlayer currentPlayer) {
-        String userInput = ui.getInput();
-
-        while (!board.spaceWithinBounds(userInput)) {
-            ui.display("Invalid spot, pick again!");
-            userInput = ui.getInput();
-        }
-        board.updateSpace(userInput, currentPlayer);
     }
 }
