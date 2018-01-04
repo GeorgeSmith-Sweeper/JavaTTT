@@ -1,6 +1,6 @@
 package com.EighthLight.app;
 
-public class Game implements com.EighthLight.app.IGame {
+public class Game implements IGame {
     private IPlayer playerOne;
     private IPlayer playerTwo;
     private IUserInterface ui;

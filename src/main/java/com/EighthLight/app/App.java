@@ -13,3 +13,7 @@ public class App {
         game.start();
     }
 }
+
+// don't forget the config for user symbol and board size
+// idea
+// commandline args (/m or flags)

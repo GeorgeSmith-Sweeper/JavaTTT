@@ -1,16 +1,10 @@
 package com.EighthLight.app;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MockUi implements IUserInterface {
-    private final InputStream in;
     private boolean displayCalled = false;
     private boolean inputCalled = false;
-
-    public MockUi(InputStream in) {
-        this.in = in;
-    }
 
     public boolean displayWasCalled() {
         return displayCalled;
