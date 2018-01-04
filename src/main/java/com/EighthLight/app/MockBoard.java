@@ -4,21 +4,25 @@ import java.util.ArrayList;
 
 public class MockBoard implements IBoard {
     private int size;
-    private boolean gameTieCalled;
     private ArrayList spaces;
+    private boolean spaceInBounds;
+    private boolean gameTieCalled;
+    private boolean spaceInBoundsCalled = false;
+    private boolean updateSpaceCalled = false;
 
-    public MockBoard(int size, ArrayList spaces) {
+    public MockBoard(int size, ArrayList spaces, boolean spaceInBounds) {
         this.size = size;
         this.spaces = spaces;
+        this.spaceInBounds = spaceInBounds;
     }
 
-    @Override
     public boolean spaceWithinBounds(String userInput) {
-        return false;
+        spaceInBoundsCalled = true;
+        return this.spaceInBounds;
     }
 
     public void updateSpace(String userInput, IPlayer player) {
-
+        updateSpaceCalled = true;
     }
 
     public boolean gameIsTie(ArrayList spaces) {
@@ -26,9 +30,7 @@ public class MockBoard implements IBoard {
         return true;
     }
 
-    public void setWinningCombos() {
-
-    }
+    public void setWinningCombos() { }
 
     public ArrayList createBoard() {
         return null;
@@ -40,5 +42,13 @@ public class MockBoard implements IBoard {
 
     public boolean gameIsTieWasCalled() {
         return gameTieCalled;
+    }
+
+    public boolean spaceWithinBoundsWasCalled() {
+        return spaceInBoundsCalled;
+    }
+
+    public boolean updateSpaceWasCalled() {
+        return updateSpaceCalled;
     }
 }

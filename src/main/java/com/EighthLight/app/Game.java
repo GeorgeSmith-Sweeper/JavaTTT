@@ -21,12 +21,12 @@ public class Game implements IGame {
         while (!gameIsTie) {
             ui.display("Please pick a spot!");
             String userInput = ui.getInput();
-//
-//            while (!board.spaceWithinBounds(userInput)) {
-//                ui.display("Invalid spot, pick again!");
-//                userInput = ui.getInput();
-//            }
-//            board.updateSpace(userInput, currentPlayer);
+
+            while (!board.spaceWithinBounds(userInput)) {
+                ui.display("Invalid spot, pick again!");
+                userInput = ui.getInput();
+            }
+            board.updateSpace(userInput, currentPlayer);
 
             gameIsTie = board.gameIsTie(board.getSpaces());
 

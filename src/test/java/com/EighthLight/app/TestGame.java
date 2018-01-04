@@ -12,22 +12,24 @@ class gameTests {
     @Test
     void testStartCallsTheCorrectMethods() {
         int size = 3;
+        boolean spaceInBounds = true;
         String providedInput = "1";
         ArrayList spaces = new ArrayList(Arrays.asList("O", "X", "X",
                                                        "O", "X", "O",
                                                        "X", "O", "X"));
         MockUi ui = new MockUi(providedInput);
-        MockBoard board = new MockBoard(size, spaces);
+        MockBoard board = new MockBoard(size, spaces, spaceInBounds);
         MockPlayer playerOne = new MockPlayer("X");
         MockPlayer playerTwo = new MockPlayer("O");
         Game game = new Game(ui, board, playerOne, playerTwo);
         game.start();
 
+        assertEquals(true, board.spaceWithinBoundsWasCalled());
         assertEquals(true, board.gameIsTieWasCalled());
+        assertEquals(true, board.updateSpaceWasCalled());
         assertEquals(true, ui.displayWasCalled());
         assertEquals(true, ui.presentBoardCalled());
         assertEquals(true, ui.inputWasCalled());
-
     }
 }
 
