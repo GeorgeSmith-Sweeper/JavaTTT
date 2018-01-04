@@ -14,10 +14,11 @@ class gameTests {
         MockPlayer playerOne = new MockPlayer("X");
         MockPlayer playerTwo = new MockPlayer("O");
         board.createBoard();
-        MockGame game = new MockGame(ui, board, playerOne, playerTwo);
+        Game game = new Game(ui, board, playerOne, playerTwo);
         game.start();
 
         assertEquals(true, ui.displayWasCalled());
+        assertEquals(true, ui.presentBoardCalled());
         assertEquals(true, ui.inputWasCalled());
     }
 }

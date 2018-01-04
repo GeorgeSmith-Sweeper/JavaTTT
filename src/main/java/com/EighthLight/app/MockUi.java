@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class MockUi implements IUserInterface {
     private boolean displayCalled = false;
     private boolean inputCalled = false;
+    private boolean presentCalled = false;
 
     public boolean displayWasCalled() {
         return displayCalled;
@@ -24,6 +25,11 @@ public class MockUi implements IUserInterface {
     }
 
     public String presentBoard(ArrayList spaces) {
+        presentCalled = true;
         return null;
+    }
+
+    public boolean presentBoardCalled() {
+        return presentCalled;
     }
 }
