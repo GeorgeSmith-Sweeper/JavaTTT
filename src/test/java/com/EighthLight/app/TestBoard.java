@@ -178,4 +178,28 @@ class TestBoard {
 
         assertEquals(true, testBoard.hasAPlayerWon(playerOne));
     }
+
+    @Test
+    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByDiagonal() {
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "O",
+                                                                3, "X", 5,
+                                                                6, 7, "X"));
+        Player playerOne = new Player("X");
+        testBoard.setSpaces(expectedBoard);
+        testBoard.setWinningCombos();
+
+        assertEquals(true, testBoard.hasAPlayerWon(playerOne));
+    }
+
+    @Test
+    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByAlternateDiagonal() {
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("0", "O", "X",
+                                                                 3, "X", 5,
+                                                                "X", 7, 8));
+        Player playerOne = new Player("X");
+        testBoard.setSpaces(expectedBoard);
+        testBoard.setWinningCombos();
+
+        assertEquals(true, testBoard.hasAPlayerWon(playerOne));
+    }
 }
