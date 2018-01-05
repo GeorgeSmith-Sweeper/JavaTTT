@@ -202,4 +202,16 @@ class TestBoard {
 
         assertEquals(true, testBoard.hasAPlayerWon(playerOne));
     }
+
+    @Test
+    void hasAPlayerOneReturnsFalseWhenAPlayerDoesntWin() {
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "X",
+                                                                "O", "O", 5,
+                                                                 6, 7, 8));
+        Player playerOne = new Player("X");
+        testBoard.setSpaces(expectedBoard);
+        testBoard.setWinningCombos();
+
+        assertEquals(false, testBoard.hasAPlayerWon(playerOne));
+    }
 }
