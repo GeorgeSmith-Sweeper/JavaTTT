@@ -121,6 +121,17 @@ class TestBoard {
     }
 
     @Test
+    void makeBottomLeftDiagAddsAllSpotsToListFor3x3Board() {
+        ArrayList<Integer> expectedSpaces = new ArrayList<>();
+        List<ArrayList<Integer>> winningRows = testBoard.makeWinningRows();
+        expectedSpaces.add(6);
+        expectedSpaces.add(4);
+        expectedSpaces.add(2);
+
+        assertEquals(expectedSpaces, testBoard.makeBottomLeftDiag(winningRows));
+    }
+
+    @Test
     void createWinningCombosWillGenerateAllWinStatesForAGiven3x3Board() {
         ArrayList<Integer> firstRow = new ArrayList<>(Arrays.asList(0, 1, 2));
         ArrayList<Integer> secondRow = new ArrayList<>(Arrays.asList(3, 4, 5));
@@ -143,27 +154,4 @@ class TestBoard {
 
         assertEquals(allWinningConditions, testBoard.getWinningCombos());
     }
-
-//    @Test
-//    void createWinningCombosWillGenerateAllWinStatesForAGiven4x4Board() {
-//        int size = 4;
-//        Board fourByFour = new Board(size);
-//        fourByFour.createBoard();
-//
-//
-//        ArrayList allWinningConditions = new ArrayList(Arrays.asList(firstRow,
-//                secondRow,
-//                thirdRow,
-//                fourthRow,
-//                firstColumn,
-//                secondColumn,
-//                thirdColumn,
-//                fourthColumn,
-//                firstDiagonal,
-//                secondDiagonal));
-//
-//        fourByFour.setWinningCombos();
-//
-//        assertEquals(allWinningConditions, fourByFour.getWinningCombos());
-//    }
 }

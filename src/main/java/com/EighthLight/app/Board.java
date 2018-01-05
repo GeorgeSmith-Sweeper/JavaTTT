@@ -19,7 +19,6 @@ public class Board implements IBoard {
         return spaces;
     }
 
-
     public boolean spaceWithinBounds(String userInput) {
         int convertedInput;
         try {
@@ -47,12 +46,12 @@ public class Board implements IBoard {
         return isTied;
     }
 
-    public ArrayList getSpaces() {
-        return spaces;
-    }
-
     public void setSpaces(ArrayList passedInState) {
         this.spaces = passedInState;
+    }
+
+    public ArrayList getSpaces() {
+        return spaces;
     }
 
     public void setWinningCombos() {
@@ -60,27 +59,11 @@ public class Board implements IBoard {
         List<ArrayList<Integer>> winningRows = makeWinningRows();
         List<ArrayList<Integer>> winningColumns = makeWinningColumns(winningRows);
         ArrayList<Integer> winningTopLeftDiag = makeTopLeftDiag(winningRows);
-        
-        for (ArrayList row: winningRows) {
-            allWinningConditions.add(row);
-        }
-
-        for(ArrayList column: winningColumns) {
-            allWinningConditions.add(column);
-        }
+        ArrayList<Integer> winningBottomLeftDiag = makeBottomLeftDiag(winningRows);
+        allWinningConditions.addAll(winningRows);
+        allWinningConditions.addAll(winningColumns);
         allWinningConditions.add(winningTopLeftDiag);
-
-        // Calculate all left Bottom winning diagonals
-        ArrayList<Integer> leftBottomDiagonal = new ArrayList<>();
-        int inner = 0;
-        int outer = this.size - 1;
-        while (inner < this.size) {
-            leftBottomDiagonal.add(winningRows.get(outer).get(inner));
-            inner += 1;
-            outer -= 1;
-        }
-        allWinningConditions.add(leftBottomDiagonal);
-
+        allWinningConditions.add(winningBottomLeftDiag);
         this.winningCombos = allWinningConditions;
     }
 
@@ -121,9 +104,20 @@ public class Board implements IBoard {
         }
         return leftTopDiagonal;
     }
+
+    public ArrayList<Integer> makeBottomLeftDiag(List<ArrayList<Integer>> winningRows) {
+        ArrayList<Integer> bottomLeftDiagonal = new ArrayList<>();
+        int inner = 0;
+        int outer = this.size - 1;
+        while (inner < this.size) {
+            bottomLeftDiagonal.add(winningRows.get(outer).get(inner));
+            inner += 1;
+            outer -= 1;
+        }
+        return bottomLeftDiagonal;
+    }
 }
 
-// make a list, and populate it with the winning spots (Integers). In order to check
 // the winning conditions, create a loop that calls sublist on the winning spots list,
 // each sublist can be the size of the width of the board.
 // if any of the sublists are completely filled with the user symbol then return true
