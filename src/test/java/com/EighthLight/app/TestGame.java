@@ -36,7 +36,6 @@ class gameTests {
 
 // check if called with the correct arguments
 // check that the arguments have changed when the loops have run more then once
-
 // if game is tied we expect ui.display(no one wins), and game should end.
 // test the game ends look up exit codes! What do they mean. how to mock and exit.
 // multiple constructors
