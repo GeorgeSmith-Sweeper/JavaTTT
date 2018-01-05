@@ -30,6 +30,7 @@ class gameTests {
         assertEquals(true, ui.displayWasCalled());
         assertEquals(true, ui.presentBoardCalled());
         assertEquals(true, ui.inputWasCalled());
+        assertEquals(true, board.hasAPlayerWonWasCalled());
     }
 }
 
@@ -41,4 +42,4 @@ class gameTests {
 // multiple constructors
 // mock board can be used with a passed in board state, assertions can be made about that passed in state!
 // assertions on the number of times things are called gameIsTied, ui.
-// integration test vs unit test
+// integration test vs unit tests

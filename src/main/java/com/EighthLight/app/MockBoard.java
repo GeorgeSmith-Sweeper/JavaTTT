@@ -9,6 +9,7 @@ public class MockBoard implements IBoard {
     private boolean gameTieCalled;
     private boolean spaceInBoundsCalled = false;
     private boolean updateSpaceCalled = false;
+    private boolean playerWonWasCalled = false;
 
     public MockBoard(int size, ArrayList spaces, boolean spaceInBounds) {
         this.size = size;
@@ -27,6 +28,11 @@ public class MockBoard implements IBoard {
 
     public boolean gameIsTie(ArrayList spaces) {
         gameTieCalled = true;
+        return true;
+    }
+
+    public boolean hasAPlayerWon(IPlayer currentPlayer) {
+        playerWonWasCalled = true;
         return true;
     }
 
@@ -50,5 +56,9 @@ public class MockBoard implements IBoard {
 
     public boolean updateSpaceWasCalled() {
         return updateSpaceCalled;
+    }
+
+    public boolean hasAPlayerWonWasCalled() {
+        return playerWonWasCalled;
     }
 }

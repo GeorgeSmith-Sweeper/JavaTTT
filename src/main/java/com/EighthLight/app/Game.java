@@ -15,16 +15,25 @@ public class Game implements IGame {
 
     public void start() {
         boolean gameIsTie = false;
+        boolean aPlayerWon = false;
+
         ui.display(ui.presentBoard(board.getSpaces()));
         IPlayer currentPlayer = playerOne;
 
-        while (!gameIsTie) {
+        while (!gameIsTie && !aPlayerWon) {
             ui.display("Please pick a spot!");
             inputValidation(currentPlayer);
             gameIsTie = board.gameIsTie(board.getSpaces());
+            aPlayerWon = board.hasAPlayerWon(currentPlayer);
+
             if (gameIsTie) {
                 ui.display("No one wins! Game over!");
             }
+
+            if (aPlayerWon) {
+                ui.display(currentPlayer.getSymbol() + " WINS!");
+            }
+
             ui.display(ui.presentBoard(board.getSpaces()));
             currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
         }
