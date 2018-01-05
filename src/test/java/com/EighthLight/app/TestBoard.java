@@ -154,4 +154,16 @@ class TestBoard {
 
         assertEquals(allWinningConditions, testBoard.getWinningCombos());
     }
+
+    @Test
+    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByRow() {
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "X", "X",
+                                                                "O", "O", 5,
+                                                                 6, 7, 8));
+        Player playerOne = new Player("X");
+        testBoard.setSpaces(expectedBoard);
+        testBoard.setWinningCombos();
+
+        assertEquals(true, testBoard.hasAPlayerWon(playerOne));
+    }
 }

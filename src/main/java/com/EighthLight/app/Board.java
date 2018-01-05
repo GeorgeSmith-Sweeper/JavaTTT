@@ -116,6 +116,21 @@ public class Board implements IBoard {
         }
         return bottomLeftDiagonal;
     }
+
+    public boolean hasAPlayerWon(IPlayer playerOne) {
+        for (int combo = 0; combo < winningCombos.size(); combo++) {
+            boolean playerWon = true;
+            for (int spot = 0; spot < (spaces.size() / 2) - 1; spot++) {
+                if (spaces.get(winningCombos.get(combo).get(spot)) != playerOne.getSymbol()) {
+                    playerWon = false;
+                }
+            }
+            if (playerWon) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 // the winning conditions, create a loop that calls sublist on the winning spots list,
