@@ -1,30 +1,24 @@
 package com.EighthLight.app;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board implements IBoard {
     private int size;
     private ArrayList spaces = new ArrayList(size*size);
-    private ArrayList winningCombos;
+    private List<ArrayList<Integer>> winningCombos = new ArrayList<>();
 
     public Board(int size) {
         this.size = size;
     }
 
-    public ArrayList<Integer> createBoard() {
+    public ArrayList createBoard() {
         for (int i = 0; i < size*size; i++) {
             spaces.add(i);
         }
         return spaces;
     }
 
-    public ArrayList getSpaces() {
-        return spaces;
-    }
-
-    public void setSpaces(ArrayList passedInState) {
-        this.spaces = passedInState;
-    }
 
     public boolean spaceWithinBounds(String userInput) {
         int convertedInput;
@@ -53,11 +47,51 @@ public class Board implements IBoard {
         return isTied;
     }
 
+    public ArrayList getSpaces() {
+        return spaces;
+    }
+
+    public void setSpaces(ArrayList passedInState) {
+        this.spaces = passedInState;
+    }
+
+//    public void setWinningCombos() {
+//        List<Integer> allWinConditions = new ArrayList();
+//
+//        winningCombos = allWinConditions;
+//    }
+
+//    public List<Integer> makeWinningRows() {
+//        List<Integer> allRows = new ArrayList<>();
+//        for (int start = 0; start < size*size; start++) {
+//            allRows.add(start);
+//        }
+//        return allRows;
+//    }
+//
+//    public List<Integer> makeWinningColumns() {
+//        List<Integer> allRows = makeWinningRows();
+//        List<Integer> singleColumn = new ArrayList<>();
+//
+//        for (int space = 0; space < size; space++) {
+//            List<Integer> allColumns = new ArrayList<>();
+//            for (int colSpace = 0; colSpace < size; colSpace++) {
+//                allColumns.add(allRows.get(colSpace));
+//            }
+//            for () {
+//
+//            }
+//        }
+//        System.out.println(allColumns);
+//        return allColumns;
+//    }
+
+
     public void setWinningCombos() {
-        ArrayList allWinningConditions = new ArrayList();
+        List<ArrayList<Integer>> allWinningConditions = new ArrayList<>();
 
         // Calculate all winning rows
-        ArrayList<ArrayList> winningRows = new ArrayList<ArrayList>();
+        List<ArrayList> winningRows = new ArrayList<ArrayList>();
         ArrayList<Integer> singleRow = new ArrayList<Integer>();
         for (int space = 0; space < (this.size*this.size); space++) {
             singleRow.add(space);
@@ -72,11 +106,11 @@ public class Board implements IBoard {
         }
 
         // Calculate all winning Columns
-        ArrayList<ArrayList> winningColumns = new ArrayList<ArrayList>();
+        List<ArrayList> winningColumns = new ArrayList<>();
         for (int outer = 0; outer < this.size; outer++) {
-            ArrayList<Object> singleColumn = new ArrayList<Object>();
+            ArrayList<Integer> singleColumn = new ArrayList<>();
             for (int inner = 0; inner < this.size; inner++) {
-                singleColumn.add(winningRows.get(inner).get(outer));
+                singleColumn.add((Integer) winningRows.get(inner).get(outer));
             }
             winningColumns.add(singleColumn);
         }
@@ -85,27 +119,32 @@ public class Board implements IBoard {
         }
 
         // Calculate all left Top winning diagonals
-        ArrayList<Object> leftTopDiagonal = new ArrayList<>();
+        ArrayList<Integer> leftTopDiagonal = new ArrayList<>();
         for (int space = 0; space < this.size; space++) {
-            leftTopDiagonal.add(winningRows.get(space).get(space));
+            leftTopDiagonal.add((Integer) winningRows.get(space).get(space));
         }
         allWinningConditions.add(leftTopDiagonal);
 
         // Calculate all left Bottom winning diagonals
-        ArrayList<Object> leftBottomDiagonal = new ArrayList<>();
+        ArrayList<Integer> leftBottomDiagonal = new ArrayList<>();
         int inner = 0;
         int outer = this.size - 1;
         while (inner < this.size) {
-            leftBottomDiagonal.add(winningRows.get(outer).get(inner));
+            leftBottomDiagonal.add((Integer) winningRows.get(outer).get(inner));
             inner += 1;
             outer -= 1;
         }
         allWinningConditions.add(leftBottomDiagonal);
-
         this.winningCombos = allWinningConditions;
     }
 
-    public ArrayList getWinningCombos() {
+    public List<ArrayList<Integer>> getWinningCombos() {
         return winningCombos;
     }
 }
+
+// make a list, and populate it with the winning spots (Integers). In order to check
+// the winning conditions, create a loop that calls sublist on the winning spots list,
+// each sublist can be the size of the width of the board.
+// if any of the sublists are completely filled with the user symbol then return true
+// otherwise return false

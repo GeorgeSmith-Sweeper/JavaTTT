@@ -8,7 +8,6 @@ public class MockUi implements IUserInterface {
     private boolean presentCalled = false;
     private String providedInput;
 
-
     public MockUi(String providedInput) {
         this.providedInput = providedInput;
     }

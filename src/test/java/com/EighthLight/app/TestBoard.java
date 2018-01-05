@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 class TestBoard {
 
@@ -61,37 +62,81 @@ class TestBoard {
     void updateSpaceUpdatesSpaceWithUserInput() {
         String userInput = "1";
         String userSymbol = "X";
-        ArrayList expectedBoard = new ArrayList(Arrays.asList(0, "X", 2, 3, 4, 5, 6, 7, 8));
-        MockPlayer playerOne = new MockPlayer("X");
+        ArrayList<Integer> expectedBoard = new ArrayList<Integer>(Arrays.asList(0, "X", 2, 3, 4, 5, 6, 7, 8));
+        MockPlayer playerOne = new MockPlayer(userSymbol);
         testBoard.updateSpace(userInput, playerOne);
         assertEquals(expectedBoard, testBoard.getSpaces());
     }
 
     @Test
     void gameIsTieReturnsTrueIfBoardIsFull() {
-        ArrayList expectedBoard = new ArrayList(Arrays.asList("X", "X", "X", "X", "X", "X", "X", "X", "X"));
+        ArrayList<String> expectedBoard = new ArrayList<>(Arrays.asList("X", "X", "X", "X", "X", "X", "X", "X", "X"));
 
         assertTrue(testBoard.gameIsTie(expectedBoard));
     }
 
     @Test
     void gameIsTieReturnsFalseIfBoardIsNotFull() {
-        ArrayList expectedBoard = new ArrayList(Arrays.asList(0, "X", "X", "X", "X", "X", "X", "X", "X"));
+        ArrayList<Integer> expectedBoard = new ArrayList<Integer>(Arrays.asList(0, "X", "X", "X", "X", "X", "X", "X", "X"));
 
         assertFalse(testBoard.gameIsTie(expectedBoard));
     }
 
     @Test
+    void winningRowsAddsAllSpotsToListFor3x3Board() {
+        List<ArrayList<Integer>> expectedSpaces = new ArrayList<>();
+        ArrayList<Integer> firstRow = new ArrayList<>(Arrays.asList(0, 1, 2));
+        ArrayList<Integer> secondRow = new ArrayList<>(Arrays.asList(3, 4, 5));
+        ArrayList<Integer> thirdRow = new ArrayList<>(Arrays.asList(6, 7, 8));
+        expectedSpaces.add(firstRow);
+        expectedSpaces.add(secondRow);
+        expectedSpaces.add(thirdRow);
+
+        assertEquals(expectedSpaces, testBoard.makeWinningRows());
+    }
+
+//    @Test
+//    void winningColumnsAddsAllSpotsToListFor3x3Board() {
+//        List<Integer> expectedSpaces = new ArrayList<>();
+//        for (int space = 0; space < size; space++) {
+//            int secondNum = space + size;
+//            int thirdNum = secondNum + size;
+//            expectedSpaces.add(space);
+//            expectedSpaces.add(secondNum);
+//            expectedSpaces.add(thirdNum);
+//        }
+//        assertEquals(expectedSpaces, testBoard.makeWinningColumns());
+//    }
+
+//    @Test
+//    void winningColumnsAddsAllSpotsToListFor4x4Board() {
+//        List<Integer> expectedSpaces = new ArrayList<>();
+//        int size = 4;
+//        Board fourByFour = new Board(size);
+//        fourByFour.createBoard();
+//
+//        for (int space = 0; space < size; space++) {
+//            int secondNum = space + size;
+//            int thirdNum = secondNum + size;
+//            int fourthNum = thirdNum + size;
+//            expectedSpaces.add(space);
+//            expectedSpaces.add(secondNum);
+//            expectedSpaces.add(thirdNum);
+//            expectedSpaces.add(fourthNum);
+//        }
+//        assertEquals(expectedSpaces, fourByFour.makeWinningColumns());
+//    }
+    @Test
     void createWinningCombosWillGenerateAllWinStatesForAGiven3x3Board() {
-        ArrayList firstRow = new ArrayList(Arrays.asList(0, 1, 2));
-        ArrayList secondRow = new ArrayList(Arrays.asList(3, 4, 5));
-        ArrayList thirdRow = new ArrayList(Arrays.asList(6, 7, 8));
-        ArrayList firstColumn = new ArrayList(Arrays.asList(0, 3, 6));
-        ArrayList secondColumn = new ArrayList(Arrays.asList(1, 4, 7));
-        ArrayList thirdColumn = new ArrayList(Arrays.asList(2, 5, 8));
-        ArrayList firstDiagonal = new ArrayList(Arrays.asList(0, 4, 8));
-        ArrayList secondDiagonal = new ArrayList(Arrays.asList(6, 4, 2));
-        ArrayList allWinningConditions = new ArrayList(Arrays.asList(firstRow,
+        ArrayList<Integer> firstRow = new ArrayList<>(Arrays.asList(0, 1, 2));
+        ArrayList<Integer> secondRow = new ArrayList<>(Arrays.asList(3, 4, 5));
+        ArrayList<Integer> thirdRow = new ArrayList<>(Arrays.asList(6, 7, 8));
+        ArrayList<Integer> firstColumn = new ArrayList<>(Arrays.asList(0, 3, 6));
+        ArrayList<Integer> secondColumn = new ArrayList<>(Arrays.asList(1, 4, 7));
+        ArrayList<Integer> thirdColumn = new ArrayList<>(Arrays.asList(2, 5, 8));
+        ArrayList<Integer> firstDiagonal = new ArrayList<>(Arrays.asList(0, 4, 8));
+        ArrayList<Integer> secondDiagonal = new ArrayList<>(Arrays.asList(6, 4, 2));
+        ArrayList<ArrayList<Integer>> allWinningConditions = new ArrayList<ArrayList<Integer>>(Arrays.asList(firstRow,
                 secondRow,
                 thirdRow,
                 firstColumn,
@@ -105,48 +150,26 @@ class TestBoard {
         assertEquals(allWinningConditions, testBoard.getWinningCombos());
     }
 
-    @Test
-    void createWinningCombosWillGenerateAllWinStatesForAGiven4x4Board() {
-        int size = 4;
-        Board fourByFour = new Board(size);
-        fourByFour.createBoard();
-
-        ArrayList firstRow = new ArrayList(Arrays.asList(0, 1, 2, 3));
-        ArrayList secondRow = new ArrayList(Arrays.asList(4, 5, 6, 7));
-        ArrayList thirdRow = new ArrayList(Arrays.asList(8, 9, 10, 11));
-        ArrayList fourthRow = new ArrayList(Arrays.asList(12, 13, 14, 15));
-        ArrayList firstColumn = new ArrayList(Arrays.asList(0, 4, 8, 12));
-        ArrayList secondColumn = new ArrayList(Arrays.asList(1, 5, 9, 13));
-        ArrayList thirdColumn = new ArrayList(Arrays.asList(2, 6, 10, 14));
-        ArrayList fourthColumn = new ArrayList(Arrays.asList(3, 7, 11, 15));
-        ArrayList firstDiagonal = new ArrayList(Arrays.asList(0, 5, 10, 15));
-        ArrayList secondDiagonal = new ArrayList(Arrays.asList(12, 9, 6, 3));
-
-        ArrayList allWinningConditions = new ArrayList(Arrays.asList(firstRow,
-                secondRow,
-                thirdRow,
-                fourthRow,
-                firstColumn,
-                secondColumn,
-                thirdColumn,
-                fourthColumn,
-                firstDiagonal,
-                secondDiagonal));
-
-        fourByFour.setWinningCombos();
-
-        assertEquals(allWinningConditions, fourByFour.getWinningCombos());
-    }
-//
 //    @Test
-//    void aPlayerWonReturnsTrueIfAPlayerOccupiesAllSpotsInWinningCombos() {
-//        ArrayList expectedBoard = new ArrayList(Arrays.asList("X", "X", "X",
-//                                                              3, 4, 5,
-//                                                              6, 7, 8));
-//        MockPlayer playerOne = new MockPlayer("X");
-//        testBoard.setSpaces(expectedBoard);
-//        testBoard.setWinningCombos();
+//    void createWinningCombosWillGenerateAllWinStatesForAGiven4x4Board() {
+//        int size = 4;
+//        Board fourByFour = new Board(size);
+//        fourByFour.createBoard();
 //
-//        assertEquals(true, testBoard.aPlayerWon(playerOne));
+//
+//        ArrayList allWinningConditions = new ArrayList(Arrays.asList(firstRow,
+//                secondRow,
+//                thirdRow,
+//                fourthRow,
+//                firstColumn,
+//                secondColumn,
+//                thirdColumn,
+//                fourthColumn,
+//                firstDiagonal,
+//                secondDiagonal));
+//
+//        fourByFour.setWinningCombos();
+//
+//        assertEquals(allWinningConditions, fourByFour.getWinningCombos());
 //    }
 }
