@@ -166,4 +166,16 @@ class TestBoard {
 
         assertEquals(true, testBoard.hasAPlayerWon(playerOne));
     }
+
+    @Test
+    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByColumn() {
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "O",
+                                                                "X", 4, 5,
+                                                                "X", 7, 8));
+        Player playerOne = new Player("X");
+        testBoard.setSpaces(expectedBoard);
+        testBoard.setWinningCombos();
+
+        assertEquals(true, testBoard.hasAPlayerWon(playerOne));
+    }
 }
