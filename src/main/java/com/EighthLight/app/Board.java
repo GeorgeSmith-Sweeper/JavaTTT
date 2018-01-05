@@ -55,42 +55,11 @@ public class Board implements IBoard {
         this.spaces = passedInState;
     }
 
-//    public void setWinningCombos() {
-//        List<Integer> allWinConditions = new ArrayList();
-//
-//        winningCombos = allWinConditions;
-//    }
-
-//    public List<Integer> makeWinningRows() {
-//        List<Integer> allRows = new ArrayList<>();
-//        for (int start = 0; start < size*size; start++) {
-//            allRows.add(start);
-//        }
-//        return allRows;
-//    }
-//
-//    public List<Integer> makeWinningColumns() {
-//        List<Integer> allRows = makeWinningRows();
-//        List<Integer> singleColumn = new ArrayList<>();
-//
-//        for (int space = 0; space < size; space++) {
-//            List<Integer> allColumns = new ArrayList<>();
-//            for (int colSpace = 0; colSpace < size; colSpace++) {
-//                allColumns.add(allRows.get(colSpace));
-//            }
-//            for () {
-//
-//            }
-//        }
-//        System.out.println(allColumns);
-//        return allColumns;
-//    }
-
-
     public void setWinningCombos() {
         List<ArrayList<Integer>> allWinningConditions = new ArrayList<>();
         List<ArrayList<Integer>> winningRows = makeWinningRows();
         List<ArrayList<Integer>> winningColumns = makeWinningColumns(winningRows);
+        ArrayList<Integer> winningTopLeftDiag = makeTopLeftDiag(winningRows);
         
         for (ArrayList row: winningRows) {
             allWinningConditions.add(row);
@@ -99,13 +68,7 @@ public class Board implements IBoard {
         for(ArrayList column: winningColumns) {
             allWinningConditions.add(column);
         }
-
-        // Calculate all left Top winning diagonals
-        ArrayList<Integer> leftTopDiagonal = new ArrayList<>();
-        for (int space = 0; space < this.size; space++) {
-            leftTopDiagonal.add(winningRows.get(space).get(space));
-        }
-        allWinningConditions.add(leftTopDiagonal);
+        allWinningConditions.add(winningTopLeftDiag);
 
         // Calculate all left Bottom winning diagonals
         ArrayList<Integer> leftBottomDiagonal = new ArrayList<>();
@@ -117,6 +80,7 @@ public class Board implements IBoard {
             outer -= 1;
         }
         allWinningConditions.add(leftBottomDiagonal);
+
         this.winningCombos = allWinningConditions;
     }
 
@@ -148,6 +112,14 @@ public class Board implements IBoard {
             winningColumns.add(singleColumn);
         }
         return winningColumns;
+    }
+
+    public ArrayList<Integer> makeTopLeftDiag(List<ArrayList<Integer>> winningRows) {
+        ArrayList<Integer> leftTopDiagonal = new ArrayList<>();
+        for (int space = 0; space < this.size; space++) {
+            leftTopDiagonal.add(winningRows.get(space).get(space));
+        }
+        return leftTopDiagonal;
     }
 }
 

@@ -110,6 +110,17 @@ class TestBoard {
     }
 
     @Test
+    void makeTopLeftDiagAddsAllSpotsToListFor3x3Board() {
+        ArrayList<Integer> expectedSpaces = new ArrayList<>();
+        List<ArrayList<Integer>> winningRows = testBoard.makeWinningRows();
+        expectedSpaces.add(0);
+        expectedSpaces.add(4);
+        expectedSpaces.add(8);
+
+        assertEquals(expectedSpaces, testBoard.makeTopLeftDiag(winningRows));
+    }
+
+    @Test
     void createWinningCombosWillGenerateAllWinStatesForAGiven3x3Board() {
         ArrayList<Integer> firstRow = new ArrayList<>(Arrays.asList(0, 1, 2));
         ArrayList<Integer> secondRow = new ArrayList<>(Arrays.asList(3, 4, 5));
