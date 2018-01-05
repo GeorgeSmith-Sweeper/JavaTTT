@@ -132,8 +132,3 @@ public class Board implements IBoard {
         return false;
     }
 }
-
-// the winning conditions, create a loop that calls sublist on the winning spots list,
-// each sublist can be the size of the width of the board.
-// if any of the sublists are completely filled with the user symbol then return true
-// otherwise return false
