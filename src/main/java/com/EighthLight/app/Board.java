@@ -90,20 +90,12 @@ public class Board implements IBoard {
     public void setWinningCombos() {
         List<ArrayList<Integer>> allWinningConditions = new ArrayList<>();
         List<ArrayList<Integer>> winningRows = makeWinningRows();
+        List<ArrayList<Integer>> winningColumns = makeWinningColumns(winningRows);
         
         for (ArrayList row: winningRows) {
             allWinningConditions.add(row);
         }
 
-        // Calculate all winning Columns
-        List<ArrayList> winningColumns = new ArrayList<>();
-        for (int outer = 0; outer < this.size; outer++) {
-            ArrayList<Integer> singleColumn = new ArrayList<>();
-            for (int inner = 0; inner < this.size; inner++) {
-                singleColumn.add((Integer) winningRows.get(inner).get(outer));
-            }
-            winningColumns.add(singleColumn);
-        }
         for(ArrayList column: winningColumns) {
             allWinningConditions.add(column);
         }
@@ -111,7 +103,7 @@ public class Board implements IBoard {
         // Calculate all left Top winning diagonals
         ArrayList<Integer> leftTopDiagonal = new ArrayList<>();
         for (int space = 0; space < this.size; space++) {
-            leftTopDiagonal.add((Integer) winningRows.get(space).get(space));
+            leftTopDiagonal.add(winningRows.get(space).get(space));
         }
         allWinningConditions.add(leftTopDiagonal);
 
@@ -120,7 +112,7 @@ public class Board implements IBoard {
         int inner = 0;
         int outer = this.size - 1;
         while (inner < this.size) {
-            leftBottomDiagonal.add((Integer) winningRows.get(outer).get(inner));
+            leftBottomDiagonal.add(winningRows.get(outer).get(inner));
             inner += 1;
             outer -= 1;
         }
@@ -144,6 +136,18 @@ public class Board implements IBoard {
             }
         }
         return winningRows;
+    }
+
+    public List<ArrayList<Integer>> makeWinningColumns(List<ArrayList<Integer>> winningRows) {
+        List<ArrayList<Integer>> winningColumns = new ArrayList<>();
+        for (int outer = 0; outer < this.size; outer++) {
+            ArrayList<Integer> singleColumn = new ArrayList<>();
+            for (int inner = 0; inner < this.size; inner++) {
+                singleColumn.add(winningRows.get(inner).get(outer));
+            }
+            winningColumns.add(singleColumn);
+        }
+        return winningColumns;
     }
 }
 

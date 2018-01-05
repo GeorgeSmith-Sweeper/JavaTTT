@@ -83,7 +83,7 @@ class TestBoard {
     }
 
     @Test
-    void winningRowsAddsAllSpotsToListFor3x3Board() {
+    void makeWinningRowsAddsAllSpotsToListFor3x3Board() {
         List<ArrayList<Integer>> expectedSpaces = new ArrayList<>();
         ArrayList<Integer> firstRow = new ArrayList<>(Arrays.asList(0, 1, 2));
         ArrayList<Integer> secondRow = new ArrayList<>(Arrays.asList(3, 4, 5));
@@ -93,6 +93,20 @@ class TestBoard {
         expectedSpaces.add(thirdRow);
 
         assertEquals(expectedSpaces, testBoard.makeWinningRows());
+    }
+
+    @Test
+    void makeWinningColumnsAddsAllSpotsToListFor3x3Board() {
+        List<ArrayList<Integer>> expectedSpaces = new ArrayList<>();
+        List<ArrayList<Integer>> winningRows = testBoard.makeWinningRows();
+        ArrayList<Integer> firstColumn = new ArrayList<>(Arrays.asList(0, 3, 6));
+        ArrayList<Integer> secondColumn = new ArrayList<>(Arrays.asList(1, 4, 7));
+        ArrayList<Integer> thirdColumn = new ArrayList<>(Arrays.asList(2, 5, 8));
+        expectedSpaces.add(firstColumn);
+        expectedSpaces.add(secondColumn);
+        expectedSpaces.add(thirdColumn);
+
+        assertEquals(expectedSpaces, testBoard.makeWinningColumns(winningRows));
     }
 
     @Test
