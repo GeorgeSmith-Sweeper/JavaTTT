@@ -62,7 +62,7 @@ class TestBoard {
     void updateSpaceUpdatesSpaceWithUserInput() {
         String userInput = "1";
         String userSymbol = "X";
-        ArrayList<Integer> expectedBoard = new ArrayList<Integer>(Arrays.asList(0, "X", 2, 3, 4, 5, 6, 7, 8));
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList(0, "X", 2, 3, 4, 5, 6, 7, 8));
         MockPlayer playerOne = new MockPlayer(userSymbol);
         testBoard.updateSpace(userInput, playerOne);
         assertEquals(expectedBoard, testBoard.getSpaces());
@@ -70,14 +70,14 @@ class TestBoard {
 
     @Test
     void gameIsTieReturnsTrueIfBoardIsFull() {
-        ArrayList<String> expectedBoard = new ArrayList<>(Arrays.asList("X", "X", "X", "X", "X", "X", "X", "X", "X"));
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "X", "X", "X", "X", "X", "X", "X", "X"));
 
         assertTrue(testBoard.gameIsTie(expectedBoard));
     }
 
     @Test
     void gameIsTieReturnsFalseIfBoardIsNotFull() {
-        ArrayList<Integer> expectedBoard = new ArrayList<Integer>(Arrays.asList(0, "X", "X", "X", "X", "X", "X", "X", "X"));
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList(0, "X", "X", "X", "X", "X", "X", "X", "X"));
 
         assertFalse(testBoard.gameIsTie(expectedBoard));
     }
@@ -95,37 +95,6 @@ class TestBoard {
         assertEquals(expectedSpaces, testBoard.makeWinningRows());
     }
 
-//    @Test
-//    void winningColumnsAddsAllSpotsToListFor3x3Board() {
-//        List<Integer> expectedSpaces = new ArrayList<>();
-//        for (int space = 0; space < size; space++) {
-//            int secondNum = space + size;
-//            int thirdNum = secondNum + size;
-//            expectedSpaces.add(space);
-//            expectedSpaces.add(secondNum);
-//            expectedSpaces.add(thirdNum);
-//        }
-//        assertEquals(expectedSpaces, testBoard.makeWinningColumns());
-//    }
-
-//    @Test
-//    void winningColumnsAddsAllSpotsToListFor4x4Board() {
-//        List<Integer> expectedSpaces = new ArrayList<>();
-//        int size = 4;
-//        Board fourByFour = new Board(size);
-//        fourByFour.createBoard();
-//
-//        for (int space = 0; space < size; space++) {
-//            int secondNum = space + size;
-//            int thirdNum = secondNum + size;
-//            int fourthNum = thirdNum + size;
-//            expectedSpaces.add(space);
-//            expectedSpaces.add(secondNum);
-//            expectedSpaces.add(thirdNum);
-//            expectedSpaces.add(fourthNum);
-//        }
-//        assertEquals(expectedSpaces, fourByFour.makeWinningColumns());
-//    }
     @Test
     void createWinningCombosWillGenerateAllWinStatesForAGiven3x3Board() {
         ArrayList<Integer> firstRow = new ArrayList<>(Arrays.asList(0, 1, 2));

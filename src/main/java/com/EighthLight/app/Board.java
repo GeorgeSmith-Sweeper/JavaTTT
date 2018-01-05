@@ -89,18 +89,8 @@ public class Board implements IBoard {
 
     public void setWinningCombos() {
         List<ArrayList<Integer>> allWinningConditions = new ArrayList<>();
-
-        // Calculate all winning rows
-        List<ArrayList> winningRows = new ArrayList<ArrayList>();
-        ArrayList<Integer> singleRow = new ArrayList<Integer>();
-        for (int space = 0; space < (this.size*this.size); space++) {
-            singleRow.add(space);
-            ArrayList singleClone = (ArrayList) singleRow.clone();
-            if (singleRow.size() == this.size) {
-                winningRows.add(singleClone);
-                singleRow.clear();
-            }
-        }
+        List<ArrayList<Integer>> winningRows = makeWinningRows();
+        
         for (ArrayList row: winningRows) {
             allWinningConditions.add(row);
         }
@@ -140,6 +130,20 @@ public class Board implements IBoard {
 
     public List<ArrayList<Integer>> getWinningCombos() {
         return winningCombos;
+    }
+
+    public List<ArrayList<Integer>> makeWinningRows() {
+        List<ArrayList<Integer>> winningRows = new ArrayList<>();
+        ArrayList<Integer> singleRow = new ArrayList<>();
+        for (int space = 0; space < (this.size*this.size); space++) {
+            singleRow.add(space);
+            ArrayList singleClone = (ArrayList) singleRow.clone();
+            if (singleRow.size() == this.size) {
+                winningRows.add(singleClone);
+                singleRow.clear();
+            }
+        }
+        return winningRows;
     }
 }
 
