@@ -13,6 +13,6 @@ public class App {
         board.createBoard();
         board.setWinningCombos();
         Game game = new Game(ui, board, playerOne, playerTwo);
-        game.start();
+        game.start(config.getGameMode());
     }
 }
