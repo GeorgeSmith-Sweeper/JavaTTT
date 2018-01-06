@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestConfig {
 
     @Test
-    void gameModePromptSetsGameModeTo1IfUserInputIs1 () {
+    void gameModeIs1IfUserInputIs1 () {
         ArrayList<String> providedInput = new ArrayList<>();
         providedInput.add("1");
         MockUi ui = new MockUi(providedInput);
@@ -23,7 +23,7 @@ public class TestConfig {
     }
 
     @Test
-    void gameModePromptSetsGameModeTo2IfUserInputIs2 () {
+    void gameModeTo2IfUserInputIs2 () {
         ArrayList<String> providedInput = new ArrayList<>();
         providedInput.add("2");
         MockUi ui = new MockUi(providedInput);
@@ -35,15 +35,20 @@ public class TestConfig {
         assertEquals(expectedGameMode, config.getGameMode());
     }
 
-//    @Test
-//    void gameModePromptSetsGameModeTo2IfUserInputIs2 () {
-//        String userInput = "2";
-//        String expectedGameMode = "2";
-//        MockUi ui = new MockUi(userInput);
-//        Config config = new Config(ui);
-//
-//        config.setGameMode();
-//
-//        assertEquals(expectedGameMode, config.getGameMode());
-//    }
+    @Test
+    void setGameModePomptsAgaingIfUserInputIsNot1Or2 () {
+        ArrayList<String> providedInput = new ArrayList<>();
+        providedInput.add("3");
+        providedInput.add("2");
+
+        MockUi ui = new MockUi(providedInput);
+        Config config = new Config(ui);
+        String expectedGameMode = "2";
+
+        config.setGameMode();
+
+        assertEquals(expectedGameMode, config.getGameMode());
+        assertEquals(2, ui.getNumberOfTimesDisplayCalled());
+        assertEquals(2, ui.getNumberOfTimesGetInputCalled());
+    }
 }

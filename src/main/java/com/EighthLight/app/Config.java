@@ -17,7 +17,7 @@ public class Config {
         String userInput = ui.getInput();
 
         while ((userInput != "1") && (userInput != "2")) {
-            ui.display("type '1' for Human vs Human, type 2 for Human vs Computer");
+            ui.display("Invalid input, try again.");
             userInput = ui.getInput();
         }
         if (userInput == "1") {
