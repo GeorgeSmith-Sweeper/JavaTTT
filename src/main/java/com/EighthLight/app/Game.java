@@ -35,7 +35,9 @@ public class Game {
     private void humanVsHuman() {
         boolean gameIsTie = false;
         boolean aPlayerWon = false;
+        ui.display(ui.presentBoard(board.getSpaces()));
         IPlayer currentPlayer = playerOne;
+
         while (!gameIsTie && !aPlayerWon) {
             ui.display("Please pick a spot!");
             inputValidation(currentPlayer);
@@ -47,17 +49,17 @@ public class Game {
             if (aPlayerWon) {
                 ui.display(currentPlayer.getSymbol() + " WINS!");
             }
-            ui.display(ui.presentBoard(board.getSpaces()));
             currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
+            ui.display(ui.presentBoard(board.getSpaces()));
         }
     }
 
     private void humanVsComputer() {
         boolean gameIsTie = false;
         boolean aPlayerWon = false;
+        ui.display(ui.presentBoard(board.getSpaces()));
         IPlayer currentPlayer = playerOne;
         while (!gameIsTie && !aPlayerWon) {
-            ui.display(ui.presentBoard(board.getSpaces()));
             if (currentPlayer.equals(playerOne)) {
                 ui.display("Please pick a spot!");
                 inputValidation(playerOne);
