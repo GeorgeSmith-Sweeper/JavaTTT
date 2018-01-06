@@ -13,7 +13,8 @@ class gameTests {
     void testStartCallsTheCorrectMethods() {
         int size = 3;
         boolean spaceInBounds = true;
-        String providedInput = "1";
+        ArrayList<String> providedInput = new ArrayList<>();
+        providedInput.add("1");
         ArrayList spaces = new ArrayList(Arrays.asList("O", "X", "X",
                                                        "O", "X", "O",
                                                        "X", "O", "X"));
