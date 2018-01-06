@@ -10,4 +10,9 @@ public class Player implements IPlayer {
     public String getSymbol() {
         return symbol;
     }
+
+    @Override
+    public String pickSpotRandomly(IBoard board) {
+        return null;
+    }
 }

@@ -1,36 +1,28 @@
 package com.EighthLight.app;
 
-public class Game implements com.EighthLight.app.IGame {
+public class Game {
     private IPlayer playerOne;
     private IPlayer playerTwo;
     private IUserInterface ui;
-    private Board board;
+    private IBoard board;
 
-    public Game(IUserInterface ui, Board board, IPlayer playerOne, IPlayer playerTwo) {
+    public Game(IUserInterface ui, IBoard board, IPlayer playerOne, IPlayer playerTwo) {
         this.ui = ui;
         this.board = board;
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
     }
 
-    public void start() {
-        boolean gameIsTie = false;
-        ui.display(ui.presentBoard(board.getSpaces()));
-        IPlayer currentPlayer = playerOne;
-
-        while (!gameIsTie) {
-            ui.display("Please pick a spot!");
-            inputValidation(currentPlayer);
-            gameIsTie = board.gameIsTie(board.getSpaces());
-            if (gameIsTie) {
-                ui.display("No one wins! Game over!");
-            }
-            ui.display(ui.presentBoard(board.getSpaces()));
-            currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
+    public void start(String gameMode) {
+        if (gameMode.equals("1")) {
+            humanVsHuman();
+        }
+        if (gameMode.equals("2")) {
+            humanVsComputer();
         }
     }
 
-    private void inputValidation(com.EighthLight.app.IPlayer currentPlayer) {
+    private void inputValidation(IPlayer currentPlayer) {
         String userInput = ui.getInput();
 
         while (!board.spaceWithinBounds(userInput)) {
@@ -39,4 +31,56 @@ public class Game implements com.EighthLight.app.IGame {
         }
         board.updateSpace(userInput, currentPlayer);
     }
+
+    private void humanVsHuman() {
+        boolean gameIsTie = false;
+        boolean aPlayerWon = false;
+        ui.display(ui.presentBoard(board.getSpaces()));
+        IPlayer currentPlayer = playerOne;
+
+        while (!gameIsTie && !aPlayerWon) {
+            ui.display("Please pick a spot!");
+            inputValidation(currentPlayer);
+            gameIsTie = board.gameIsTie(board.getSpaces());
+            aPlayerWon = board.hasAPlayerWon(currentPlayer);
+            if (gameIsTie) {
+                ui.display("No one wins! Game over!");
+            }
+            if (aPlayerWon) {
+                ui.display(currentPlayer.getSymbol() + " WINS!");
+            }
+            currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
+            ui.display(ui.presentBoard(board.getSpaces()));
+        }
+    }
+
+    private void humanVsComputer() {
+        boolean gameIsTie = false;
+        boolean aPlayerWon = false;
+        ui.display(ui.presentBoard(board.getSpaces()));
+        IPlayer currentPlayer = playerOne;
+
+        while (!gameIsTie && !aPlayerWon) {
+            if (currentPlayer.equals(playerOne)) {
+                ui.display("Please pick a spot!");
+                inputValidation(playerOne);
+            } else {
+                String selectedSpot = currentPlayer.pickSpotRandomly(board);
+                board.updateSpace(selectedSpot, currentPlayer);
+                ui.display(ui.presentBoard(board.getSpaces()));
+            }
+            gameIsTie = board.gameIsTie(board.getSpaces());
+            aPlayerWon = board.hasAPlayerWon(currentPlayer);
+            if (aPlayerWon) {
+                ui.display(currentPlayer.getSymbol() + " WINS!");
+            }
+            currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
+        }
+        if (gameIsTie) {
+            ui.display("No one wins! Game over!");
+        }
+        ui.display(ui.presentBoard(board.getSpaces()));
+    }
 }
+
+
