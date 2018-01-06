@@ -59,6 +59,7 @@ public class Game {
         boolean aPlayerWon = false;
         ui.display(ui.presentBoard(board.getSpaces()));
         IPlayer currentPlayer = playerOne;
+
         while (!gameIsTie && !aPlayerWon) {
             if (currentPlayer.equals(playerOne)) {
                 ui.display("Please pick a spot!");
@@ -66,6 +67,7 @@ public class Game {
             } else {
                 String selectedSpot = currentPlayer.pickSpotRandomly(board);
                 board.updateSpace(selectedSpot, currentPlayer);
+                ui.display(ui.presentBoard(board.getSpaces()));
             }
             gameIsTie = board.gameIsTie(board.getSpaces());
             aPlayerWon = board.hasAPlayerWon(currentPlayer);
@@ -74,11 +76,10 @@ public class Game {
             }
             currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
         }
-
-        ui.display(ui.presentBoard(board.getSpaces()));
         if (gameIsTie) {
             ui.display("No one wins! Game over!");
         }
+        ui.display(ui.presentBoard(board.getSpaces()));
     }
 }
 
