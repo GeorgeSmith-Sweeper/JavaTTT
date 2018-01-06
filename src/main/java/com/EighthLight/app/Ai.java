@@ -6,8 +6,15 @@ public class Ai extends Player{
         super(symbol);
     }
 
-    public int pickSpot() {
-        int num = 4;
-        return num;
+    public int pickSpotRandomly(IBoard board) {
+        int min = 0;
+        int max = board.getSpaces().size();
+        int range = (max - min);
+        int randomChoice = (int)(Math.random() * range) + min;
+
+        while(!(board.getSpaces().get(randomChoice) instanceof Integer)) {
+            randomChoice = (int)(Math.random() * range) + min;
+        }
+        return randomChoice;
     }
 }

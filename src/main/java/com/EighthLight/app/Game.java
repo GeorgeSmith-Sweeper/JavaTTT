@@ -25,15 +25,12 @@ public class Game implements IGame {
             inputValidation(currentPlayer);
             gameIsTie = board.gameIsTie(board.getSpaces());
             aPlayerWon = board.hasAPlayerWon(currentPlayer);
-
             if (gameIsTie) {
                 ui.display("No one wins! Game over!");
             }
-
             if (aPlayerWon) {
                 ui.display(currentPlayer.getSymbol() + " WINS!");
             }
-
             ui.display(ui.presentBoard(board.getSpaces()));
             currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
         }

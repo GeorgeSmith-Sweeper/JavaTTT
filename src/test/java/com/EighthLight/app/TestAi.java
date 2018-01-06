@@ -2,9 +2,6 @@ package com.EighthLight.app;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestAi {
@@ -20,11 +17,10 @@ public class TestAi {
 
     @Test
     void pickSpotRandomlySelectsASpotFromAvailableBoardSpaces() {
-        ArrayList spaces = testBoard.getSpaces();
         String playerSymbol = "X";
         Ai ai = new Ai(playerSymbol);
 
-        int selectedSpot = ai.pickSpot();
-        assertTrue(spaces.contains(selectedSpot));
+        int selectedSpot = ai.pickSpotRandomly(testBoard);
+        assertTrue(testBoard.getSpaces().contains(selectedSpot));
     }
 }
