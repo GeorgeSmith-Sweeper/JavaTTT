@@ -44,10 +44,13 @@ The other, less user friendly way is to follow the instructions at this link: [I
 The game will begin by displaying a board, and a prompt to pick a spot.
 
 ![Game start](/images/firstPrompt.png?raw=true)
+
 Begin by selecting a Game Mode. Type 1 to play against another human, type 2 to play against the computer.
 
 Place a mark on the board by selecting a spot 0-8.
+
 ![Game Start](/images/GameStart.png?raw=true)
+
 Player 1 is 'X' Player 2 is 'O'.
 Player 1 has the first move.
 
