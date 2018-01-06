@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class gameTests {
 
     @Test
-    void testStartCallsTheCorrectMethods() {
+    void testStartCallsTheCorrectMethodsForHumanVHuman() {
         int size = 3;
         boolean spaceInBounds = true;
         ArrayList<String> providedInput = new ArrayList<>();
@@ -33,7 +33,34 @@ class gameTests {
         assertEquals(true, ui.inputWasCalled());
         assertEquals(true, board.hasAPlayerWonWasCalled());
     }
+
+    @Test
+    void testStartCallsTheCorrectMethodsForComputerVHuman() {
+        int size = 3;
+        boolean spaceInBounds = true;
+        ArrayList<String> providedInput = new ArrayList<>();
+        providedInput.add("1");
+        ArrayList spaces = new ArrayList(Arrays.asList("O", "X", "X",
+                "O", "X", "O",
+                "X", "O", "X"));
+        MockUi ui = new MockUi(providedInput);
+        MockBoard board = new MockBoard(size, spaces, spaceInBounds);
+        Player playerOne = new Player("X");
+        Ai playerTwo = new Ai("O");
+        Game game = new Game(ui, board, playerOne, playerTwo);
+        game.start();
+
+        assertEquals(true, board.spaceWithinBoundsWasCalled());
+        assertEquals(true, board.gameIsTieWasCalled());
+        assertEquals(true, board.updateSpaceWasCalled());
+        assertEquals(true, ui.displayWasCalled());
+        assertEquals(true, ui.presentBoardCalled());
+        assertEquals(true, ui.inputWasCalled());
+        assertEquals(true, board.hasAPlayerWonWasCalled());
+    }
 }
+
+
 
 // check if called with the correct arguments
 // check that the arguments have changed when the loops have run more then once

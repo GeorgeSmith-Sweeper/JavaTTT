@@ -16,24 +16,46 @@ public class Game {
     public void start() {
         boolean gameIsTie = false;
         boolean aPlayerWon = false;
-
-        ui.display(ui.presentBoard(board.getSpaces()));
         IPlayer currentPlayer = playerOne;
 
+        // human vs computer
         while (!gameIsTie && !aPlayerWon) {
-            ui.display("Please pick a spot!");
-            inputValidation(currentPlayer);
+            ui.display(ui.presentBoard(board.getSpaces()));
+            if (currentPlayer.equals(playerOne)) {
+                ui.display("Please pick a spot!");
+                inputValidation(playerOne);
+            } else {
+                String selectedSpot = currentPlayer.pickSpotRandomly(board);
+                board.updateSpace(selectedSpot, currentPlayer);
+            }
             gameIsTie = board.gameIsTie(board.getSpaces());
             aPlayerWon = board.hasAPlayerWon(currentPlayer);
-            if (gameIsTie) {
-                ui.display("No one wins! Game over!");
-            }
             if (aPlayerWon) {
                 ui.display(currentPlayer.getSymbol() + " WINS!");
             }
-            ui.display(ui.presentBoard(board.getSpaces()));
             currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
         }
+
+        ui.display(ui.presentBoard(board.getSpaces()));
+        if (gameIsTie) {
+            ui.display("No one wins! Game over!");
+        }
+
+        // human vs human
+//        while (!gameIsTie && !aPlayerWon) {
+//            ui.display("Please pick a spot!");
+//            inputValidation(currentPlayer);
+//            gameIsTie = board.gameIsTie(board.getSpaces());
+//            aPlayerWon = board.hasAPlayerWon(currentPlayer);
+//            if (gameIsTie) {
+//                ui.display("No one wins! Game over!");
+//            }
+//            if (aPlayerWon) {
+//                ui.display(currentPlayer.getSymbol() + " WINS!");
+//            }
+//            ui.display(ui.presentBoard(board.getSpaces()));
+//            currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
+//        }
     }
 
     private void inputValidation(IPlayer currentPlayer) {
@@ -46,3 +68,5 @@ public class Game {
         board.updateSpace(userInput, currentPlayer);
     }
 }
+
+

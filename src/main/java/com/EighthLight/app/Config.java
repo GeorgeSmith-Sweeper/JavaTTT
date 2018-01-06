@@ -19,13 +19,14 @@ public class Config {
         ui.display("type '1' for Human vs Human, type 2 for Human vs Computer");
         String userInput = ui.getInput();
 
-        while ((userInput != "1") && (userInput != "2")) {
+        while (!(userInput.equals("1")) && !(userInput.equals("2"))) {
             ui.display("Invalid input, try again.");
             userInput = ui.getInput();
         }
-        if (userInput == "1") {
+        if (userInput.equals("1")) {
             gameMode = "1";
-        } else if (userInput == "2") {
+        }
+        if (userInput.equals("2")) {
             gameMode = "2";
         }
     }

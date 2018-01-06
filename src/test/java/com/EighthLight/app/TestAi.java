@@ -20,7 +20,8 @@ public class TestAi {
         String playerSymbol = "X";
         Ai ai = new Ai(playerSymbol);
 
-        int selectedSpot = ai.pickSpotRandomly(testBoard);
-        assertTrue(testBoard.getSpaces().contains(selectedSpot));
+        String selectedSpot = ai.pickSpotRandomly(testBoard);
+        int expectedSpot = Integer.parseInt(selectedSpot);
+        assertTrue(testBoard.getSpaces().contains(expectedSpot));
     }
 }
