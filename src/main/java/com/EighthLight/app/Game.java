@@ -21,12 +21,12 @@ public class Game implements IGame {
         IPlayer currentPlayer = playerOne;
 
         while (!gameIsTie && !aPlayerWon) {
-            ui.display("Please pick a spot!");
+            ui.display(Constants.PICK_A_SPOT_MSG);
             inputValidation(currentPlayer);
             gameIsTie = board.gameIsTie(board.getSpaces());
             aPlayerWon = board.hasAPlayerWon(currentPlayer);
             if (gameIsTie) {
-                ui.display("No one wins! Game over!");
+                ui.display(Constants.TIE_GAME_MSG);
             }
             if (aPlayerWon) {
                 ui.display(currentPlayer.getSymbol() + " WINS!");
@@ -40,7 +40,7 @@ public class Game implements IGame {
         String userInput = ui.getInput();
 
         while (!board.spaceWithinBounds(userInput)) {
-            ui.display("Invalid spot, pick again!");
+            ui.display(Constants.INVALID_SPOT_MSG);
             userInput = ui.getInput();
         }
         board.updateSpace(userInput, currentPlayer);

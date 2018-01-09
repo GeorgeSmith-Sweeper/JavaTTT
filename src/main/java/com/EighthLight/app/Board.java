@@ -47,7 +47,7 @@ public class Board implements IBoard {
     }
 
     public void setSpaces(ArrayList passedInState) {
-        this.spaces = passedInState;
+        spaces = passedInState;
     }
 
     public ArrayList getSpaces() {

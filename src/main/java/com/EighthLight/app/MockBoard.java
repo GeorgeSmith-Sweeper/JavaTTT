@@ -33,7 +33,7 @@ public class MockBoard implements IBoard {
 
     public boolean hasAPlayerWon(IPlayer currentPlayer) {
         playerWonWasCalled = true;
-        return true;
+        return false;
     }
 
     public void setWinningCombos() { }
