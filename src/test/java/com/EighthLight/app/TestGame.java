@@ -9,67 +9,149 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class gameTests {
 
-    @Test
-    void whenStartIsCalledPresentBoardIsCalledWithCurrentBoardWhenGameIsTied() {
-        String userInput = "8";
-        MockUi ui = new MockUi(userInput);
-        ArrayList currentBoard = new ArrayList(Arrays.asList("O", "X", "O",
-                                                             "O", "X", "X",
-                                                             "X", "O", 8));
-
-        ArrayList updatedBoard = new ArrayList(Arrays.asList("O", "X", "O",
-                                                             "O", "X", "X",
-                                                             "X", "O", "X"));
-
-        Player playerOne = new Player("X");
-        Player playerTwo = new Player("O");
-        // MockBoard board = new MockBoard(3, currentBoard, true);
-        Board board = new Board(3);
-        board.createBoard();
-        board.setSpaces(currentBoard);
-
-        Game game = new Game(ui, board, playerOne, playerTwo);
-
-        game.start();
-
-        assertEquals(2, ui.getPresentBoardArgs().size());
-        assertEquals(currentBoard, ui.getPresentBoardArgs().get(0));
-        assertEquals(updatedBoard, ui.getPresentBoardArgs().get(1));
-
-        assertEquals(4, ui.getDisplayArgs().size());
-        assertEquals(ui.presentBoard(currentBoard), ui.getDisplayArgs().get(0));
-        assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(1));
-        assertEquals(Constants.TIE_GAME_MSG, ui.getDisplayArgs().get(2));
-        assertEquals(ui.presentBoard(updatedBoard), ui.getDisplayArgs().get(3));
+    public void setBoardState (IBoard board, ArrayList spaces) {
+        ArrayList currentSpaces = board.getSpaces();
+        currentSpaces.clear();
+        currentSpaces.addAll(spaces);
     }
 
+    @Test
+    void startGameTiedWithCorrectInput () {
 
+        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer playerTwo = new MockPlayer("O");
+        ArrayList boardState = new ArrayList();
+        MockBoard board = new MockBoard(boardState, false, true, true);
+        String userInput = Constants.CORRECT_INPUT;
+        ArrayList userInputs = new ArrayList(Arrays.asList(userInput));
+
+        MockUi ui = new MockUi(userInputs);
+        Game game = new Game(ui, board, playerOne, playerTwo);
+        game.start();
+
+        assertEquals(4, ui.getDisplayArgs().size());
+        assertEquals(null, ui.getDisplayArgs().get(0));
+        assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(1));
+        assertEquals(Constants.TIE_GAME_MSG, ui.getDisplayArgs().get(2));
+        assertEquals(null, ui.getDisplayArgs().get(3));
+
+        assertEquals(2, ui.getPresentBoardArgs().size());
+        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
+        assertEquals(boardState, ui.getPresentBoardArgs().get(1));
+
+        assertEquals(1, ui.getNumTimesGetInputCalled());
+
+        assertEquals(3, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(boardState, board.getGameTieArgs().get(0));
+        assertEquals(userInput, board.getSpaceWithinBoundsArgs().get(0));
+        assertEquals(userInput, board.getUpdateSpaceArgs().get(0));
+        assertEquals(playerOne, board.getUpdateSpaceArgs().get(1));
+    }
+
+    @Test
+    void startGameTiedWithIncorrectInput () {
+
+        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer playerTwo = new MockPlayer("O");
+        ArrayList boardState = new ArrayList();
+        MockBoard board = new MockBoard(boardState, false, true, false);
+        String userInput1 = Constants.INCORRECT_INPUT;
+        String userInput2 = Constants.CORRECT_INPUT;
+        ArrayList userInputs = new ArrayList(Arrays.asList(userInput1, userInput2));
+
+        MockUi ui = new MockUi(userInputs);
+        Game game = new Game(ui, board, playerOne, playerTwo);
+        game.start();
+
+        assertEquals(5, ui.getDisplayArgs().size());
+        assertEquals(null, ui.getDisplayArgs().get(0));
+        assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(1));
+        assertEquals(Constants.INVALID_SPOT_MSG, ui.getDisplayArgs().get(2));
+        assertEquals(Constants.TIE_GAME_MSG, ui.getDisplayArgs().get(3));
+        assertEquals(null, ui.getDisplayArgs().get(4));
+
+        assertEquals(2, ui.getNumTimesGetInputCalled());
+
+        assertEquals(3, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(boardState, board.getGameTieArgs().get(0));
+
+        assertEquals(2, board.getSpaceWithinBoundsArgs().size());
+        assertEquals(userInputs.get(0), board.getSpaceWithinBoundsArgs().get(0));
+        assertEquals(userInputs.get(1), board.getSpaceWithinBoundsArgs().get(1));
+        assertEquals(userInputs.get(1), board.getUpdateSpaceArgs().get(0));
+        assertEquals(playerOne, board.getUpdateSpaceArgs().get(1));
+
+    }
+
+    @Test
+    void startGameWithWinningStateAndWithCorrectInput () {
+
+        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer playerTwo = new MockPlayer("O");
+        ArrayList boardState = new ArrayList();
+        MockBoard board = new MockBoard(boardState, true, false, true);
+        String userInput = Constants.CORRECT_INPUT;
+        ArrayList userInputs = new ArrayList(Arrays.asList(userInput));
+
+        MockUi ui = new MockUi(userInputs);
+        Game game = new Game(ui, board, playerOne, playerTwo);
+        game.start();
+
+
+        assertEquals(4, ui.getDisplayArgs().size());
+        assertEquals(null, ui.getDisplayArgs().get(0));
+        assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(1));
+        assertEquals("X WINS!", ui.getDisplayArgs().get(2));
+        assertEquals(null, ui.getDisplayArgs().get(3));
+
+        assertEquals(2, ui.getPresentBoardArgs().size());
+        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
+        assertEquals(boardState, ui.getPresentBoardArgs().get(1));
+
+        assertEquals(1, ui.getNumTimesGetInputCalled());
+
+        assertEquals(3, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(boardState, board.getGameTieArgs().get(0));
+
+        assertEquals(1, board.getSpaceWithinBoundsArgs().size());
+        assertEquals(userInput, board.getSpaceWithinBoundsArgs().get(0));
+        assertEquals(userInput, board.getUpdateSpaceArgs().get(0));
+        assertEquals(playerOne, board.getUpdateSpaceArgs().get(1));
+
+        assertEquals(1, playerOne.getNumTimesGetSymbolCalled());
+    }
+//
 //    @Test
-//    void whenStartIsCalledTheCurrentBoardIsDisplayed() {
-//        String providedInput = "";
-//        MockUi ui = new MockUi(providedInput);
-//        ArrayList currentBoardState = new ArrayList(Arrays.asList("O", "X", "O",
-//                                                                  "O", "X", "X",
-//                                                                  "X", "O", "O"));
+//    void startGameWithWinningStateAndWithIncorrectInput () {
+//        // ui.display 4
+//        // ui.getInput 2
+//        // board.spaceWithinBounds 2
 //
-//        String expectedBoard = "The Board";
-//        Player playerOne = new Player("X");
-//        Player playerTwo = new Player("O");
-//        MockBoard board = new MockBoard(3, currentBoardState, true);
-//        board.createBoard();
-//        Game game = new Game(ui, board, playerOne, playerTwo);
-//        game.start();
+//        assertEquals(5, ui.getDisplayArgs().size());
+//        assertEquals(presentBoardValue, ui.getDisplayArgs().get(0));
+//        assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(1));
+//        assertEquals(Constants.INVALID_SPOT_MSG, ui.getDisplayArgs().get(2));
+//        assertEquals("X Wins", ui.getDisplayArgs().get(2));
+//        assertEquals(presentBoardValue, ui.getDisplayArgs().get(3));
 //
-//        assertEquals(expectedBoard, ui.getDisplayArgs());
-//    }
-
-}
-
-// check if called with the correct arguments
-// check that the arguments have changed when the loops have run more then once
-// if game is tied we expect ui.display(no one wins), and game should end.
-// test the game ends look up exit codes! What do they mean. how to mock and exit.
-// multiple constructors
-// mock board can be used with a passed in board state, assertions can be made about that passed in state!
-// assertions on the number of times things are called gameIsTied, ui.
-// integration test vs unit tests
+//        assertEquals(2, ui.getPresentBoardArgs().size());
+//        assertEquals(passedInString, ui.getPresentBoardArgs().get(0));
+//        assertEquals(passedInString, ui.getPresentBoardArgs().get(0));
+//
+//        assertEquals(2, ui.numGetInputCalled());
+//
+//        assertEquals(3, board.getNumTimesGetSpacesCalled());
+//        assertEquals(currentPlayer, board.getHasPlayerWonArgs().get(0));
+//        assertEquals(boardGetSpaces, board.getGameTieArgs().get(0));
+//
+//        assertEquals(2, board.getSpaceWithinBoundsArgs().size());
+//        assertEquals(userInput.get(0), board.getSpaceWithinBoundsArgs().get(0));
+//        assertEquals(userInput.get(1), board.getSpaceWithinBoundsArgs().get(1));
+//        assertEquals(userInput, board.getUpdateSpaceArgs.get(0));
+//        assertEquals(currentPlayer, board.getUpdateSpaceArgs.get(1));
+//
+//        assertEquals(1, player.getNumTimesGetSymbolCalled());
+    }

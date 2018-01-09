@@ -3,44 +3,31 @@ package com.EighthLight.app;
 import java.util.ArrayList;
 
 public class MockUi implements IUserInterface {
-    private boolean displayCalled = false;
-    private boolean inputCalled = false;
-    private boolean presentCalled = false;
+
     private ArrayList presentBoardArgs = new ArrayList();
     private ArrayList<String> displayArgs = new ArrayList<>();
-    private String userInput;
+    private ArrayList<String> userInputs;
+    private int numTimesGetInputCalled = 0;
 
-    public MockUi(String userInput) {
-        this.userInput = userInput;
-    }
-    public boolean displayWasCalled() {
-        return displayCalled;
+    public MockUi(ArrayList userInputs) {
+        this.userInputs = userInputs;
     }
 
     public void display(String message) {
         displayArgs.add(message);
-        displayCalled = true;
     }
 
     public String getInput() {
-        inputCalled = true;
-        return this.userInput;
-    }
-
-    public boolean inputWasCalled() {
-        return inputCalled;
+        String userInput = this.userInputs.get(numTimesGetInputCalled);
+        numTimesGetInputCalled++;
+        return userInput;
     }
 
     public String presentBoard(ArrayList spaces) {
-        presentBoardArgs.add(spaces);
-        presentCalled = true;
+        Object spacesCopy = spaces.clone();
+        presentBoardArgs.add(spacesCopy);
         return null;
     }
-
-    public boolean presentBoardCalled() {
-        return presentCalled;
-    }
-
 
     public ArrayList getPresentBoardArgs() {
         return presentBoardArgs;
@@ -48,5 +35,9 @@ public class MockUi implements IUserInterface {
 
     public ArrayList<String> getDisplayArgs() {
         return displayArgs;
+    }
+
+    public int getNumTimesGetInputCalled() {
+        return numTimesGetInputCalled;
     }
 }

@@ -3,62 +3,65 @@ package com.EighthLight.app;
 import java.util.ArrayList;
 
 public class MockBoard implements IBoard {
-    private int size;
-    private ArrayList spaces;
     private boolean spaceInBounds;
-    private boolean gameTieCalled;
-    private boolean spaceInBoundsCalled = false;
-    private boolean updateSpaceCalled = false;
-    private boolean playerWonWasCalled = false;
+    private int numTimesGetSpacesCalled;
+    private boolean didAPlayerWin;
+    private boolean gameTied;
+    private ArrayList spaces;
+    private ArrayList hasPlayerWonArgs = new ArrayList();
+    private ArrayList gameTieArgs = new ArrayList();
+    private ArrayList spaceWithinBoundsArgs = new ArrayList();
+    private ArrayList updateSpaceArgs= new ArrayList();
 
-    public MockBoard(int size, ArrayList spaces, boolean spaceInBounds) {
-        this.size = size;
+    public MockBoard(ArrayList spaces, boolean didAPlayerWin, boolean gameTied, boolean spaceInBounds) {
         this.spaces = spaces;
         this.spaceInBounds = spaceInBounds;
+        this.didAPlayerWin = didAPlayerWin;
+        this.gameTied = gameTied;
     }
 
     public boolean spaceWithinBounds(String userInput) {
-        spaceInBoundsCalled = true;
-        return this.spaceInBounds;
+        spaceWithinBoundsArgs.add(userInput);
+        return userInput.equals(Constants.CORRECT_INPUT);
     }
 
     public void updateSpace(String userInput, IPlayer player) {
-        updateSpaceCalled = true;
+        updateSpaceArgs.add(userInput);
+        updateSpaceArgs.add(player);
     }
 
     public boolean gameIsTie(ArrayList spaces) {
-        gameTieCalled = true;
-        return true;
+        gameTieArgs.add(spaces);
+        return this.gameTied;
     }
 
     public boolean hasAPlayerWon(IPlayer currentPlayer) {
-        playerWonWasCalled = true;
-        return false;
-    }
-
-    public void setWinningCombos() { }
-
-    public ArrayList createBoard() {
-        return null;
+        hasPlayerWonArgs.add(currentPlayer);
+        return this.didAPlayerWin;
     }
 
     public ArrayList getSpaces() {
+        numTimesGetSpacesCalled++;
         return this.spaces;
     }
 
-    public boolean gameIsTieWasCalled() {
-        return gameTieCalled;
+    public int getNumTimesGetSpacesCalled() {
+        return numTimesGetSpacesCalled;
     }
 
-    public boolean spaceWithinBoundsWasCalled() {
-        return spaceInBoundsCalled;
+    public ArrayList getHasPlayerWonArgs() {
+        return hasPlayerWonArgs;
     }
 
-    public boolean updateSpaceWasCalled() {
-        return updateSpaceCalled;
+    public ArrayList getGameTieArgs() {
+        return gameTieArgs;
     }
 
-    public boolean hasAPlayerWonWasCalled() {
-        return playerWonWasCalled;
+    public ArrayList getSpaceWithinBoundsArgs() {
+        return spaceWithinBoundsArgs;
+    }
+
+    public ArrayList getUpdateSpaceArgs() {
+        return updateSpaceArgs;
     }
 }
