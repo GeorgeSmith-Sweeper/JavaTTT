@@ -1,5 +1,6 @@
 package com.EighthLight.app;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,23 +9,28 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class gameTests {
+    private MockPlayer playerOne;
+    private MockPlayer playerTwo;
+    private String correctInput;
+    private String incorrectInput;
+    private ArrayList boardState;
 
-    public void setBoardState(IBoard board, ArrayList spaces) {
-        ArrayList currentSpaces = board.getSpaces();
-        currentSpaces.clear();
-        currentSpaces.addAll(spaces);
+
+    @BeforeEach
+    private void setUp() {
+        playerOne = new MockPlayer("X");
+        playerTwo = new MockPlayer("O");
+        correctInput = Constants.CORRECT_INPUT;
+        incorrectInput = Constants.INCORRECT_INPUT;
+        boardState = new ArrayList();
     }
+
 
     @Test
     void startGameTiedWithCorrectInput() {
 
-        MockPlayer playerOne = new MockPlayer("X");
-        MockPlayer playerTwo = new MockPlayer("O");
-        ArrayList boardState = new ArrayList();
         MockBoard board = new MockBoard(boardState, false, true, true);
-        String userInput = Constants.CORRECT_INPUT;
-        ArrayList userInputs = new ArrayList(Arrays.asList(userInput));
-
+        ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
         MockUi ui = new MockUi(userInputs);
         Game game = new Game(ui, board, playerOne, playerTwo);
         game.start();
@@ -44,22 +50,16 @@ class gameTests {
         assertEquals(3, board.getNumTimesGetSpacesCalled());
         assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
-        assertEquals(userInput, board.getSpaceWithinBoundsArgs().get(0));
-        assertEquals(userInput, board.getUpdateSpaceArgs().get(0));
+        assertEquals(correctInput, board.getSpaceWithinBoundsArgs().get(0));
+        assertEquals(correctInput, board.getUpdateSpaceArgs().get(0));
         assertEquals(playerOne, board.getUpdateSpaceArgs().get(1));
     }
 
     @Test
     void startGameTiedWithIncorrectInput() {
 
-        MockPlayer playerOne = new MockPlayer("X");
-        MockPlayer playerTwo = new MockPlayer("O");
-        ArrayList boardState = new ArrayList();
         MockBoard board = new MockBoard(boardState, false, true, false);
-        String userInput1 = Constants.INCORRECT_INPUT;
-        String userInput2 = Constants.CORRECT_INPUT;
-        ArrayList userInputs = new ArrayList(Arrays.asList(userInput1, userInput2));
-
+        ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
         Game game = new Game(ui, board, playerOne, playerTwo);
         game.start();
@@ -82,23 +82,16 @@ class gameTests {
         assertEquals(userInputs.get(1), board.getSpaceWithinBoundsArgs().get(1));
         assertEquals(userInputs.get(1), board.getUpdateSpaceArgs().get(0));
         assertEquals(playerOne, board.getUpdateSpaceArgs().get(1));
-
     }
 
     @Test
     void startGameWithWinningStateAndWithCorrectInput() {
 
-        MockPlayer playerOne = new MockPlayer("X");
-        MockPlayer playerTwo = new MockPlayer("O");
-        ArrayList boardState = new ArrayList();
         MockBoard board = new MockBoard(boardState, true, false, true);
-        String userInput = Constants.CORRECT_INPUT;
-        ArrayList userInputs = new ArrayList(Arrays.asList(userInput));
-
+        ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
         MockUi ui = new MockUi(userInputs);
         Game game = new Game(ui, board, playerOne, playerTwo);
         game.start();
-
 
         assertEquals(4, ui.getDisplayArgs().size());
         assertEquals(null, ui.getDisplayArgs().get(0));
@@ -117,8 +110,8 @@ class gameTests {
         assertEquals(boardState, board.getGameTieArgs().get(0));
 
         assertEquals(1, board.getSpaceWithinBoundsArgs().size());
-        assertEquals(userInput, board.getSpaceWithinBoundsArgs().get(0));
-        assertEquals(userInput, board.getUpdateSpaceArgs().get(0));
+        assertEquals(correctInput, board.getSpaceWithinBoundsArgs().get(0));
+        assertEquals(correctInput, board.getUpdateSpaceArgs().get(0));
         assertEquals(playerOne, board.getUpdateSpaceArgs().get(1));
 
         assertEquals(1, playerOne.getNumTimesGetSymbolCalled());
@@ -127,14 +120,8 @@ class gameTests {
     @Test
     void startGameWithWinningStateAndWithIncorrectInput() {
 
-        MockPlayer playerOne = new MockPlayer("X");
-        MockPlayer playerTwo = new MockPlayer("O");
-        ArrayList boardState = new ArrayList();
         MockBoard board = new MockBoard(boardState, true, false, false);
-        String userInput1 = Constants.INCORRECT_INPUT;
-        String userInput2 = Constants.CORRECT_INPUT;
-        ArrayList userInputs = new ArrayList(Arrays.asList(userInput1, userInput2));
-
+        ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
         Game game = new Game(ui, board, playerOne, playerTwo);
         game.start();
