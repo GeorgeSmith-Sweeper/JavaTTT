@@ -3,19 +3,18 @@ package com.EighthLight.app;
 import java.util.ArrayList;
 
 public class MockBoard implements IBoard {
-    private boolean spaceInBounds;
     private int numTimesGetSpacesCalled;
     private boolean didAPlayerWin;
-    private boolean gameTied;
+    private ArrayList gameTied;
     private ArrayList spaces;
     private ArrayList hasPlayerWonArgs = new ArrayList();
     private ArrayList gameTieArgs = new ArrayList();
     private ArrayList spaceWithinBoundsArgs = new ArrayList();
-    private ArrayList updateSpaceArgs= new ArrayList();
+    private ArrayList updateSpaceArgs = new ArrayList();
+    private int numTimesGameIsTiedCalled = 0;
 
-    public MockBoard(ArrayList spaces, boolean didAPlayerWin, boolean gameTied, boolean spaceInBounds) {
+    public MockBoard(ArrayList spaces, boolean didAPlayerWin, ArrayList gameTied) {
         this.spaces = spaces;
-        this.spaceInBounds = spaceInBounds;
         this.didAPlayerWin = didAPlayerWin;
         this.gameTied = gameTied;
     }
@@ -31,8 +30,10 @@ public class MockBoard implements IBoard {
     }
 
     public boolean gameIsTie(ArrayList spaces) {
+        boolean tieValue = (boolean) this.gameTied.get(numTimesGameIsTiedCalled);
+        numTimesGameIsTiedCalled++;
         gameTieArgs.add(spaces);
-        return this.gameTied;
+        return tieValue;
     }
 
     public boolean hasAPlayerWon(IPlayer currentPlayer) {

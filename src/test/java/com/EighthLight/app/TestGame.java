@@ -3,6 +3,7 @@ package com.EighthLight.app;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,7 +15,7 @@ class gameTests {
     private String correctInput;
     private String incorrectInput;
     private ArrayList boardState;
-
+    private ArrayList gameIsTiedValues;
 
     @BeforeEach
     private void setUp() {
@@ -25,11 +26,12 @@ class gameTests {
         boardState = new ArrayList();
     }
 
-
     @Test
     void startGameTiedWithCorrectInput() {
 
-        MockBoard board = new MockBoard(boardState, false, true, true);
+        gameIsTiedValues = new ArrayList();
+        gameIsTiedValues.add(true);
+        MockBoard board = new MockBoard(boardState, false, gameIsTiedValues);
         ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
         MockUi ui = new MockUi(userInputs);
         Game game = new Game(ui, board, playerOne, playerTwo);
@@ -57,8 +59,10 @@ class gameTests {
 
     @Test
     void startGameTiedWithIncorrectInput() {
+        gameIsTiedValues = new ArrayList();
+        gameIsTiedValues.add(true);
 
-        MockBoard board = new MockBoard(boardState, false, true, false);
+        MockBoard board = new MockBoard(boardState, false, gameIsTiedValues);
         ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
         Game game = new Game(ui, board, playerOne, playerTwo);
@@ -86,8 +90,10 @@ class gameTests {
 
     @Test
     void startGameWithWinningStateAndWithCorrectInput() {
+        gameIsTiedValues = new ArrayList();
+        gameIsTiedValues.add(false);
 
-        MockBoard board = new MockBoard(boardState, true, false, true);
+        MockBoard board = new MockBoard(boardState, true, gameIsTiedValues);
         ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
         MockUi ui = new MockUi(userInputs);
         Game game = new Game(ui, board, playerOne, playerTwo);
@@ -119,8 +125,10 @@ class gameTests {
 
     @Test
     void startGameWithWinningStateAndWithIncorrectInput() {
+        gameIsTiedValues = new ArrayList();
+        gameIsTiedValues.add(true);
 
-        MockBoard board = new MockBoard(boardState, true, false, false);
+        MockBoard board = new MockBoard(boardState, true, gameIsTiedValues);
         ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
         Game game = new Game(ui, board, playerOne, playerTwo);
@@ -150,5 +158,45 @@ class gameTests {
         assertEquals(playerOne, board.getUpdateSpaceArgs().get(1));
 
         assertEquals(1, playerOne.getNumTimesGetSymbolCalled());
+    }
+
+    @Test
+    void startGameWithAStateTwoAwayFromTiedAndIncorrectInput() {
+        gameIsTiedValues = new ArrayList();
+        gameIsTiedValues.add(false);
+        gameIsTiedValues.add(true);
+
+
+        MockBoard board = new MockBoard(boardState, false, gameIsTiedValues);
+        ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput, correctInput));
+        MockUi ui = new MockUi(userInputs);
+        Game game = new Game(ui, board, playerOne, playerTwo);
+        game.start();
+
+        assertEquals(7, ui.getDisplayArgs().size());
+        assertEquals(null, ui.getDisplayArgs().get(0));
+        assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(1));
+        assertEquals(Constants.INVALID_SPOT_MSG, ui.getDisplayArgs().get(2));
+        assertEquals(null, ui.getDisplayArgs().get(3));
+        assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(4));
+        assertEquals(Constants.TIE_GAME_MSG, ui.getDisplayArgs().get(5));
+        assertEquals(null, ui.getDisplayArgs().get(6));
+
+        assertEquals(3, ui.getPresentBoardArgs().size());
+        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
+        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
+        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
+
+        assertEquals(3, ui.getNumTimesGetInputCalled());
+
+        assertEquals(5, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(boardState, board.getGameTieArgs().get(0));
+
+        assertEquals(3, board.getSpaceWithinBoundsArgs().size());
+        assertEquals(userInputs.get(0), board.getSpaceWithinBoundsArgs().get(0));
+        assertEquals(userInputs.get(1), board.getSpaceWithinBoundsArgs().get(1));
+        assertEquals(userInputs.get(1), board.getUpdateSpaceArgs().get(0));
+        assertEquals(playerOne, board.getUpdateSpaceArgs().get(1));
     }
 }
