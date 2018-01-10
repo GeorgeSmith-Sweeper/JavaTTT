@@ -12,6 +12,7 @@ public class MockBoard implements IBoard {
     private ArrayList spaceWithinBoundsArgs = new ArrayList();
     private ArrayList updateSpaceArgs = new ArrayList();
     private int numTimesGameIsTiedCalled = 0;
+    private int numTimesUpdateSpaceIsCalled = 0;
 
     public MockBoard(ArrayList spaces, boolean didAPlayerWin, ArrayList gameTied) {
         this.spaces = spaces;
@@ -25,6 +26,7 @@ public class MockBoard implements IBoard {
     }
 
     public void updateSpace(String userInput, IPlayer player) {
+        numTimesUpdateSpaceIsCalled++;
         updateSpaceArgs.add(userInput);
         updateSpaceArgs.add(player);
     }
@@ -64,5 +66,9 @@ public class MockBoard implements IBoard {
 
     public ArrayList getUpdateSpaceArgs() {
         return updateSpaceArgs;
+    }
+
+    public int getNumTimesUpdateSpaceIsCalled() {
+        return numTimesUpdateSpaceIsCalled;
     }
 }
