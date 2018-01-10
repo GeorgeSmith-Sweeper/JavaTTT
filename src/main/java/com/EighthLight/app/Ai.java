@@ -1,12 +1,14 @@
 package com.EighthLight.app;
 
-public class Ai extends Player{
+
+public class Ai implements IPlayer {
+    private String symbol;
 
     public Ai(String symbol) {
-        super(symbol);
+        this.symbol = symbol;
     }
 
-    public int pickSpotRandomly(IBoard board) {
+    public String pickSpotRandomly(IBoard board) {
         int min = 0;
         int max = board.getSpaces().size();
         int range = (max - min);
@@ -15,6 +17,11 @@ public class Ai extends Player{
         while(!(board.getSpaces().get(randomChoice) instanceof Integer)) {
             randomChoice = (int)(Math.random() * range) + min;
         }
-        return randomChoice;
+
+        return String.valueOf(randomChoice);
+    }
+
+    public String getSymbol() {
+        return symbol;
     }
 }
