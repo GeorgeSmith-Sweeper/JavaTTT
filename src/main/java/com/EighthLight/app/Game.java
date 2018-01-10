@@ -23,13 +23,12 @@ public class Game implements IGame {
         while (!gameIsTie && !aPlayerWon) {
             ui.display(Constants.PICK_A_SPOT_MSG);
             inputValidation(currentPlayer);
-            gameIsTie = board.gameIsTie(board.getSpaces());
             aPlayerWon = board.hasAPlayerWon(currentPlayer);
-            if (gameIsTie) {
-                ui.display(Constants.TIE_GAME_MSG);
-            }
+            gameIsTie = board.gameIsTie(board.getSpaces());
             if (aPlayerWon) {
                 ui.display(currentPlayer.getSymbol() + " WINS!");
+            } else if (gameIsTie) {
+                ui.display(Constants.TIE_GAME_MSG);
             }
             ui.display(ui.presentBoard(board.getSpaces()));
             currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
