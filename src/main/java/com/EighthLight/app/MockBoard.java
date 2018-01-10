@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MockBoard implements IBoard {
     private int numTimesGetSpacesCalled;
-    private boolean didAPlayerWin;
+    private ArrayList didAPlayerWin;
     private ArrayList gameTied;
     private ArrayList spaces;
     private ArrayList hasPlayerWonArgs = new ArrayList();
@@ -13,8 +13,9 @@ public class MockBoard implements IBoard {
     private ArrayList updateSpaceArgs = new ArrayList();
     private int numTimesGameIsTiedCalled = 0;
     private int numTimesUpdateSpaceIsCalled = 0;
+    private int numTimesAPlayerWonCalled = 0;
 
-    public MockBoard(ArrayList spaces, boolean didAPlayerWin, ArrayList gameTied) {
+    public MockBoard(ArrayList spaces, ArrayList didAPlayerWin, ArrayList gameTied) {
         this.spaces = spaces;
         this.didAPlayerWin = didAPlayerWin;
         this.gameTied = gameTied;
@@ -39,8 +40,10 @@ public class MockBoard implements IBoard {
     }
 
     public boolean hasAPlayerWon(IPlayer currentPlayer) {
+        boolean winValue = (boolean) this.didAPlayerWin.get(numTimesAPlayerWonCalled);
+        numTimesAPlayerWonCalled++;
         hasPlayerWonArgs.add(currentPlayer);
-        return this.didAPlayerWin;
+        return winValue;
     }
 
     public ArrayList getSpaces() {
