@@ -205,42 +205,42 @@ class gameTests {
         assertEquals(playerTwo, board.getUpdateSpaceArgs().get(3));
     }
 
-//    @Test
-//    void startGameWithAStateTwoAwayFromTiedAndCorrectInput() {
-//        gameIsTiedValues = new ArrayList();
-//        gameIsTiedValues.add(false);
-//        gameIsTiedValues.add(true);
-//
-//
-//        MockBoard board = new MockBoard(boardState, false, gameIsTiedValues);
-//        ArrayList userInputs = new ArrayList(Arrays.asList(correctInput, correctInput));
-//        MockUi ui = new MockUi(userInputs);
-//        Game game = new Game(ui, board, playerOne, playerTwo);
-//        game.start();
-//
-//        assertEquals(6, ui.getDisplayArgs().size());
-//        assertEquals(null, ui.getDisplayArgs().get(0));
-//        assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(1));
-//        assertEquals(null, ui.getDisplayArgs().get(2));
-//        assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(3));
-//        assertEquals(Constants.TIE_GAME_MSG, ui.getDisplayArgs().get(4));
-//        assertEquals(null, ui.getDisplayArgs().get(5));
-//
-//        assertEquals(3, ui.getPresentBoardArgs().size());
-//        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-//        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-//        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-//
-//        assertEquals(2, ui.getNumTimesGetInputCalled());
-//
-//        assertEquals(5, board.getNumTimesGetSpacesCalled());
-//        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
-//        assertEquals(boardState, board.getGameTieArgs().get(0));
-//
-//        assertEquals(2, board.getSpaceWithinBoundsArgs().size());
-//        assertEquals(userInputs.get(0), board.getSpaceWithinBoundsArgs().get(0));
-//        assertEquals(userInputs.get(1), board.getSpaceWithinBoundsArgs().get(1));
-//        assertEquals(userInputs.get(1), board.getUpdateSpaceArgs().get(0));
-//        assertEquals(playerOne, board.getUpdateSpaceArgs().get(1));
-//    }
+    @Test
+    void startGameWithAStateTwoAwayFromTiedAndCorrectInput() {
+        gameIsTiedValues = new ArrayList();
+        gameIsTiedValues.add(false);
+        gameIsTiedValues.add(true);
+
+
+        MockBoard board = new MockBoard(boardState, false, gameIsTiedValues);
+        ArrayList userInputs = new ArrayList(Arrays.asList(correctInput, correctInput));
+        MockUi ui = new MockUi(userInputs);
+        Game game = new Game(ui, board, playerOne, playerTwo);
+        game.start();
+
+        assertEquals(6, ui.getDisplayArgs().size());
+        assertEquals(null, ui.getDisplayArgs().get(0));
+        assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(1));
+        assertEquals(null, ui.getDisplayArgs().get(2));
+        assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(3));
+        assertEquals(Constants.TIE_GAME_MSG, ui.getDisplayArgs().get(4));
+        assertEquals(null, ui.getDisplayArgs().get(5));
+
+        assertEquals(3, ui.getPresentBoardArgs().size());
+        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
+        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
+        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
+
+        assertEquals(2, ui.getNumTimesGetInputCalled());
+
+        assertEquals(5, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(boardState, board.getGameTieArgs().get(0));
+
+        assertEquals(4, board.getUpdateSpaceArgs().size());
+        assertEquals(userInputs.get(0), board.getUpdateSpaceArgs().get(0));
+        assertEquals(playerOne, board.getUpdateSpaceArgs().get(1));
+        assertEquals(userInputs.get(1), board.getUpdateSpaceArgs().get(2));
+        assertEquals(playerTwo, board.getUpdateSpaceArgs().get(3));
+    }
 }
