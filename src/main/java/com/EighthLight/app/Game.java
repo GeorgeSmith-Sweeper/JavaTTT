@@ -22,7 +22,7 @@ public class Game implements IGame {
 
         while (!gameIsTie && !aPlayerWon) {
             ui.display(Constants.PICK_A_SPOT_MSG);
-            inputValidation(currentPlayer);
+            currentPlayer.makeMove(board);
             aPlayerWon = board.hasAPlayerWon(currentPlayer);
             gameIsTie = board.gameIsTie(board.getSpaces());
             if (aPlayerWon) {
@@ -33,15 +33,5 @@ public class Game implements IGame {
             ui.display(ui.presentBoard(board.getSpaces()));
             currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
         }
-    }
-
-    private void inputValidation(IPlayer currentPlayer) {
-        String userInput = ui.getInput();
-
-        while (!board.spaceWithinBounds(userInput)) {
-            ui.display(Constants.INVALID_SPOT_MSG);
-            userInput = ui.getInput();
-        }
-        board.updateSpace(userInput, currentPlayer);
     }
 }
