@@ -8,6 +8,7 @@ public class Config implements IConfig{
     private IUserInterface ui;
     private ArrayList<IPlayer> players = new ArrayList();
     private ArrayList<String> symbols = new ArrayList<>();
+    private Board board;
 
     public Config(IUserInterface ui) {
         this.ui = ui;
@@ -17,6 +18,7 @@ public class Config implements IConfig{
     private void setUpGame() {
         setSymbols();
         setPlayers();
+        setBoard();
     }
 
     private void setPlayers() {
@@ -51,11 +53,24 @@ public class Config implements IConfig{
         }
     }
 
+    private void setBoard() {
+        ui.display(Constants.BOARD_SIZE_PROMPT);
+        String boardSize = ui.getInput();
+        int convertedBoardSize = Integer.parseInt(boardSize);
+        board = new Board(convertedBoardSize);
+        board.createBoard();
+        board.setWinningCombos();
+    }
+
     public ArrayList<IPlayer> getPlayers() {
         return players;
     }
 
     public ArrayList getSymbols() {
         return symbols;
+    }
+
+    public Board getBoard() {
+        return board;
     }
 }
