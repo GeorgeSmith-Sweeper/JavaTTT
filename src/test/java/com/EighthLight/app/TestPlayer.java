@@ -9,10 +9,22 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestPlayer {
+    private ArrayList gameIsTiedValues = new ArrayList();
+    private ArrayList aPlayerWonValues = new ArrayList();
+    private ArrayList boardState = new ArrayList();
+    private String correctInput;
+    private String incorrectInput;
+
+    @BeforeEach
+    private void setUp() {
+        correctInput = Constants.CORRECT_INPUT;
+        incorrectInput = Constants.INCORRECT_INPUT;
+        gameIsTiedValues.add(false);
+        aPlayerWonValues.add(false);
+    }
 
     @Test
     void getPlayerSymbolReturnsThePlayersSymbol() {
-        String correctInput = Constants.CORRECT_INPUT;
         ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
         MockUi ui = new MockUi(userInputs);
 
@@ -23,12 +35,6 @@ class TestPlayer {
 
     @Test
     void makeMoveWithCorrectInput() {
-        ArrayList gameIsTiedValues = new ArrayList();
-        gameIsTiedValues.add(false);
-        ArrayList aPlayerWonValues = new ArrayList();
-        aPlayerWonValues.add(false);
-        ArrayList boardState = new ArrayList();
-        String correctInput = Constants.CORRECT_INPUT;
         ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
         MockUi ui = new MockUi(userInputs);
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
@@ -45,22 +51,15 @@ class TestPlayer {
 
     @Test
     void makeMoveWithIncorrectInput() {
-        ArrayList gameIsTiedValues = new ArrayList();
-        gameIsTiedValues.add(false);
-        ArrayList aPlayerWonValues = new ArrayList();
-        aPlayerWonValues.add(false);
-
-        ArrayList boardState = new ArrayList();
-        String correctInput = Constants.CORRECT_INPUT;
-        String incorrectInput = Constants.INCORRECT_INPUT;
         ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput));
-
         MockUi ui = new MockUi(userInputs);
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         Player playerOne = new Player("X", ui);
 
         playerOne.makeMove(board);
 
+        assertEquals(1, ui.getDisplayArgs().size());
+        assertEquals(Constants.INVALID_SPOT_MSG, ui.getDisplayArgs().get(0));
         assertEquals(2, ui.getNumTimesGetInputCalled());
         assertEquals(2, board.getSpaceWithinBoundsArgs().size());
         assertEquals(incorrectInput, board.getSpaceWithinBoundsArgs().get(0));
