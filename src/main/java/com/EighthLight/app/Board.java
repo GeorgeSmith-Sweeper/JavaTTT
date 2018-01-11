@@ -30,10 +30,10 @@ public class Board implements IBoard {
         return spaces.contains(convertedInput);
     }
 
-    public void updateSpace(String userInput, IPlayer player) {
+    public void updateSpace(String userInput, String playerSymbol) {
         ArrayList boardSpaces = getSpaces();
         int boardIndex = Integer.parseInt(userInput);
-        boardSpaces.set(boardIndex, player.getSymbol());
+        boardSpaces.set(boardIndex, playerSymbol);
     }
 
     public boolean gameIsTie(ArrayList spaces) {

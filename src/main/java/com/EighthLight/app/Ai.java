@@ -1,9 +1,11 @@
 package com.EighthLight.app;
 
-public class Ai extends Player{
+public class Ai implements IPlayer{
+
+    private String symbol;
 
     public Ai(String symbol) {
-        super(symbol);
+        this.symbol = symbol;
     }
 
     public int pickSpotRandomly(IBoard board) {
@@ -16,5 +18,15 @@ public class Ai extends Player{
             randomChoice = (int)(Math.random() * range) + min;
         }
         return randomChoice;
+    }
+
+    @Override
+    public String getSymbol() {
+        return this.symbol;
+    }
+
+    @Override
+    public void makeMove(IBoard board) {
+
     }
 }

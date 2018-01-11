@@ -55,8 +55,7 @@ class TestUi {
 
     @Test
     void presentBoardDisplaysAPlayersMove() {
-        MockPlayer playerOne = new MockPlayer("X");
-        testBoard.updateSpace("1", playerOne);
+        testBoard.updateSpace("1", "X");
 
         String expectedBoard = "0 | X | 2\n" +
                                "=========\n" +

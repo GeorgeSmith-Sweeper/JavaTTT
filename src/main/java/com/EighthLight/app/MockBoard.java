@@ -26,10 +26,10 @@ public class MockBoard implements IBoard {
         return userInput.equals(Constants.CORRECT_INPUT);
     }
 
-    public void updateSpace(String userInput, IPlayer player) {
+    public void updateSpace(String userInput, String playerSymbol) {
         numTimesUpdateSpaceIsCalled++;
         updateSpaceArgs.add(userInput);
-        updateSpaceArgs.add(player);
+        updateSpaceArgs.add(playerSymbol);
     }
 
     public boolean gameIsTie(ArrayList spaces) {
