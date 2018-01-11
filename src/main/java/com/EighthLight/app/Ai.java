@@ -8,23 +8,16 @@ public class Ai implements IPlayer{
         this.symbol = symbol;
     }
 
-    public int pickSpotRandomly(IBoard board) {
-        int min = 0;
-        int max = board.getSpaces().size();
-        int range = (max - min);
-        int randomChoice = (int)(Math.random() * range) + min;
-
-        while(!(board.getSpaces().get(randomChoice) instanceof Integer)) {
-            randomChoice = (int)(Math.random() * range) + min;
-        }
-        return randomChoice;
-    }
-
     public String getSymbol() {
         return this.symbol;
     }
 
     public void makeMove(IBoard board) {
-
+        for (Object space : board.getSpaces()) {
+            if (space instanceof Integer) {
+                board.updateSpace(space.toString(), this.symbol);
+                break;
+            }
+        }
     }
 }

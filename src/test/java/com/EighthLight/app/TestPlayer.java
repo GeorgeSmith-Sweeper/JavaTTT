@@ -25,16 +25,14 @@ class TestPlayer {
 
     @Test
     void getPlayerSymbolReturnsThePlayersSymbol() {
-        ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
-        MockUi ui = new MockUi(userInputs);
-
+        MockUi ui = new MockUi(new ArrayList());
         Player playerOne = new Player("X", ui);
 
         assertEquals("X", playerOne.getSymbol());
     }
 
     @Test
-    void makeMoveWithCorrectInput() {
+    void testExpectedMethodsAreCalledWhenMakeMoveIsExecutedWithCorrectInput() {
         ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
         MockUi ui = new MockUi(userInputs);
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
@@ -50,7 +48,7 @@ class TestPlayer {
     }
 
     @Test
-    void makeMoveWithIncorrectInput() {
+    void testExpectedMethodsAreCalledWhenMakeMoveIsExecutedWithIncorrectInput() {
         ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
