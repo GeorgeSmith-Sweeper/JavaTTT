@@ -43,15 +43,28 @@ class TestPlayer {
         assertEquals(playerOne.getSymbol(), board.getUpdateSpaceArgs().get(1));
     }
 
-//    @Test
-//    void makeMoveWithIncorrectInput() {
-////        assertEquals(2, ui.getNumTimesGetInputCalled());
-////        assertEquals(2, board.getSpaceWithinBoundsArgs().size());
-////        assertEquals(incorrect_input, board.getSpaceWithinBoundsArgs().get(0));
-////        assertEquals(correctInput, board.getUpdateSpaceArgs().get(2));
-////        assertEquals(playerOne, board.getUpdateSpaceArgs().get(1));
-//    }
+    @Test
+    void makeMoveWithIncorrectInput() {
+        ArrayList gameIsTiedValues = new ArrayList();
+        gameIsTiedValues.add(false);
+        ArrayList aPlayerWonValues = new ArrayList();
+        aPlayerWonValues.add(false);
 
+        ArrayList boardState = new ArrayList();
+        String correctInput = Constants.CORRECT_INPUT;
+        String incorrectInput = Constants.INCORRECT_INPUT;
+        ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput));
 
+        MockUi ui = new MockUi(userInputs);
+        MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
+        Player playerOne = new Player("X", ui);
 
+        playerOne.makeMove(board);
+
+        assertEquals(2, ui.getNumTimesGetInputCalled());
+        assertEquals(2, board.getSpaceWithinBoundsArgs().size());
+        assertEquals(incorrectInput, board.getSpaceWithinBoundsArgs().get(0));
+        assertEquals(correctInput, board.getUpdateSpaceArgs().get(0));
+        assertEquals(playerOne.getSymbol(), board.getUpdateSpaceArgs().get(1));
+    }
 }
