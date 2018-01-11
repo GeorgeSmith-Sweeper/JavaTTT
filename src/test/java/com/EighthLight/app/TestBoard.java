@@ -20,6 +20,12 @@ class TestBoard {
         testBoard.createBoard();
     }
 
+    public void setBoardState(Board testBoard, ArrayList spaces) {
+        ArrayList currentSpaces = testBoard.getSpaces();
+        currentSpaces.clear();
+        currentSpaces.addAll(spaces);
+    }
+
     @Test
     void createBoardMakesAnArrayFilledWithInts() {
         ArrayList<Integer> expectedBoard = new ArrayList<>(size * size);
@@ -160,7 +166,7 @@ class TestBoard {
                                                                 "O", "O", 5,
                                                                  6, 7, 8));
         MockPlayer playerOne = new MockPlayer("X");
-        testBoard.setSpaces(expectedBoard);
+        setBoardState(testBoard, expectedBoard);
         testBoard.setWinningCombos();
 
         assertEquals(true, testBoard.hasAPlayerWon(playerOne));
@@ -172,7 +178,7 @@ class TestBoard {
                                                                 "X", 4, 5,
                                                                 "X", 7, 8));
         MockPlayer playerOne = new MockPlayer("X");
-        testBoard.setSpaces(expectedBoard);
+        setBoardState(testBoard, expectedBoard);
         testBoard.setWinningCombos();
 
         assertEquals(true, testBoard.hasAPlayerWon(playerOne));
@@ -184,7 +190,7 @@ class TestBoard {
                                                                 3, "X", 5,
                                                                 6, 7, "X"));
         MockPlayer playerOne = new MockPlayer("X");
-        testBoard.setSpaces(expectedBoard);
+        setBoardState(testBoard, expectedBoard);
         testBoard.setWinningCombos();
 
         assertEquals(true, testBoard.hasAPlayerWon(playerOne));
@@ -196,7 +202,7 @@ class TestBoard {
                                                                  3, "X", 5,
                                                                 "X", 7, 8));
         MockPlayer playerOne = new MockPlayer("X");
-        testBoard.setSpaces(expectedBoard);
+        setBoardState(testBoard, expectedBoard);
         testBoard.setWinningCombos();
 
         assertEquals(true, testBoard.hasAPlayerWon(playerOne));
@@ -208,7 +214,7 @@ class TestBoard {
                                                                 "O", "O", 5,
                                                                  6, 7, 8));
         MockPlayer playerOne = new MockPlayer("X");
-        testBoard.setSpaces(expectedBoard);
+        setBoardState(testBoard, expectedBoard);
         testBoard.setWinningCombos();
 
         assertEquals(false, testBoard.hasAPlayerWon(playerOne));

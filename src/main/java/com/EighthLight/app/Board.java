@@ -46,10 +46,6 @@ public class Board implements IBoard {
         return isTied;
     }
 
-    public void setSpaces(ArrayList passedInState) {
-        spaces = passedInState;
-    }
-
     public ArrayList getSpaces() {
         return spaces;
     }

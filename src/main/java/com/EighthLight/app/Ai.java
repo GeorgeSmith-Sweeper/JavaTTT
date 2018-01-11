@@ -20,12 +20,10 @@ public class Ai implements IPlayer{
         return randomChoice;
     }
 
-    @Override
     public String getSymbol() {
         return this.symbol;
     }
 
-    @Override
     public void makeMove(IBoard board) {
 
     }
