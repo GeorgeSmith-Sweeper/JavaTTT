@@ -34,12 +34,13 @@ class gameTests {
         aPlayerWonValues.add(false);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
+        ArrayList userInputs = new ArrayList(Arrays.asList("1", correctInput));
         MockUi ui = new MockUi(userInputs);
-        Game game = new Game(ui, board, playerOne, playerTwo);
+        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        MockConfig config = new MockConfig(ui, players);
+        Game game = new Game(ui, board, config);
         game.start();
 
-        assertEquals(board, playerOne.getMakeMoveArgs().get(0));
 
         assertEquals(4, ui.getDisplayArgs().size());
         assertEquals(null, ui.getDisplayArgs().get(0));
@@ -50,6 +51,8 @@ class gameTests {
         assertEquals(2, ui.getPresentBoardArgs().size());
         assertEquals(boardState, ui.getPresentBoardArgs().get(0));
         assertEquals(boardState, ui.getPresentBoardArgs().get(1));
+
+        assertEquals(board, playerOne.getMakeMoveArgs().get(0));
 
         assertEquals(3, board.getNumTimesGetSpacesCalled());
         assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
@@ -64,9 +67,11 @@ class gameTests {
         aPlayerWonValues.add(false);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput));
+        ArrayList userInputs = new ArrayList(Arrays.asList("1", incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        Game game = new Game(ui, board, playerOne, playerTwo);
+        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        MockConfig config = new MockConfig(ui, players);
+        Game game = new Game(ui, board, config);
         game.start();
 
         assertEquals(4, ui.getDisplayArgs().size());
@@ -88,9 +93,11 @@ class gameTests {
         aPlayerWonValues.add(true);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
+        ArrayList userInputs = new ArrayList(Arrays.asList("1", correctInput));
         MockUi ui = new MockUi(userInputs);
-        Game game = new Game(ui, board, playerOne, playerTwo);
+        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        MockConfig config = new MockConfig(ui, players);
+        Game game = new Game(ui, board, config);
         game.start();
 
         assertEquals(4, ui.getDisplayArgs().size());
@@ -119,9 +126,11 @@ class gameTests {
         aPlayerWonValues.add(true);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput));
+        ArrayList userInputs = new ArrayList(Arrays.asList("1", incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        Game game = new Game(ui, board, playerOne, playerTwo);
+        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        MockConfig config = new MockConfig(ui, players);
+        Game game = new Game(ui, board, config);
         game.start();
 
         assertEquals(4, ui.getDisplayArgs().size());
@@ -152,9 +161,11 @@ class gameTests {
         aPlayerWonValues.add(false);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput, correctInput));
+        ArrayList userInputs = new ArrayList(Arrays.asList("1", incorrectInput, correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        Game game = new Game(ui, board, playerOne, playerTwo);
+        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        MockConfig config = new MockConfig(ui, players);
+        Game game = new Game(ui, board, config);
         game.start();
 
         assertEquals(6, ui.getDisplayArgs().size());
@@ -186,9 +197,10 @@ class gameTests {
         aPlayerWonValues.add(false);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList(correctInput, correctInput));
+        ArrayList userInputs = new ArrayList(Arrays.asList("1", correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        Game game = new Game(ui, board, playerOne, playerTwo);
+        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        MockConfig config = new MockConfig(ui, players);        Game game = new Game(ui, board, config);
         game.start();
 
         assertEquals(6, ui.getDisplayArgs().size());
@@ -221,9 +233,11 @@ class gameTests {
 
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput, correctInput));
+        ArrayList userInputs = new ArrayList(Arrays.asList("1", incorrectInput, correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        Game game = new Game(ui, board, playerOne, playerTwo);
+        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        MockConfig config = new MockConfig(ui, players);
+        Game game = new Game(ui, board, config);
         game.start();
 
         assertEquals(6, ui.getDisplayArgs().size());
@@ -253,9 +267,11 @@ class gameTests {
         aPlayerWonValues.add(true);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList(correctInput, correctInput));
+        ArrayList userInputs = new ArrayList(Arrays.asList("1", correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        Game game = new Game(ui, board, playerOne, playerTwo);
+        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        MockConfig config = new MockConfig(ui, players);
+        Game game = new Game(ui, board, config);
         game.start();
 
         assertEquals(6, ui.getDisplayArgs().size());
