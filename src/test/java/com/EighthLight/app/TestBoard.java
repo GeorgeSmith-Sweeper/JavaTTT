@@ -17,7 +17,6 @@ class TestBoard {
     public void setUp() {
         size = 3;
         testBoard = new Board(size);
-        testBoard.createBoard();
     }
 
     public void setBoardState(Board testBoard, ArrayList spaces) {
@@ -155,68 +154,122 @@ class TestBoard {
                 firstDiagonal,
                 secondDiagonal));
 
-        testBoard.setWinningCombos();
 
         assertEquals(allWinningConditions, testBoard.getWinningCombos());
     }
 
     @Test
-    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByRow() {
+    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByRow3x3() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "X", "X",
                                                                 "O", "O", 5,
                                                                  6, 7, 8));
         MockPlayer playerOne = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
-        testBoard.setWinningCombos();
 
         assertEquals(true, testBoard.hasAPlayerWon(playerOne));
     }
 
     @Test
-    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByColumn() {
+    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByColumn3x3() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "O",
                                                                 "X", 4, 5,
                                                                 "X", 7, 8));
         MockPlayer playerOne = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
-        testBoard.setWinningCombos();
 
         assertEquals(true, testBoard.hasAPlayerWon(playerOne));
     }
 
     @Test
-    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByDiagonal() {
+    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByDiagonal3x3() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "O",
                                                                 3, "X", 5,
                                                                 6, 7, "X"));
         MockPlayer playerOne = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
-        testBoard.setWinningCombos();
 
         assertEquals(true, testBoard.hasAPlayerWon(playerOne));
     }
 
     @Test
-    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByAlternateDiagonal() {
+    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByAlternateDiagonal3x3() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("0", "O", "X",
                                                                  3, "X", 5,
                                                                 "X", 7, 8));
         MockPlayer playerOne = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
-        testBoard.setWinningCombos();
 
         assertEquals(true, testBoard.hasAPlayerWon(playerOne));
     }
 
     @Test
-    void hasAPlayerOneReturnsFalseWhenAPlayerDoesntWin() {
+    void hasAPlayerOneReturnsFalseWhenAPlayerDoesntWin3x3() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "X",
                                                                 "O", "O", 5,
                                                                  6, 7, 8));
         MockPlayer playerOne = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
-        testBoard.setWinningCombos();
 
         assertEquals(false, testBoard.hasAPlayerWon(playerOne));
     }
+
+    @Test
+    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByRow4x4() {
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "X", "X", "X",
+                                                                "O", "O", 6, 7,
+                                                                 8, 9, 10, 11));
+        MockPlayer playerOne = new MockPlayer("X");
+        Board board = new Board(4);
+        setBoardState(board, expectedBoard);
+
+        assertEquals(true, board.hasAPlayerWon(playerOne));
+    }
+
+//    @Test
+//    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByColumn3x3() {
+//        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "O",
+//                                                                "X", 4, 5,
+//                                                                "X", 7, 8));
+//        MockPlayer playerOne = new MockPlayer("X");
+//        setBoardState(testBoard, expectedBoard);
+//        testBoard.setWinningCombos();
+//
+//        assertEquals(true, testBoard.hasAPlayerWon(playerOne));
+//    }
+//
+//    @Test
+//    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByDiagonal3x3() {
+//        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "O",
+//                                                                3, "X", 5,
+//                                                                6, 7, "X"));
+//        MockPlayer playerOne = new MockPlayer("X");
+//        setBoardState(testBoard, expectedBoard);
+//        testBoard.setWinningCombos();
+//
+//        assertEquals(true, testBoard.hasAPlayerWon(playerOne));
+//    }
+//
+//    @Test
+//    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByAlternateDiagonal3x3() {
+//        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("0", "O", "X",
+//                                                                 3, "X", 5,
+//                                                                "X", 7, 8));
+//        MockPlayer playerOne = new MockPlayer("X");
+//        setBoardState(testBoard, expectedBoard);
+//        testBoard.setWinningCombos();
+//
+//        assertEquals(true, testBoard.hasAPlayerWon(playerOne));
+//    }
+//
+//    @Test
+//    void hasAPlayerOneReturnsFalseWhenAPlayerDoesntWin3x3() {
+//        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "X",
+//                                                                "O", "O", 5,
+//                                                                 6, 7, 8));
+//        MockPlayer playerOne = new MockPlayer("X");
+//        setBoardState(testBoard, expectedBoard);
+//        testBoard.setWinningCombos();
+//
+//        assertEquals(false, testBoard.hasAPlayerWon(playerOne));
+//    }
 }

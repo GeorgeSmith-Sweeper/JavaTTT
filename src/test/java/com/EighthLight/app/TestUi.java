@@ -18,7 +18,6 @@ class TestUi {
         size = 3;
         testUi = new Ui(System.in);
         testBoard = new Board(size);
-        testBoard.createBoard();
     }
 
     @Test

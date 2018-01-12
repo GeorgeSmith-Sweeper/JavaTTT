@@ -10,8 +10,8 @@ public class Config implements IConfig{
     private IUserInterface ui;
     private ArrayList<IPlayer> players = new ArrayList();
     private ArrayList<String> symbols = new ArrayList<>();
-    private HashMap<String, ArrayList> playerCombos = new HashMap<>();
-    private Board board;
+    private HashMap<String, ArrayList> gameMode = new HashMap<>();
+    private IBoard board;
 
     public Config(IUserInterface ui) {
         this.ui = ui;
@@ -20,28 +20,28 @@ public class Config implements IConfig{
 
     private void setUpGame() {
         setSymbols();
-        createAllPlayers();
+        createGameModes();
         setPlayers();
         setBoard();
     }
 
-    private void createAllPlayers() {
+    private void createGameModes() {
         IPlayer playerOne = new Player(symbols.get(0), ui);
         IPlayer playerTwo = new Player(symbols.get(1), ui);
-        IPlayer aiTwo = new Ai(symbols.get(1));
+        IPlayer ai = new Ai(symbols.get(1));
 
-        playerCombos.put("1", new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
-        playerCombos.put("2", new ArrayList<>(Arrays.asList(playerOne, aiTwo)));
+        gameMode.put("1", new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
+        gameMode.put("2", new ArrayList<>(Arrays.asList(playerOne, ai)));
     }
 
     private void setPlayers() {
         ui.display(Constants.GAME_MODE_PROMPT);
         String userInput = ui.getInput();
-        while (!(playerCombos.containsKey(userInput))) {
+        while (!(gameMode.containsKey(userInput))) {
             ui.display(Constants.INVALID_GAME_MODE_MSG);
             userInput = ui.getInput();
         }
-        players.addAll(playerCombos.get(userInput));
+        players.addAll(gameMode.get(userInput));
     }
 
     private void setSymbols() {
@@ -66,8 +66,6 @@ public class Config implements IConfig{
             try {
                 int convertedBoardSize = Integer.parseInt(boardSize);
                 board = new Board(convertedBoardSize);
-                board.createBoard();
-                board.setWinningCombos();
                 invalidBoardSize = false;
             } catch (NumberFormatException e) {
                 ui.display(Constants.INVALID_BOARD_SIZE_MSG);
@@ -84,7 +82,7 @@ public class Config implements IConfig{
         return symbols;
     }
 
-    public Board getBoard() {
+    public IBoard getBoard() {
         return board;
     }
 }
