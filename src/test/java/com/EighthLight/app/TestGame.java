@@ -39,6 +39,7 @@ class gameTests {
         assertEquals(1, config.getNumTimesGetPlayersCalled());
         assertEquals(playerOne, config.getPlayers().get(0));
         assertEquals(playerTwo, config.getPlayers().get(1));
+        assertEquals(playerOne, config.getCurrentPlayer());
     }
 
     @Test

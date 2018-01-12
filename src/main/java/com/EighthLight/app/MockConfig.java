@@ -7,12 +7,15 @@ public class MockConfig implements IConfig {
     private IBoard board;
     private int numTimesGetBoardCalled = 0;
     private int numTimesGetPlayersCalled = 0;
-    ArrayList<IPlayer> players;
+    private ArrayList<IPlayer> players;
+    private IPlayer currentPlayer;
+
 
     public MockConfig(IUserInterface ui, ArrayList<IPlayer> players, IBoard board) {
         this.ui = ui;
         this.players = players;
         this.board = board;
+        this.currentPlayer = players.get(0);
     }
 
     public ArrayList<IPlayer> getPlayers() {
@@ -31,5 +34,9 @@ public class MockConfig implements IConfig {
 
     public int getNumTimesGetPlayersCalled() {
         return numTimesGetPlayersCalled;
+    }
+
+    public IPlayer getCurrentPlayer() {
+        return currentPlayer;
     }
 }

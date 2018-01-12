@@ -25,7 +25,6 @@ public class Game implements IGame {
     public void start() {
         boolean gameIsTie = false;
         boolean aPlayerWon = false;
-
         ui.display(ui.presentBoard(board.getSpaces()));
 
         while (!gameIsTie && !aPlayerWon) {
