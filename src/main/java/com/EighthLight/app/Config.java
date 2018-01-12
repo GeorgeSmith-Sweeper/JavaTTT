@@ -62,10 +62,20 @@ public class Config implements IConfig{
     private void setBoard() {
         ui.display(Constants.BOARD_SIZE_PROMPT);
         String boardSize = ui.getInput();
-        int convertedBoardSize = Integer.parseInt(boardSize);
-        board = new Board(convertedBoardSize);
-        board.createBoard();
-        board.setWinningCombos();
+        boolean invalidBoardSize = true;
+
+        while(invalidBoardSize) {
+            try {
+                int convertedBoardSize = Integer.parseInt(boardSize);
+                board = new Board(convertedBoardSize);
+                board.createBoard();
+                board.setWinningCombos();
+                invalidBoardSize = false;
+            } catch (NumberFormatException e) {
+                ui.display(Constants.INVALID_BOARD_SIZE_MSG);
+                boardSize = ui.getInput();
+            }
+        }
     }
 
     public ArrayList<IPlayer> getPlayers() {

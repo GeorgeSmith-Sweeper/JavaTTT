@@ -16,6 +16,7 @@ public class TestConfig {
     private ArrayList<String> gameModeOneUserInputs;
     private ArrayList<String> gameModeTwoUserInputs;
     private ArrayList<String> gameModeIncorrectInput;
+    private ArrayList<String> boardSizeIncorrectInput;
 
     @BeforeEach
     public void setUp() {
@@ -24,6 +25,7 @@ public class TestConfig {
         gameModeOneUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "3"));
         gameModeTwoUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "3"));
         gameModeIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "4", "1", "3"));
+        boardSizeIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "1", "Ten", "3"));
     }
 
     @Test
@@ -71,6 +73,23 @@ public class TestConfig {
                 Constants.GAME_MODE_PROMPT,
                 Constants.INVALID_GAME_MODE_MSG,
                 Constants.BOARD_SIZE_PROMPT
+        ));
+        for (String prompt : prompts ) {
+            assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
+        }
+    }
+
+    @Test
+    void invalidBoardSizeSelectionDisplaysAnErrorMessage() {
+        MockUi ui = new MockUi(boardSizeIncorrectInput);
+        Config config = new Config(ui);
+
+        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+                Constants.PLAYER_ONE_SYMBOL_PROMPT,
+                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.GAME_MODE_PROMPT,
+                Constants.BOARD_SIZE_PROMPT,
+                Constants.INVALID_BOARD_SIZE_MSG
         ));
         for (String prompt : prompts ) {
             assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
