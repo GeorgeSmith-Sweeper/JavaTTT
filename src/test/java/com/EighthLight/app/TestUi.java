@@ -15,7 +15,7 @@ class TestUi {
 
     @BeforeEach
     public void setUp() {
-        size = 3;
+        size = 4;
         testUi = new Ui(System.in);
         testBoard = new Board(size);
     }
@@ -41,13 +41,37 @@ class TestUi {
         assertEquals(userInput, ui.getInput());
     }
 
+//    @Test
+//    void presentBoardConvertsTheBoardSpacesToAString() {
+//        String expectedBoard = "0 | 1 | 2\n" +
+//                               "=========\n" +
+//                               "3 | 4 | 5\n" +
+//                               "=========\n" +
+//                                "6 | 7 | 8\n";
+//
+//        assertEquals(expectedBoard, testUi.presentBoard(testBoard.getSpaces()));
+//    }
+//
+//    @Test
+//    void presentBoardDisplaysAPlayersMove() {
+//        testBoard.updateSpace("1", "X");
+//
+//        String expectedBoard = "0 | X | 2\n" +
+//                               "=========\n" +
+//                               "3 | 4 | 5\n" +
+//                               "=========\n" +
+//                               "6 | 7 | 8\n";
+//
+//        assertEquals(expectedBoard, testUi.presentBoard(testBoard.getSpaces()));
+//    }
+
     @Test
-    void presentBoardConvertsTheBoardSpacesToAString() {
-        String expectedBoard = "0 | 1 | 2\n" +
-                               "=========\n" +
-                               "3 | 4 | 5\n" +
-                               "=========\n" +
-                               "6 | 7 | 8\n";
+    void presentBoardConvertsTheBoardSpacesToAString4x4() {
+
+        String expectedBoard = "_ _ _ _\n" +
+                               "_ _ _ _\n" +
+                               "_ _ _ _\n" +
+                               "_ _ _ _";
 
         assertEquals(expectedBoard, testUi.presentBoard(testBoard.getSpaces()));
     }
@@ -55,12 +79,10 @@ class TestUi {
     @Test
     void presentBoardDisplaysAPlayersMove() {
         testBoard.updateSpace("1", "X");
-
-        String expectedBoard = "0 | X | 2\n" +
-                               "=========\n" +
-                               "3 | 4 | 5\n" +
-                               "=========\n" +
-                               "6 | 7 | 8\n";
+        String expectedBoard = "_ X _ _\n" +
+                               "_ _ _ _\n" +
+                               "_ _ _ _\n" +
+                               "_ _ _ _";
 
         assertEquals(expectedBoard, testUi.presentBoard(testBoard.getSpaces()));
     }
