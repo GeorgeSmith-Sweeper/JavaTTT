@@ -26,6 +26,22 @@ class gameTests {
     }
 
     @Test
+    void gameIsCreatedWithABoardAndPlayers() {
+
+        MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
+        ArrayList userInputs = new ArrayList(Arrays.asList("1", correctInput));
+        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        MockUi ui = new MockUi(userInputs);
+        MockConfig config = new MockConfig(ui, players, board);
+        new Game(ui, config);
+
+        assertEquals(1, config.getNumTimesGetBoardCalled());
+        assertEquals(1, config.getNumTimesGetPlayersCalled());
+        assertEquals(playerOne, config.getPlayers().get(0));
+        assertEquals(playerTwo, config.getPlayers().get(1));
+    }
+
+    @Test
     void startGameTiedWithCorrectInput() {
 
         gameIsTiedValues = new ArrayList();
