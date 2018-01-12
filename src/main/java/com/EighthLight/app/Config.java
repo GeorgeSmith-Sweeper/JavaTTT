@@ -3,6 +3,8 @@ package com.EighthLight.app;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
 
 public class Config implements IConfig{
 
@@ -23,27 +25,37 @@ public class Config implements IConfig{
     }
 
     private void setPlayers() {
-        ui.display(Constants.GAME_MODE_PROMPT);
-        String userInput = ui.getInput();
+        IPlayer playerOne;
+        IPlayer playerTwo;
+        HashMap playerCombos = new HashMap();
 
-        while (!(userInput.equals("1")) && !(userInput.equals("2"))) {
+        playerCombos.put("1", new ArrayList<>(Arrays.asList(
+                playerOne = new Player(symbols.get(0), ui),
+                playerTwo = new Player(symbols.get(1), ui))
+        ));
+
+        playerCombos.put("2", new ArrayList<>(Arrays.asList(
+                playerOne = new Player(symbols.get(0), ui),
+                playerTwo = new Ai(symbols.get(1))
+        )));
+
+        playerCombos.put("3", new ArrayList<>(Arrays.asList(
+                playerOne = new Ai(symbols.get(0)),
+                playerTwo = new Player(symbols.get(1), ui))
+        ));
+
+        playerCombos.put("4", new ArrayList<>(Arrays.asList(
+                playerOne = new Ai(symbols.get(0)),
+                playerTwo = new Ai(symbols.get(1))
+        )));
+
+        String userInput = ui.getInput();
+        while (!(playerCombos.containsKey(userInput))) {
             ui.display(Constants.INVALID_GAME_MODE_MSG);
             userInput = ui.getInput();
         }
 
-        if (userInput.equals("1")) {
-            Player playerOne = new Player(symbols.get(0), ui);
-            Player playerTwo = new Player(symbols.get(1), ui);
-            players.add(playerOne);
-            players.add(playerTwo);
-        }
-
-        if (userInput.equals("2")) {
-            Player playerOne = new Player(symbols.get(0), ui);
-            Ai playerTwo = new Ai(symbols.get(1));
-            players.add(playerOne);
-            players.add(playerTwo);
-        }
+        players.addAll((Collection<? extends IPlayer>) playerCombos.get(userInput));
     }
 
     private void setSymbols() {
