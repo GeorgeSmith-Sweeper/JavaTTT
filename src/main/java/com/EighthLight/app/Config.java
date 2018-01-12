@@ -1,5 +1,6 @@
 package com.EighthLight.app;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -24,6 +25,11 @@ public class Config implements IConfig{
     private void setPlayers() {
         ui.display(Constants.GAME_MODE_PROMPT);
         String userInput = ui.getInput();
+
+        while (!(userInput.equals("1")) && !(userInput.equals("2"))) {
+            ui.display(Constants.INVALID_GAME_MODE_MSG);
+            userInput = ui.getInput();
+        }
 
         if (userInput.equals("1")) {
             Player playerOne = new Player(symbols.get(0), ui);

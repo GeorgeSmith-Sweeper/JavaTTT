@@ -15,13 +15,15 @@ public class TestConfig {
     private ArrayList<String> duplicateSymbolUserInputs;
     private ArrayList<String> gameModeOneUserInputs;
     private ArrayList<String> gameModeTwoUserInputs;
+    private ArrayList<String> gameModeIncorrectInput;
 
     @BeforeEach
     public void setUp() {
-        defaultUserInputs = new ArrayList<>(Arrays.asList("X", "O", "", "3", ""));
-        duplicateSymbolUserInputs = new ArrayList<>(Arrays.asList("X", "X", "O", "", "3"));
+        defaultUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "3", ""));
+        duplicateSymbolUserInputs = new ArrayList<>(Arrays.asList("X", "X", "O", "1", "3"));
         gameModeOneUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "3"));
         gameModeTwoUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "3"));
+        gameModeIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "4", "1", "3"));
     }
 
     @Test
@@ -59,6 +61,23 @@ public class TestConfig {
     }
 
     @Test
+    void invalidGameModeSelectionDisplaysAnErrorMessage() {
+        MockUi ui = new MockUi(gameModeIncorrectInput);
+        Config config = new Config(ui);
+
+        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+                Constants.PLAYER_ONE_SYMBOL_PROMPT,
+                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.GAME_MODE_PROMPT,
+                Constants.INVALID_GAME_MODE_MSG,
+                Constants.BOARD_SIZE_PROMPT
+        ));
+        for (String prompt : prompts ) {
+            assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
+        }
+    }
+
+    @Test
     void gameMode1StartsWithTwoHumans() {
 
         MockUi ui = new MockUi(gameModeOneUserInputs);
@@ -79,6 +98,7 @@ public class TestConfig {
         assertTrue(players.get(0) instanceof Player);
         assertTrue(players.get(1) instanceof Ai);
     }
+
 
     @Test
     void usersCanSelectAnyTokenWhenSettingUpTheGameWithCorrectInput() {

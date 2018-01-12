@@ -12,4 +12,5 @@ public class Constants {
     public static final String CORRECT_INPUT = "correct input";
     public static final String GAME_MODE_PROMPT = "Please choose a game mode. (1)Human vs Human, (2)Human vs Ai";
     public static final String DUPLICATE_SYMBOL_ERROR_PROMPT = "Symbol already selected, please pick a different symbol.";
+    public static final String INVALID_GAME_MODE_MSG = "That game type doesn't exist.";
 }
