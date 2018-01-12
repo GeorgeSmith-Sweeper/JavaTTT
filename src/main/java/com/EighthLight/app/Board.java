@@ -10,13 +10,14 @@ public class Board implements IBoard {
 
     public Board(int size) {
         this.size = size;
+        createBoard();
+        setWinningCombos();
     }
 
-    public ArrayList createBoard() {
+    private void createBoard() {
         for (int i = 0; i < size*size; i++) {
             spaces.add(i);
         }
-        return spaces;
     }
 
     public boolean spaceWithinBounds(String userInput) {
@@ -116,7 +117,7 @@ public class Board implements IBoard {
     public boolean hasAPlayerWon(IPlayer playerOne) {
         for (int combo = 0; combo < winningCombos.size(); combo++) {
             boolean playerWon = true;
-            for (int spot = 0; spot < (spaces.size() / 2) - 1; spot++) {
+            for (int spot = 0; spot < size; spot++) {
                 if (spaces.get(winningCombos.get(combo).get(spot)) != playerOne.getSymbol()) {
                     playerWon = false;
                 }

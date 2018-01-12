@@ -1,25 +1,25 @@
 package com.EighthLight.app;
 
+
 import java.util.ArrayList;
 
 public class Game implements IGame {
     private IConfig config;
     private IUserInterface ui;
-    private IBoard board;
 
-    public Game(IUserInterface ui, IBoard board, IConfig config) {
+    public Game(IUserInterface ui, IConfig config) {
         this.ui = ui;
-        this.board = board;
         this.config = config;
     }
 
     public void start() {
-        boolean gameIsTie = false;
-        boolean aPlayerWon = false;
+        IBoard board = config.getBoard();
         ArrayList<IPlayer> players = config.getPlayers();
         IPlayer playerOne = players.get(0);
         IPlayer playerTwo = players.get(1);
         IPlayer currentPlayer = playerOne;
+        boolean gameIsTie = false;
+        boolean aPlayerWon = false;
 
         ui.display(ui.presentBoard(board.getSpaces()));
 

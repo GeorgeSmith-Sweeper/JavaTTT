@@ -118,7 +118,6 @@ public class TestConfig {
         assertTrue(players.get(1) instanceof Ai);
     }
 
-
     @Test
     void usersCanSelectAnyTokenWhenSettingUpTheGameWithCorrectInput() {
         MockUi ui = new MockUi(defaultUserInputs);
