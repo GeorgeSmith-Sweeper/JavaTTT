@@ -1,5 +1,6 @@
 package com.EighthLight.app;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,11 +11,95 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class TestConfig {
+    private ArrayList<String> defaultUserInputs;
+    private ArrayList<String> duplicateSymbolUserInputs;
+    private ArrayList<String> gameModeOneUserInputs;
+    private ArrayList<String> gameModeTwoUserInputs;
+    private ArrayList<String> gameModeIncorrectInput;
+    private ArrayList<String> boardSizeIncorrectInput;
+
+    @BeforeEach
+    public void setUp() {
+        defaultUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "3", ""));
+        duplicateSymbolUserInputs = new ArrayList<>(Arrays.asList("X", "X", "O", "1", "3"));
+        gameModeOneUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "3"));
+        gameModeTwoUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "3"));
+        gameModeIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "5", "1", "3"));
+        boardSizeIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "1", "Ten", "3"));
+    }
+
+    @Test
+    void promptsUserInCorrectOrder() {
+        MockUi ui = new MockUi(defaultUserInputs);
+        new Config(ui);
+
+        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+                Constants.PLAYER_ONE_SYMBOL_PROMPT,
+                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.GAME_MODE_PROMPT,
+                Constants.BOARD_SIZE_PROMPT
+        ));
+        for (String prompt : prompts ) {
+            assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
+        }
+        assertEquals(prompts.size(), ui.getNumTimesGetInputCalled());
+    }
+
+    @Test
+    void promptsUserInCorrectOrderIfSymbolsAreDuplicates() {
+        MockUi ui = new MockUi(duplicateSymbolUserInputs);
+        new Config(ui);
+
+        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+                Constants.PLAYER_ONE_SYMBOL_PROMPT,
+                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.DUPLICATE_SYMBOL_ERROR_PROMPT,
+                Constants.GAME_MODE_PROMPT,
+                Constants.BOARD_SIZE_PROMPT
+        ));
+        for (String prompt : prompts ) {
+            assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
+        }
+    }
+
+    @Test
+    void invalidGameModeSelectionDisplaysAnErrorMessage() {
+        MockUi ui = new MockUi(gameModeIncorrectInput);
+        new Config(ui);
+
+        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+                Constants.PLAYER_ONE_SYMBOL_PROMPT,
+                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.GAME_MODE_PROMPT,
+                Constants.INVALID_GAME_MODE_MSG,
+                Constants.BOARD_SIZE_PROMPT
+        ));
+        for (String prompt : prompts ) {
+            assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
+        }
+    }
+
+    @Test
+    void invalidBoardSizeSelectionDisplaysAnErrorMessage() {
+        MockUi ui = new MockUi(boardSizeIncorrectInput);
+        new Config(ui);
+
+        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+                Constants.PLAYER_ONE_SYMBOL_PROMPT,
+                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.GAME_MODE_PROMPT,
+                Constants.BOARD_SIZE_PROMPT,
+                Constants.INVALID_BOARD_SIZE_MSG
+        ));
+        for (String prompt : prompts ) {
+            assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
+        }
+    }
 
     @Test
     void gameMode1StartsWithTwoHumans() {
 
-        MockUi ui = new MockUi(new ArrayList(Arrays.asList("O", "X", "1")));
+        MockUi ui = new MockUi(gameModeOneUserInputs);
         Config config = new Config(ui);
 
         ArrayList players = config.getPlayers();
@@ -25,7 +110,7 @@ public class TestConfig {
     @Test
     void gameMode2StartsWithAHumanAndAi() {
 
-        MockUi ui = new MockUi(new ArrayList(Arrays.asList("O", "X", "2")));
+        MockUi ui = new MockUi(gameModeTwoUserInputs);
         Config config = new Config(ui);
 
         ArrayList players = config.getPlayers();
@@ -33,43 +118,25 @@ public class TestConfig {
         assertTrue(players.get(1) instanceof Ai);
     }
 
-    @Test
-    void usersArePromptedOnceToSelectAGameModeWithCorrectInput() {
-        MockUi ui = new MockUi(new ArrayList(Arrays.asList("O", "X", "1")));
-        Config config = new Config(ui);
-        ArrayList players = config.getPlayers();
-
-        assertEquals("Pick a symbol for player 1", ui.getDisplayArgs().get(0));
-        assertEquals("Pick a symbol for player 2", ui.getDisplayArgs().get(1));
-        assertEquals(Constants.GAME_MODE_PROMPT, ui.getDisplayArgs().get(2));
-        assertEquals(3, ui.getNumTimesGetInputCalled());
-    }
 
     @Test
     void usersCanSelectAnyTokenWhenSettingUpTheGameWithCorrectInput() {
-        MockUi ui = new MockUi(new ArrayList(Arrays.asList("X", "O", "1")));
+        MockUi ui = new MockUi(defaultUserInputs);
         Config config = new Config(ui);
         ArrayList symbols = config.getSymbols();
 
-        assertEquals("Pick a symbol for player 1", ui.getDisplayArgs().get(0));
-        assertEquals("Pick a symbol for player 2", ui.getDisplayArgs().get(1));
-        assertEquals(3, ui.getNumTimesGetInputCalled());
         assertEquals("X", symbols.get(0));
         assertEquals("O", symbols.get(1));
     }
 
     @Test
-    void usersCantSelectSameTokens() {
-        MockUi ui = new MockUi(new ArrayList(Arrays.asList("X", "X", "O", "1")));
+    void whenAUserSelectsABoardSizeANewBoardIsCreatedWithThatSize() {
+        MockUi ui = new MockUi(defaultUserInputs);
         Config config = new Config(ui);
-        ArrayList symbols = config.getSymbols();
+        IBoard board = config.getBoard();
+        int boardSize = Integer.parseInt(defaultUserInputs.get(3));
+        int boardArea = boardSize*boardSize;
 
-        assertEquals("Pick a symbol for player 1", ui.getDisplayArgs().get(0));
-        assertEquals("Pick a symbol for player 2", ui.getDisplayArgs().get(1));
-        assertEquals("Symbol already selected, please pick a different symbol.", ui.getDisplayArgs().get(2));
-
-        // ui.display is called
-        // ui.getInput is called
-        // ui.getDisplayArgs = token prompt msg
+        assertEquals(board.getSpaces().size(), boardArea);
     }
 }

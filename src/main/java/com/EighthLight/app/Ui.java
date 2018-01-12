@@ -37,7 +37,7 @@ public class Ui implements IUserInterface {
         for (int space = 0; space < spaces.size(); space++) {
             rowHolder = addSpaceString(spaces, space, rowHolder);
             rowHolder.add(pipe);
-            fullBoard = addBuiltRow(rowHolder, fullBoard, numRows, pipe);
+            fullBoard = addBuiltRow(rowHolder, fullBoard, numRows);
         }
         fullBoard.remove(fullBoard.size() - 1);
         String finalBoard = String.join("", fullBoard);
@@ -45,7 +45,7 @@ public class Ui implements IUserInterface {
         return finalBoard;
     }
 
-    private ArrayList addBuiltRow(ArrayList rowHolder, ArrayList fullBoard, int numRows, String pipe) {
+    private ArrayList addBuiltRow(ArrayList rowHolder, ArrayList fullBoard, int numRows) {
         String divider = "=========";
         if (rowHolder.size() == (numRows * 2)) {
             rowHolder.remove(rowHolder.size() - 1);
