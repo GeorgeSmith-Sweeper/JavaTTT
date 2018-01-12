@@ -30,7 +30,7 @@ public class Config implements IConfig{
         IPlayer aiOne = new Ai(symbols.get(0));
         IPlayer aiTwo = new Ai(symbols.get(1));
 
-        HashMap playerCombos = new HashMap();
+        HashMap<String, ArrayList> playerCombos = new HashMap();
         playerCombos.put("1", new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
         playerCombos.put("2", new ArrayList<>(Arrays.asList(playerOne, aiTwo)));
         playerCombos.put("3", new ArrayList<>(Arrays.asList(aiOne, playerTwo)));
@@ -42,7 +42,7 @@ public class Config implements IConfig{
             ui.display(Constants.INVALID_GAME_MODE_MSG);
             userInput = ui.getInput();
         }
-        players.addAll((Collection<? extends IPlayer>) playerCombos.get(userInput));
+        players.addAll(playerCombos.get(userInput));
     }
 
     private void setSymbols() {
