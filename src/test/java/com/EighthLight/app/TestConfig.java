@@ -15,6 +15,7 @@ public class TestConfig {
     private ArrayList<String> duplicateSymbolUserInputs;
     private ArrayList<String> gameModeOneUserInputs;
     private ArrayList<String> gameModeTwoUserInputs;
+    private ArrayList<String> gameModeThreeUserInputs;
     private ArrayList<String> gameModeIncorrectInput;
     private ArrayList<String> boardSizeIncorrectInput;
 
@@ -24,6 +25,7 @@ public class TestConfig {
         duplicateSymbolUserInputs = new ArrayList<>(Arrays.asList("X", "X", "O", "1", "3"));
         gameModeOneUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "3"));
         gameModeTwoUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "3"));
+        gameModeThreeUserInputs = new ArrayList<>(Arrays.asList("X", "O", "3", "3"));
         gameModeIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "5", "1", "3"));
         boardSizeIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "1", "Ten", "3"));
     }
@@ -117,7 +119,6 @@ public class TestConfig {
         assertTrue(players.get(0) instanceof Player);
         assertTrue(players.get(1) instanceof Ai);
     }
-
 
     @Test
     void usersCanSelectAnyTokenWhenSettingUpTheGameWithCorrectInput() {

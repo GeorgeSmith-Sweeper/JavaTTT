@@ -3,7 +3,6 @@ package com.EighthLight.app;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 
 public class Config implements IConfig{
@@ -11,6 +10,7 @@ public class Config implements IConfig{
     private IUserInterface ui;
     private ArrayList<IPlayer> players = new ArrayList();
     private ArrayList<String> symbols = new ArrayList<>();
+    private HashMap<String, ArrayList> playerCombos = new HashMap<>();
     private Board board;
 
     public Config(IUserInterface ui) {
@@ -20,22 +20,21 @@ public class Config implements IConfig{
 
     private void setUpGame() {
         setSymbols();
+        createAllPlayers();
         setPlayers();
         setBoard();
     }
 
-    private void setPlayers() {
+    private void createAllPlayers() {
         IPlayer playerOne = new Player(symbols.get(0), ui);
         IPlayer playerTwo = new Player(symbols.get(1), ui);
-        IPlayer aiOne = new Ai(symbols.get(0));
         IPlayer aiTwo = new Ai(symbols.get(1));
 
-        HashMap<String, ArrayList> playerCombos = new HashMap();
         playerCombos.put("1", new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
         playerCombos.put("2", new ArrayList<>(Arrays.asList(playerOne, aiTwo)));
-        playerCombos.put("3", new ArrayList<>(Arrays.asList(aiOne, playerTwo)));
-        playerCombos.put("4", new ArrayList<>(Arrays.asList(aiOne, aiTwo)));
+    }
 
+    private void setPlayers() {
         ui.display(Constants.GAME_MODE_PROMPT);
         String userInput = ui.getInput();
         while (!(playerCombos.containsKey(userInput))) {
