@@ -17,7 +17,7 @@ class gameTests {
     private ArrayList aPlayerWonValues;
 
     @BeforeEach
-    private void setUp() {
+    public void setUp() {
         playerOne = new MockPlayer("X");
         playerTwo = new MockPlayer("O");
         correctInput = Constants.CORRECT_INPUT;
@@ -66,8 +66,6 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(3));
 
         assertEquals(2, ui.getPresentBoardArgs().size());
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-        assertEquals(boardState, ui.getPresentBoardArgs().get(1));
 
         assertEquals(board, playerOne.getMakeMoveArgs().get(0));
 
@@ -124,9 +122,6 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(3));
 
         assertEquals(2, ui.getPresentBoardArgs().size());
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-        assertEquals(boardState, ui.getPresentBoardArgs().get(1));
-
         assertEquals(3, board.getNumTimesGetSpacesCalled());
         assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
@@ -157,8 +152,6 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(3));
 
         assertEquals(2, ui.getPresentBoardArgs().size());
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
 
         assertEquals(3, board.getNumTimesGetSpacesCalled());
         assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
@@ -194,10 +187,6 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(5));
 
         assertEquals(3, ui.getPresentBoardArgs().size());
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-
         assertEquals(5, board.getNumTimesGetSpacesCalled());
         assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
@@ -230,10 +219,6 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(5));
 
         assertEquals(3, ui.getPresentBoardArgs().size());
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-
         assertEquals(5, board.getNumTimesGetSpacesCalled());
         assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
@@ -267,8 +252,6 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(5));
 
         assertEquals(3, ui.getPresentBoardArgs().size());
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-
         assertEquals(5, board.getNumTimesGetSpacesCalled());
         assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
@@ -301,10 +284,6 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(5));
 
         assertEquals(3, ui.getPresentBoardArgs().size());
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-        assertEquals(boardState, ui.getPresentBoardArgs().get(0));
-
         assertEquals(5, board.getNumTimesGetSpacesCalled());
         assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
