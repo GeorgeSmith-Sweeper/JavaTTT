@@ -28,79 +28,50 @@ public class Ui implements IUserInterface {
         }
     }
 
-//    public String presentBoard(ArrayList spaces) {
-//        int numRows = (int) Math.sqrt(spaces.size());
-//        String pipe = " | ";
-//        ArrayList rowHolder = new ArrayList();
-//        ArrayList fullBoard = new ArrayList();
-//
-//        for (int space = 0; space < spaces.size(); space++) {
-//            rowHolder = addSpaceString(spaces, space, rowHolder);
-//            rowHolder.add(pipe);
-//            fullBoard = addBuiltRow(rowHolder, fullBoard, numRows);
-//        }
-//        fullBoard.remove(fullBoard.size() - 1);
-//        String finalBoard = String.join("", fullBoard);
-//
-//        return finalBoard;
-//    }
-//
-//    private ArrayList addBuiltRow(ArrayList rowHolder, ArrayList fullBoard, int numRows) {
-//        String divider = "=========";
-//        if (rowHolder.size() == (numRows * 2)) {
-//            rowHolder.remove(rowHolder.size() - 1);
-//            String rowString = String.join("", rowHolder) + "\n";
-//            fullBoard.add(rowString);
-//            fullBoard.add(divider + "\n");
-//            rowHolder.clear();
-//        }
-//        return fullBoard;
-//    }
-//
-//    private ArrayList addSpaceString(ArrayList spaces, int space, ArrayList rowHolder) {
-//        if (spaces.get(space) instanceof Integer) {
-//            String convertedSpace = spaces.get(space).toString();
-//            rowHolder.add(convertedSpace);
-//        } else {
-//            rowHolder.add(spaces.get(space));
-//        }
-//        return rowHolder;
-//    }
-
+    public String makeDivider(String rowString) {
+        String divider = "";
+        for (int space = 1; space < rowString.length(); space++) {
+            divider+="-";
+        }
+        return divider;
+    }
 
     public String presentBoard(ArrayList spaces) {
         int numRows = (int) Math.sqrt(spaces.size());
+        String pipe = "|";
         ArrayList rowHolder = new ArrayList();
         ArrayList fullBoard = new ArrayList();
 
         for (int space = 0; space < spaces.size(); space++) {
             rowHolder = addSpaceString(spaces, space, rowHolder);
-            rowHolder.add(" ");
+            rowHolder.add(pipe);
             fullBoard = addBuiltRow(rowHolder, fullBoard, numRows);
         }
         fullBoard.remove(fullBoard.size() - 1);
         String finalBoard = String.join("", fullBoard);
+
         return finalBoard;
     }
 
     private ArrayList addBuiltRow(ArrayList rowHolder, ArrayList fullBoard, int numRows) {
         if (rowHolder.size() == (numRows * 2)) {
             rowHolder.remove(rowHolder.size() - 1);
-            String rowString = String.join("", rowHolder);
+            String rowString = String.join("", rowHolder) + "\n";
+            String divider = makeDivider(rowString);
             fullBoard.add(rowString);
-            fullBoard.add("\n");
+            fullBoard.add(divider + "\n");
             rowHolder.clear();
         }
         return fullBoard;
     }
 
     private ArrayList addSpaceString(ArrayList spaces, int space, ArrayList rowHolder) {
-        if (spaces.get(space) instanceof Integer) {
-            String convertedSpace = "_";
-            rowHolder.add(convertedSpace);
-        } else {
-            rowHolder.add(spaces.get(space));
-        }
+        rowHolder.add(formatSpace(spaces, space));
         return rowHolder;
+    }
+
+    public String formatSpace(ArrayList spaces, int space) {
+        String convertedSpace = spaces.get(space).toString();
+        return convertedSpace.length() > 1 ? " " + convertedSpace : " " + convertedSpace + " ";
     }
 }
