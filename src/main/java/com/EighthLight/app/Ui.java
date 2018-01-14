@@ -38,22 +38,21 @@ public class Ui implements IUserInterface {
 
     public String presentBoard(ArrayList spaces) {
         int numRows = (int) Math.sqrt(spaces.size());
-        String pipe = "|";
-        ArrayList rowHolder = new ArrayList();
+        ArrayList row = new ArrayList();
         ArrayList fullBoard = new ArrayList();
 
         for (int space = 0; space < spaces.size(); space++) {
-            rowHolder = addSpaceString(spaces, space, rowHolder);
-            rowHolder.add(pipe);
-            fullBoard = addBuiltRow(rowHolder, fullBoard, numRows);
+            row.add(formatSpace(spaces, space));
+            row.add("|");
+            fullBoard = addRow(row, fullBoard, numRows);
         }
         fullBoard.remove(fullBoard.size() - 1);
         String finalBoard = String.join("", fullBoard);
-
         return finalBoard;
     }
 
-    private ArrayList addBuiltRow(ArrayList rowHolder, ArrayList fullBoard, int numRows) {
+    private ArrayList addRow(ArrayList rowHolder, ArrayList fullBoard, int numRows) {
+
         if (rowHolder.size() == (numRows * 2)) {
             rowHolder.remove(rowHolder.size() - 1);
             String rowString = String.join("", rowHolder) + "\n";
@@ -63,11 +62,6 @@ public class Ui implements IUserInterface {
             rowHolder.clear();
         }
         return fullBoard;
-    }
-
-    private ArrayList addSpaceString(ArrayList spaces, int space, ArrayList rowHolder) {
-        rowHolder.add(formatSpace(spaces, space));
-        return rowHolder;
     }
 
     public String formatSpace(ArrayList spaces, int space) {
