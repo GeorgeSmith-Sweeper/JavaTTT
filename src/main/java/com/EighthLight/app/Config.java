@@ -12,6 +12,7 @@ public class Config implements IConfig{
     private ArrayList<IPlayer> players = new ArrayList();
     private ArrayList<String> symbols = new ArrayList<>();
     private HashMap<String, ArrayList> gameMode = new HashMap<>();
+    private HashMap<String, Object> playerOrder = new HashMap<>();
     private IBoard board;
 
     public Config(IUserInterface ui) {
@@ -22,8 +23,8 @@ public class Config implements IConfig{
     private void setUpGame() {
         setSymbols();
         createGameModes();
+        createPlayerOrderOptions();
         setPlayers();
-        setPlayerOrder();
         setBoard();
     }
 
@@ -36,6 +37,10 @@ public class Config implements IConfig{
         gameMode.put("2", new ArrayList<>(Arrays.asList(playerOne, ai)));
     }
 
+    private void createPlayerOrderOptions() {
+        playerOrder.put("1", null);
+        playerOrder.put("2", null);
+    }
 
     private void setPlayers() {
         ui.display(Constants.GAME_MODE_PROMPT);
@@ -45,11 +50,18 @@ public class Config implements IConfig{
             userInput = ui.getInput();
         }
         players.addAll(gameMode.get(userInput));
+        if (userInput.equals("2")) {
+            setPlayerOrder();
+        }
     }
 
     private void setPlayerOrder() {
         ui.display(Constants.PLAYER_ORDER_PROMPT);
         String userInput = ui.getInput();
+        while (!(playerOrder.containsKey(userInput))) {
+            ui.display(Constants.INVALID_ORDER_PROMPT);
+            userInput = ui.getInput();
+        }
         if (userInput.equals("2")) {
             Collections.reverse(players);
         }
