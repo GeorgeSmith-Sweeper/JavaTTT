@@ -25,7 +25,6 @@ public class Config implements IConfig{
         createGameModes();
         createPlayerOrderOptions();
         setPlayers();
-        setPlayerOrder();
         setBoard();
     }
 
@@ -43,7 +42,6 @@ public class Config implements IConfig{
         playerOrder.put("2", null);
     }
 
-
     private void setPlayers() {
         ui.display(Constants.GAME_MODE_PROMPT);
         String userInput = ui.getInput();
@@ -52,6 +50,9 @@ public class Config implements IConfig{
             userInput = ui.getInput();
         }
         players.addAll(gameMode.get(userInput));
+        if (userInput.equals("2")) {
+            setPlayerOrder();
+        }
     }
 
     private void setPlayerOrder() {
