@@ -1,6 +1,5 @@
 package com.EighthLight.app;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -19,10 +18,11 @@ public class TestConfig {
     private ArrayList<String> boardSizeIncorrectInput;
     private ArrayList<String> playerOrderingTwoUserInputs;
     private ArrayList<String> playerOrderingIncorrectInput;
+    private ArrayList<String> aiDifficulty1Input;
 
     @Test
     void promptsUserInCorrectOrder() {
-        defaultUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "1", "3"));
+        defaultUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "1", "1", "3"));
         MockUi ui = new MockUi(defaultUserInputs);
         new Config(ui);
 
@@ -31,6 +31,7 @@ public class TestConfig {
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
                 Constants.PLAYER_ORDER_PROMPT,
+                Constants.AI_DIFFICULTY_PROMPT,
                 Constants.BOARD_SIZE_PROMPT
         ));
         for (String prompt : prompts ) {
@@ -95,7 +96,7 @@ public class TestConfig {
 
     @Test
     void invalidPlayerOrderSelectionDisplaysAWarningAndPrompt() {
-        playerOrderingIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "2", "7", "2", "3"));
+        playerOrderingIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "2", "7", "2", "1", "3"));
         MockUi ui = new MockUi(playerOrderingIncorrectInput);
         new Config(ui);
 
@@ -105,11 +106,23 @@ public class TestConfig {
                 Constants.GAME_MODE_PROMPT,
                 Constants.PLAYER_ORDER_PROMPT,
                 Constants.INVALID_ORDER_PROMPT,
+                Constants.AI_DIFFICULTY_PROMPT,
                 Constants.BOARD_SIZE_PROMPT
         ));
         for (String prompt : prompts ) {
             assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
         }
+    }
+
+    @Test
+    void usersCanSelectAnyTokenWhenSettingUpTheGameWithCorrectInput() {
+        defaultUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "1", "1", "3"));
+        MockUi ui = new MockUi(defaultUserInputs);
+        Config config = new Config(ui);
+        ArrayList symbols = config.getSymbols();
+
+        assertEquals("X", symbols.get(0));
+        assertEquals("O", symbols.get(1));
     }
 
     @Test
@@ -125,7 +138,7 @@ public class TestConfig {
 
     @Test
     void gameMode2StartsWithAHumanAndAi() {
-        gameModeTwoUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "1", "3"));
+        gameModeTwoUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "1", "1", "3"));
         MockUi ui = new MockUi(gameModeTwoUserInputs);
         Config config = new Config(ui);
 
@@ -138,7 +151,7 @@ public class TestConfig {
 
     @Test
     void selecting2ForPlayerOrderLetsPlayerTwoGoFirst() {
-        playerOrderingTwoUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "2", "3"));
+        playerOrderingTwoUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "2", "1", "3"));
         MockUi ui = new MockUi(playerOrderingTwoUserInputs);
         Config config = new Config(ui);
         ArrayList<IPlayer> players = config.getPlayers();
@@ -148,14 +161,33 @@ public class TestConfig {
     }
 
     @Test
-    void usersCanSelectAnyTokenWhenSettingUpTheGameWithCorrectInput() {
-        defaultUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "1", "1", "3"));
-        MockUi ui = new MockUi(defaultUserInputs);
+    void selecting1ForPlayerDifficultySetsTheAiDifficultlyToEasy() {
+        aiDifficulty1Input = new ArrayList<>(Arrays.asList("X", "O", "2", "1", "1", "3"));
+        MockUi ui = new MockUi(aiDifficulty1Input);
         Config config = new Config(ui);
-        ArrayList symbols = config.getSymbols();
+        String difficulty = config.getDifficulty();
 
-        assertEquals("X", symbols.get(0));
-        assertEquals("O", symbols.get(1));
+        assertEquals("Easy", difficulty);
+    }
+
+    @Test
+    void selecting2ForPlayerDifficultySetsTheAiDifficultlyToMedium() {
+        aiDifficulty1Input = new ArrayList<>(Arrays.asList("X", "O", "2", "1", "2", "3"));
+        MockUi ui = new MockUi(aiDifficulty1Input);
+        Config config = new Config(ui);
+        String difficulty = config.getDifficulty();
+
+        assertEquals("Medium", difficulty);
+    }
+
+    @Test
+    void selecting3ForPlayerDifficultySetsTheAiDifficultlyToHard() {
+        aiDifficulty1Input = new ArrayList<>(Arrays.asList("X", "O", "2", "1", "3", "3"));
+        MockUi ui = new MockUi(aiDifficulty1Input);
+        Config config = new Config(ui);
+        String difficulty = config.getDifficulty();
+
+        assertEquals("Hard", difficulty);
     }
 
     @Test
