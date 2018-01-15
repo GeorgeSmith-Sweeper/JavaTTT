@@ -12,6 +12,7 @@ public class Config implements IConfig{
     private ArrayList<String> symbols = new ArrayList<>();
     private HashMap<String, ArrayList> gameMode = new HashMap<>();
     private HashMap<String, Object> playerOrder = new HashMap<>();
+    private HashMap<String, String> aiDifficulties = new HashMap<>();
     private IBoard board;
     private String difficulty;
 
@@ -24,6 +25,7 @@ public class Config implements IConfig{
         setSymbols();
         createGameModes();
         createPlayerOrderOptions();
+        createAiDifficultlyLevels();
         setGameMode();
         setBoard();
     }
@@ -40,6 +42,12 @@ public class Config implements IConfig{
     private void createPlayerOrderOptions() {
         playerOrder.put("1", null);
         playerOrder.put("2", null);
+    }
+
+    private void createAiDifficultlyLevels() {
+        aiDifficulties.put("1", "Easy");
+        aiDifficulties.put("2", "Medium");
+        aiDifficulties.put("3", "Hard");
     }
 
     private void setGameMode() {
@@ -71,9 +79,7 @@ public class Config implements IConfig{
     private void setAiDifficulty() {
         ui.display(Constants.AI_DIFFICULTY_PROMPT);
         String userInput = ui.getInput();
-        if (userInput.equals("1")) {
-            difficulty = "Easy";
-        }
+        difficulty = aiDifficulties.get(userInput);
     }
 
     private void setSymbols() {
