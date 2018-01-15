@@ -168,6 +168,17 @@ public class TestConfig {
         String difficulty = config.getDifficulty();
 
         assertEquals("Easy", difficulty);
+
+    }
+
+    @Test
+    void selecting2ForPlayerDifficultySetsTheAiDifficultlyToMedium() {
+        aiDifficulty1Input = new ArrayList<>(Arrays.asList("X", "O", "2", "1", "2", "3"));
+        MockUi ui = new MockUi(aiDifficulty1Input);
+        Config config = new Config(ui);
+        String difficulty = config.getDifficulty();
+
+        assertEquals("Medium", difficulty);
     }
 
     @Test
