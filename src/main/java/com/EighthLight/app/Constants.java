@@ -16,4 +16,5 @@ public class Constants {
     public static final String INVALID_BOARD_SIZE_MSG = "That is not a valid board size. Try a number instead.";
     public static final String PLAYER_ORDER_PROMPT = "Who should have the first move? 1)Player One\n" +
                                                      "                                2)Player Two";
+    public static final String INVALID_ORDER_PROMPT = "Sorry that is not a valid choice, please try again.";
 }
