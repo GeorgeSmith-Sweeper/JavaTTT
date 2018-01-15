@@ -68,7 +68,7 @@ public class Config implements IConfig{
         ui.display(Constants.PLAYER_ORDER_PROMPT);
         String userInput = ui.getInput();
         while (!(playerOrder.containsKey(userInput))) {
-            ui.display(Constants.INVALID_ORDER_PROMPT);
+            ui.display(Constants.INVALID_CHOICE_PROMPT);
             userInput = ui.getInput();
         }
         if (userInput.equals("2")) {
@@ -79,6 +79,10 @@ public class Config implements IConfig{
     private void setAiDifficulty() {
         ui.display(Constants.AI_DIFFICULTY_PROMPT);
         String userInput = ui.getInput();
+        while (!(aiDifficulties.containsKey(userInput))) {
+            ui.display(Constants.INVALID_CHOICE_PROMPT);
+            userInput = ui.getInput();
+        }
         difficulty = aiDifficulties.get(userInput);
     }
 
