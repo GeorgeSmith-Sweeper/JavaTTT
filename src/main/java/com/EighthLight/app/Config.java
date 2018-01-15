@@ -1,5 +1,6 @@
 package com.EighthLight.app;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -45,9 +46,9 @@ public class Config implements IConfig{
     }
 
     private void createAiDifficultlyLevels() {
-        aiDifficulties.put("1", "Easy");
-        aiDifficulties.put("2", "Medium");
-        aiDifficulties.put("3", "Hard");
+        aiDifficulties.put(Constants.EASY, "Easy");
+        aiDifficulties.put(Constants.MEDIUM, "Medium");
+        aiDifficulties.put(Constants.HARD, "Hard");
     }
 
     private void setGameMode() {
@@ -58,7 +59,7 @@ public class Config implements IConfig{
             userInput = ui.getInput();
         }
         players.addAll(gameMode.get(userInput));
-        if (userInput.equals("2")) {
+        if (userInput.equals(Constants.HUMAN_VS_COMPUTER)) {
             setPlayerOrder();
             setAiDifficulty();
         }
@@ -71,7 +72,7 @@ public class Config implements IConfig{
             ui.display(Constants.INVALID_CHOICE_PROMPT);
             userInput = ui.getInput();
         }
-        if (userInput.equals("2")) {
+        if (userInput.equals(Constants.COMPUTER_GOES_FIRST)) {
             Collections.reverse(players);
         }
     }
