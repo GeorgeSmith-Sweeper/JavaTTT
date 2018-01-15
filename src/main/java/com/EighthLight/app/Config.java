@@ -88,12 +88,12 @@ public class Config implements IConfig{
     }
 
     private void setSymbols() {
-        ArrayList<String> prompts = new ArrayList(Arrays.asList("Pick a symbol for player 1", "Pick a symbol for player 2"));
+        ArrayList<String> prompts = new ArrayList(Arrays.asList(Constants.PLAYER_ONE_SYMBOL_PROMPT, Constants.PLAYER_TWO_SYMBOL_PROMPT));
         for (String prompt : prompts) {
             ui.display(prompt);
             String symbol = ui.getInput();
             while (symbols.contains(symbol)) {
-                ui.display("Symbol already selected, please pick a different symbol.");
+                ui.display(Constants.DUPLICATE_SYMBOL_ERROR_PROMPT);
                 symbol = ui.getInput();
             }
             symbols.add(symbol);
