@@ -17,15 +17,17 @@ public class TestConfig {
     private ArrayList<String> gameModeTwoUserInputs;
     private ArrayList<String> gameModeIncorrectInput;
     private ArrayList<String> boardSizeIncorrectInput;
+    private ArrayList<String> playerOrderingTwoUserInputs;
 
     @BeforeEach
     public void setUp() {
-        defaultUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "3", ""));
-        duplicateSymbolUserInputs = new ArrayList<>(Arrays.asList("X", "X", "O", "1", "3"));
-        gameModeOneUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "3"));
-        gameModeTwoUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "3"));
-        gameModeIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "5", "1", "3"));
-        boardSizeIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "1", "Ten", "3"));
+        defaultUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "1", "1", "3"));
+        duplicateSymbolUserInputs = new ArrayList<>(Arrays.asList("X", "X", "O", "1", "1", "3"));
+        gameModeOneUserInputs = new ArrayList<>(Arrays.asList("X", "O", "1", "1","3"));
+        gameModeTwoUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "1", "3"));
+        playerOrderingTwoUserInputs = new ArrayList<>(Arrays.asList("X", "O", "2", "2", "3"));
+        gameModeIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "5", "1", "1", "3"));
+        boardSizeIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "1", "", "Ten", "3"));
     }
 
     @Test
@@ -37,6 +39,7 @@ public class TestConfig {
                 Constants.PLAYER_ONE_SYMBOL_PROMPT,
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
+                Constants.PLAYER_ORDER_PROMPT,
                 Constants.BOARD_SIZE_PROMPT
         ));
         for (String prompt : prompts ) {
@@ -55,6 +58,7 @@ public class TestConfig {
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
                 Constants.DUPLICATE_SYMBOL_ERROR_PROMPT,
                 Constants.GAME_MODE_PROMPT,
+                Constants.PLAYER_ORDER_PROMPT,
                 Constants.BOARD_SIZE_PROMPT
         ));
         for (String prompt : prompts ) {
@@ -72,6 +76,7 @@ public class TestConfig {
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
                 Constants.INVALID_GAME_MODE_MSG,
+                Constants.PLAYER_ORDER_PROMPT,
                 Constants.BOARD_SIZE_PROMPT
         ));
         for (String prompt : prompts ) {
@@ -88,6 +93,7 @@ public class TestConfig {
                 Constants.PLAYER_ONE_SYMBOL_PROMPT,
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
+                Constants.PLAYER_ORDER_PROMPT,
                 Constants.BOARD_SIZE_PROMPT,
                 Constants.INVALID_BOARD_SIZE_MSG
         ));
@@ -102,7 +108,7 @@ public class TestConfig {
         MockUi ui = new MockUi(gameModeOneUserInputs);
         Config config = new Config(ui);
 
-        ArrayList players = config.getPlayers();
+        ArrayList<IPlayer> players = config.getPlayers();
         assertTrue(players.get(0) instanceof Player);
         assertTrue(players.get(1) instanceof Player);
     }
@@ -113,9 +119,19 @@ public class TestConfig {
         MockUi ui = new MockUi(gameModeTwoUserInputs);
         Config config = new Config(ui);
 
-        ArrayList players = config.getPlayers();
+        ArrayList<IPlayer> players = config.getPlayers();
         assertTrue(players.get(0) instanceof Player);
         assertTrue(players.get(1) instanceof Ai);
+    }
+
+    @Test
+    void selecting2ForPlayerOrderLetsPlayerTwoGoFirst() {
+        MockUi ui = new MockUi(playerOrderingTwoUserInputs);
+        Config config = new Config(ui);
+        ArrayList<IPlayer> players = config.getPlayers();
+
+        assertTrue(players.get(0) instanceof Ai);
+        assertTrue(players.get(1) instanceof Player);
     }
 
     @Test

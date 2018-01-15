@@ -3,6 +3,7 @@ package com.EighthLight.app;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Config implements IConfig{
@@ -22,6 +23,7 @@ public class Config implements IConfig{
         setSymbols();
         createGameModes();
         setPlayers();
+        setPlayerOrder();
         setBoard();
     }
 
@@ -34,6 +36,7 @@ public class Config implements IConfig{
         gameMode.put("2", new ArrayList<>(Arrays.asList(playerOne, ai)));
     }
 
+
     private void setPlayers() {
         ui.display(Constants.GAME_MODE_PROMPT);
         String userInput = ui.getInput();
@@ -42,6 +45,14 @@ public class Config implements IConfig{
             userInput = ui.getInput();
         }
         players.addAll(gameMode.get(userInput));
+    }
+
+    private void setPlayerOrder() {
+        ui.display(Constants.PLAYER_ORDER_PROMPT);
+        String userInput = ui.getInput();
+        if (userInput.equals("2")) {
+            Collections.reverse(players);
+        }
     }
 
     private void setSymbols() {
