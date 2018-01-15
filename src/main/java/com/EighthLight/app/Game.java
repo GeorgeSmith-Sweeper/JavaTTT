@@ -6,21 +6,25 @@ import java.util.ArrayList;
 public class Game implements IGame {
     private IConfig config;
     private IUserInterface ui;
+    private IBoard board;
+    private ArrayList<IPlayer> players;
+    private IPlayer playerOne;
+    private IPlayer playerTwo;
+    private IPlayer currentPlayer;
 
     public Game(IUserInterface ui, IConfig config) {
         this.ui = ui;
         this.config = config;
+        this.board = config.getBoard();
+        this.players = config.getPlayers();
+        this.playerOne = players.get(0);
+        this.playerTwo = players.get(1);
+        this.currentPlayer = playerOne;
     }
 
     public void start() {
-        IBoard board = config.getBoard();
-        ArrayList<IPlayer> players = config.getPlayers();
-        IPlayer playerOne = players.get(0);
-        IPlayer playerTwo = players.get(1);
-        IPlayer currentPlayer = playerOne;
         boolean gameIsTie = false;
         boolean aPlayerWon = false;
-
         ui.display(ui.presentBoard(board.getSpaces()));
 
         while (!gameIsTie && !aPlayerWon) {

@@ -3,7 +3,7 @@
 ### Requirements
 This game requires that you have `java` and `maven` installed on your machine.
 
-Please run `java --version` from the commandline to check if you have java.
+Please run `java -version` from the commandline to check if you have java.
 
 If you have Java, your output should be similar to the one below.
 
@@ -30,24 +30,23 @@ The other, less user friendly way is to follow the instructions at this link: [I
 
 ### Getting started
 
-1. Run `git clone https://github.com/GeorgeSmith-Sweeper/JavaTTT.git` in your terminal
+1. Run `git clone https://github.com/GeorgeSmith-Sweeper/JavaTTT.git` in your terminal.
 
-2. Run `java -jar JavaTicTacToe-1.0-SNAPSHOT.jar` at the root to start the game.
+2. Run `cd JavaTTT`.
+
+3. Run `mvn package` at the root.
+
+4. Run `java -cp target/JavaTicTacToe-1.0-SNAPSHOT.jar com.EighthLight.app.App` at the root to start the game.
+
 
 ### Playing the Game
 
-The game will begin by displaying a board, and a prompt to pick a spot.
+The game will begin by displaying prompts for player symbols, game mode, and board size.
 
-![Game Start](/images/GameStart.png?raw=true)
-
-Begin playing by selecting a spot 0-8.
-Player 1 is 'X' Player 2 is 'O'.
-Player 1 has the first move.
-
-The game will end when the board is full.
+The current game modes available are human vs human, and human vs AI.
 
 ### Tests
 
-There are 14 tests for this game, and currently they all pass.
+There are 51 tests for this game, and currently they all pass.
 
 The tests for this game can be run with the command `mvn test`, at the root.
