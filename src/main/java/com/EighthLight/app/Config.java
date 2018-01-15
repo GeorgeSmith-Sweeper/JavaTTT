@@ -1,6 +1,5 @@
 package com.EighthLight.app;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,6 +13,7 @@ public class Config implements IConfig{
     private HashMap<String, ArrayList> gameMode = new HashMap<>();
     private HashMap<String, Object> playerOrder = new HashMap<>();
     private IBoard board;
+    private String difficulty;
 
     public Config(IUserInterface ui) {
         this.ui = ui;
@@ -24,7 +24,7 @@ public class Config implements IConfig{
         setSymbols();
         createGameModes();
         createPlayerOrderOptions();
-        setPlayers();
+        setGameMode();
         setBoard();
     }
 
@@ -42,7 +42,7 @@ public class Config implements IConfig{
         playerOrder.put("2", null);
     }
 
-    private void setPlayers() {
+    private void setGameMode() {
         ui.display(Constants.GAME_MODE_PROMPT);
         String userInput = ui.getInput();
         while (!(gameMode.containsKey(userInput))) {
@@ -52,6 +52,7 @@ public class Config implements IConfig{
         players.addAll(gameMode.get(userInput));
         if (userInput.equals("2")) {
             setPlayerOrder();
+            setAiDifficulty();
         }
     }
 
@@ -64,6 +65,14 @@ public class Config implements IConfig{
         }
         if (userInput.equals("2")) {
             Collections.reverse(players);
+        }
+    }
+
+    private void setAiDifficulty() {
+        ui.display(Constants.AI_DIFFICULTY_PROMPT);
+        String userInput = ui.getInput();
+        if (userInput.equals("1")) {
+            difficulty = "Easy";
         }
     }
 
@@ -107,5 +116,9 @@ public class Config implements IConfig{
 
     public IBoard getBoard() {
         return board;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
     }
 }

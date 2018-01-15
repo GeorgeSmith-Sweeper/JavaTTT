@@ -17,4 +17,7 @@ public class Constants {
     public static final String PLAYER_ORDER_PROMPT = "Who should have the first move? 1)Player 1 (Human)\n" +
                                                      "                                2)Player 2 (Computer)";
     public static final String INVALID_ORDER_PROMPT = "Sorry that is not a valid choice, please try again.";
+    public static final String AI_DIFFICULTY_PROMPT = "Please select a difficulty. 1) EASY\n" +
+                                                      "                            2) MEDIUM\n" +
+                                                      "                            2) HARD\n";
 }
