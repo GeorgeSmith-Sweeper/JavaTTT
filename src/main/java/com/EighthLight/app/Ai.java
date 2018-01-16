@@ -1,7 +1,6 @@
 package com.EighthLight.app;
 
 public class Ai implements IPlayer{
-
     private String symbol;
 
     public Ai(String symbol) {
