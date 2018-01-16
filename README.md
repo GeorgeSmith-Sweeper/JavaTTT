@@ -47,6 +47,6 @@ The current game modes available are human vs human, and human vs AI.
 
 ### Tests
 
-There are 51 tests for this game, and currently they all pass.
+There are 57 tests for this game, and currently they all pass.
 
 The tests for this game can be run with the command `mvn test`, at the root.

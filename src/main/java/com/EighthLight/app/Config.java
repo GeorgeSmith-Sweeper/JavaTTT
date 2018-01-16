@@ -1,5 +1,6 @@
 package com.EighthLight.app;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -35,8 +36,8 @@ public class Config implements IConfig{
         IPlayer playerTwo = new Player(symbols.get(1), ui);
         IPlayer ai = new Ai(symbols.get(1));
 
-        gameMode.put("1", new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
-        gameMode.put("2", new ArrayList<>(Arrays.asList(playerOne, ai)));
+        gameMode.put(Constants.HUMAN_VS_HUMAN, new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
+        gameMode.put(Constants.HUMAN_VS_COMPUTER, new ArrayList<>(Arrays.asList(playerOne, ai)));
     }
 
     private void createPlayerOrderOptions() {
@@ -45,20 +46,21 @@ public class Config implements IConfig{
     }
 
     private void createAiDifficultlyLevels() {
-        aiDifficulties.put("1", "Easy");
-        aiDifficulties.put("2", "Medium");
-        aiDifficulties.put("3", "Hard");
+        aiDifficulties.put(Constants.EASY, "Easy");
+        aiDifficulties.put(Constants.MEDIUM, "Medium");
+        aiDifficulties.put(Constants.HARD, "Hard");
     }
 
     private void setGameMode() {
         ui.display(Constants.GAME_MODE_PROMPT);
         String userInput = ui.getInput();
+
         while (!(gameMode.containsKey(userInput))) {
             ui.display(Constants.INVALID_GAME_MODE_MSG);
             userInput = ui.getInput();
         }
         players.addAll(gameMode.get(userInput));
-        if (userInput.equals("2")) {
+        if (userInput.equals(Constants.HUMAN_VS_COMPUTER)) {
             setPlayerOrder();
             setAiDifficulty();
         }
@@ -68,10 +70,10 @@ public class Config implements IConfig{
         ui.display(Constants.PLAYER_ORDER_PROMPT);
         String userInput = ui.getInput();
         while (!(playerOrder.containsKey(userInput))) {
-            ui.display(Constants.INVALID_ORDER_PROMPT);
+            ui.display(Constants.INVALID_CHOICE_PROMPT);
             userInput = ui.getInput();
         }
-        if (userInput.equals("2")) {
+        if (userInput.equals(Constants.COMPUTER_GOES_FIRST)) {
             Collections.reverse(players);
         }
     }
@@ -79,16 +81,20 @@ public class Config implements IConfig{
     private void setAiDifficulty() {
         ui.display(Constants.AI_DIFFICULTY_PROMPT);
         String userInput = ui.getInput();
+        while (!(aiDifficulties.containsKey(userInput))) {
+            ui.display(Constants.INVALID_CHOICE_PROMPT);
+            userInput = ui.getInput();
+        }
         difficulty = aiDifficulties.get(userInput);
     }
 
     private void setSymbols() {
-        ArrayList<String> prompts = new ArrayList(Arrays.asList("Pick a symbol for player 1", "Pick a symbol for player 2"));
+        ArrayList<String> prompts = new ArrayList(Arrays.asList(Constants.PLAYER_ONE_SYMBOL_PROMPT, Constants.PLAYER_TWO_SYMBOL_PROMPT));
         for (String prompt : prompts) {
             ui.display(prompt);
             String symbol = ui.getInput();
             while (symbols.contains(symbol)) {
-                ui.display("Symbol already selected, please pick a different symbol.");
+                ui.display(Constants.DUPLICATE_SYMBOL_ERROR_PROMPT);
                 symbol = ui.getInput();
             }
             symbols.add(symbol);

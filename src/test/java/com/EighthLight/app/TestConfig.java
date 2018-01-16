@@ -105,8 +105,28 @@ public class TestConfig {
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
                 Constants.PLAYER_ORDER_PROMPT,
-                Constants.INVALID_ORDER_PROMPT,
+                Constants.INVALID_CHOICE_PROMPT,
                 Constants.AI_DIFFICULTY_PROMPT,
+                Constants.BOARD_SIZE_PROMPT
+        ));
+        for (String prompt : prompts ) {
+            assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
+        }
+    }
+
+    @Test
+    void invalidDificultySelectionDisplaysAWarningAndPrompt() {
+        playerOrderingIncorrectInput = new ArrayList<>(Arrays.asList("X", "O", "2", "1", "wrong", "1", "3"));
+        MockUi ui = new MockUi(playerOrderingIncorrectInput);
+        new Config(ui);
+
+        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+                Constants.PLAYER_ONE_SYMBOL_PROMPT,
+                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.GAME_MODE_PROMPT,
+                Constants.PLAYER_ORDER_PROMPT,
+                Constants.AI_DIFFICULTY_PROMPT,
+                Constants.INVALID_CHOICE_PROMPT,
                 Constants.BOARD_SIZE_PROMPT
         ));
         for (String prompt : prompts ) {
