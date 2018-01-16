@@ -36,8 +36,8 @@ public class Config implements IConfig{
         IPlayer playerTwo = new Player(symbols.get(1), ui);
         IPlayer ai = new Ai(symbols.get(1));
 
-        gameMode.put("1", new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
-        gameMode.put("2", new ArrayList<>(Arrays.asList(playerOne, ai)));
+        gameMode.put(Constants.HUMAN_VS_HUMAN, new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
+        gameMode.put(Constants.HUMAN_VS_COMPUTER, new ArrayList<>(Arrays.asList(playerOne, ai)));
     }
 
     private void createPlayerOrderOptions() {
@@ -54,6 +54,7 @@ public class Config implements IConfig{
     private void setGameMode() {
         ui.display(Constants.GAME_MODE_PROMPT);
         String userInput = ui.getInput();
+
         while (!(gameMode.containsKey(userInput))) {
             ui.display(Constants.INVALID_GAME_MODE_MSG);
             userInput = ui.getInput();
