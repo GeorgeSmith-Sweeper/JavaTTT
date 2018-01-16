@@ -45,6 +45,7 @@ public class Config implements IConfig{
         playerOrder.put("2", null);
     }
 
+    // HardAi hardAi = new HardAi(symbols.get(1), symbols.get(0))
     private void createAiDifficultlyLevels() {
         aiDifficulties.put(Constants.EASY, "Easy");
         aiDifficulties.put(Constants.MEDIUM, "Medium");
