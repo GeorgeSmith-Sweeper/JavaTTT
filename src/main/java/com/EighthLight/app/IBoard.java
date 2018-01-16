@@ -6,6 +6,6 @@ public interface IBoard {
     boolean spaceWithinBounds(String userInput);
     void updateSpace(String userInput, String playerSymbol);
     boolean gameIsTie(ArrayList spaces);
-    boolean hasAPlayerWon(IPlayer currentPlayer);
+    boolean hasAPlayerWon(String currentPlayer);
     ArrayList getSpaces();
 }
