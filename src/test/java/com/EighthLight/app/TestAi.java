@@ -1,28 +1,39 @@
 package com.EighthLight.app;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestAi {
 
     @Test
     void getPlayerSymbolReturnsThePlayersSymbol() {
-        Ai computer = new Ai("X");
+        Ai computer = new Ai("X", "O", "Hard");
 
         assertEquals("X", computer.getSymbol());
     }
 
     @Test
+    void findAllAvailableSpotsReturnsAllEmptySpots() {
+        Ai ai = new Ai("X", "O", "Hard");
+        ArrayList aPlayerWonValues = new ArrayList(Arrays.asList(false));
+        ArrayList gameIsTiedValues = new ArrayList(Arrays.asList(false));
+        ArrayList boardState = new ArrayList(Arrays.asList(1, "X", 3));
+        MockBoard testBoard = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
+
+        ArrayList expectedSpaces = new ArrayList(Arrays.asList(1, 3));
+        assertEquals(expectedSpaces , ai.findEmptySpaces(testBoard));
+    }
+
+    @Test
     void makeMoveUpdatesTheBoardWithARandomMoveIfGameHasNotEnded() {
-        String playerSymbol = "X";
-        Ai computer = new Ai(playerSymbol);
+        String symbol = "X";
+        String humanSymbol = "O";
+        String difficulty = "Hard";
+        Ai computer = new Ai(symbol, humanSymbol, difficulty);
         ArrayList boardWithOpenSpace = new ArrayList(Arrays.asList("O", 1));
         MockBoard board = new MockBoard(boardWithOpenSpace, new ArrayList(), new ArrayList());
 
@@ -31,7 +42,6 @@ public class TestAi {
         assertEquals(1, board.getNumTimesGetSpacesCalled());
         assertEquals(1, board.getNumTimesUpdateSpaceIsCalled());
         assertEquals("1", board.getUpdateSpaceArgs().get(0));
-        assertEquals(playerSymbol, board.getUpdateSpaceArgs().get(1));
+        assertEquals(symbol, board.getUpdateSpaceArgs().get(1));
     }
-
 }

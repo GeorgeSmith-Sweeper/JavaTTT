@@ -34,7 +34,7 @@ public class Config implements IConfig{
     private void createGameModes() {
         IPlayer playerOne = new Player(symbols.get(0), ui);
         IPlayer playerTwo = new Player(symbols.get(1), ui);
-        IPlayer ai = new Ai(symbols.get(1));
+        IPlayer ai = new Ai(symbols.get(1), symbols.get(0), difficulty);
 
         gameMode.put(Constants.HUMAN_VS_HUMAN, new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
         gameMode.put(Constants.HUMAN_VS_COMPUTER, new ArrayList<>(Arrays.asList(playerOne, ai)));
@@ -45,7 +45,7 @@ public class Config implements IConfig{
         playerOrder.put("2", null);
     }
 
-    // HardAi hardAi = new HardAi(symbols.get(1), symbols.get(0))
+//    HardAi hardAi = new HardAi(symbols.get(1), symbols.get(0))
     private void createAiDifficultlyLevels() {
         aiDifficulties.put(Constants.EASY, "Easy");
         aiDifficulties.put(Constants.MEDIUM, "Medium");
