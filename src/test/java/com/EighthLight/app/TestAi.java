@@ -25,7 +25,7 @@ public class TestAi {
         MockBoard testBoard = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
 
         ArrayList expectedSpaces = new ArrayList(Arrays.asList(1, 3));
-        assertEquals(expectedSpaces , ai.findEmptySpaces(testBoard));
+        assertEquals(expectedSpaces , ai.findEmptySpaces(testBoard.getSpaces()));
     }
 
     @Test
