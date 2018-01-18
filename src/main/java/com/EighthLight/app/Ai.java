@@ -7,7 +7,6 @@ public class Ai implements IPlayer{
     private String aiSymbol;
     private String humanSymbol;
     private String difficulty;
-    private String maximizingPlayer = aiSymbol;
 
     public Ai(String aiSymbol, String humanSymbol, String difficulty) {
         this.aiSymbol = aiSymbol;
@@ -34,20 +33,41 @@ public class Ai implements IPlayer{
         return emptySpaces;
     }
 
+    public int findBestMove(ArrayList<HashMap<String, Integer>> moves, String currentPlayer)  {
+        int bestMove = 0;
+        int bestScore = setScore(currentPlayer, aiSymbol);
+
+        for (int move = 0; move < moves.size(); move++) {
+            int currentScore = moves.get(move).get("score");
+            if (currentPlayer.equals(aiSymbol)) {
+                if (currentScore > bestScore) {
+                    bestScore = currentScore;
+                    bestMove = move;
+                }
+            } else {
+                if (currentScore < bestScore) {
+                    bestScore = currentScore;
+                    bestMove = move;
+                }
+            }
+        }
+        return bestMove;
+    }
+
     public HashMap miniMax(ArrayList boardState, int depth, String currentPlayer) {
         ArrayList<Integer> emptySpaces = findEmptySpaces(boardState);
         depth++;
 
         // base cases [EndStates]
-        HashMap scoreKeeper = new HashMap();
+        HashMap<String, Integer> scoreKeeper = new HashMap();
         if (currentPlayer.equals(humanSymbol) && board.hasAPlayerWon(currentPlayer)) {
-            scoreKeeper.put("score", -10);
+            scoreKeeper.put("score", -10 + depth);
             return scoreKeeper;
         } else if (currentPlayer.equals(aiSymbol) && board.hasAPlayerWon(currentPlayer)) {
-            scoreKeeper.put("score", 10);
+            scoreKeeper.put("score", 10 - depth);
             return scoreKeeper;
         } else {
-            scoreKeeper.put("score", -10);
+            scoreKeeper.put("score", 0);
             return scoreKeeper;
         }
 
@@ -55,15 +75,15 @@ public class Ai implements IPlayer{
 
         // recursively call minimax on the empty spaces
         for (int space = 0; space < emptySpaces.size(); space++) {
-            HashMap<String, Object> singleMove = new HashMap();
+            HashMap<String, Integer> singleMove = new HashMap();
             singleMove.put("index", emptySpaces.get(space));
             boardState.set(emptySpaces.get(space), currentPlayer);
 
             if (currentPlayer.equals(aiSymbol)) {
-                HashMap result = miniMax(boardState, depth, humanSymbol);
+                HashMap<String, Integer> result = miniMax(boardState, depth, humanSymbol);
                 singleMove.put("score", result.get("score"));
             } else {
-                HashMap result = miniMax(boardState, depth, aiSymbol);
+                HashMap<String, Integer> result = miniMax(boardState, depth, aiSymbol);
                 singleMove.put("score", result.get("score"));
             }
             // reset the board
