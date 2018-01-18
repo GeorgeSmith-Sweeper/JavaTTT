@@ -7,11 +7,13 @@ public class Ai implements IPlayer{
     private String aiSymbol;
     private String humanSymbol;
     private String difficulty;
+    private IBoard board;
 
-    public Ai(String aiSymbol, String humanSymbol, String difficulty) {
+    public Ai(String aiSymbol, String humanSymbol, String difficulty, IBoard board) {
         this.aiSymbol = aiSymbol;
         this.humanSymbol = humanSymbol;
         this.difficulty = difficulty;
+        this.board = board;
     }
 
     //sets the score for the game
@@ -55,86 +57,63 @@ public class Ai implements IPlayer{
     }
 
     public HashMap miniMax(ArrayList boardState, int depth, String currentPlayer) {
-        ArrayList<Integer> emptySpaces = findEmptySpaces(boardState);
+        ArrayList newBoard = new ArrayList();
+        newBoard.addAll(boardState);
+
+        ArrayList<Integer> emptySpaces = findEmptySpaces(newBoard);
         depth++;
 
         // base cases [EndStates]
         HashMap<String, Integer> scoreKeeper = new HashMap();
+        System.out.print(newBoard);
+        System.out.print(this.board);
+        System.out.print(currentPlayer);
         if (currentPlayer.equals(humanSymbol) && board.hasAPlayerWon(currentPlayer)) {
             scoreKeeper.put("score", -10 + depth);
             return scoreKeeper;
         } else if (currentPlayer.equals(aiSymbol) && board.hasAPlayerWon(currentPlayer)) {
             scoreKeeper.put("score", 10 - depth);
             return scoreKeeper;
-        } else {
+        } else if (emptySpaces.size() == 0){
             scoreKeeper.put("score", 0);
             return scoreKeeper;
         }
 
-        ArrayList moves = new ArrayList();
+        ArrayList<HashMap<String, Integer>> moves = new ArrayList<>();
 
         // recursively call minimax on the empty spaces
         for (int space = 0; space < emptySpaces.size(); space++) {
             HashMap<String, Integer> singleMove = new HashMap();
             singleMove.put("index", emptySpaces.get(space));
-            boardState.set(emptySpaces.get(space), currentPlayer);
+            newBoard.set(emptySpaces.get(space), currentPlayer);
 
             if (currentPlayer.equals(aiSymbol)) {
-                HashMap<String, Integer> result = miniMax(boardState, depth, humanSymbol);
+                HashMap<String, Integer> result = miniMax(newBoard, depth, humanSymbol);
                 singleMove.put("score", result.get("score"));
             } else {
-                HashMap<String, Integer> result = miniMax(boardState, depth, aiSymbol);
+                HashMap<String, Integer> result = miniMax(newBoard, depth, aiSymbol);
                 singleMove.put("score", result.get("score"));
             }
             // reset the board
-            boardState.set(emptySpaces.get(space), singleMove.get("index"));
+            newBoard.set(emptySpaces.get(space), singleMove.get("index"));
             moves.add(singleMove);
         }
 
-
-
-        // creates a copy of the passed in boardState
-//        ArrayList newBoard = new ArrayList();
-//        newBoard.addAll(board.getSpaces());
-//        newBoard.set(0, "HELLO");
-//        System.out.print(newBoard);
-
-//
-//        miniMax();
-//
-//        // create a copy of the board to work with inside of minimax
-//
-//
-//        System.out.print(board.getSpaces());
-//        ArrayList<Integer> availableSpaces = findEmptySpaces((ArrayList) boardCopy);
-//
-//        System.out.print(availableSpaces);
-//
-//
-//        int depth;
-//
-//
-//        for (int index = 0; index < availableSpaces.size(); index++) {
-//            boardCopy.set(availableSpaces.get(index), currentPlayer);
-//        }
-//
-//        for (Object space : availableSpaces) {
-//            boardCopy.set(space, currentPlayer);
-//
-//        }
-//
-//        return 1;
+        return moves.get(findBestMove(moves, aiSymbol));
     }
-
 
     public void makeMove(IBoard board) {
-        for (Object space : board.getSpaces()) {
-            if (space instanceof Integer) {
-                board.updateSpace(space.toString(), this.aiSymbol);
-                break;
-            }
-        }
+        Object bestMove = miniMax(board.getSpaces(), 0, aiSymbol).get("index");
+        board.updateSpace(bestMove.toString(), this.aiSymbol);
     }
 
 
+//    public void makeMove(IBoard board) {
+//        for (Object space : board.getSpaces()) {
+//            if (space instanceof Integer) {
+//                board.updateSpace(space.toString(), this.aiSymbol);
+//                break;
+//            }
+//        }
+//    }
 }

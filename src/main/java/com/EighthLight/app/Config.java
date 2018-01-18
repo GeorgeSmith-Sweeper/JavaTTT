@@ -23,18 +23,18 @@ public class Config implements IConfig{
     }
 
     private void setUpGame() {
+        setBoard();
         setSymbols();
         createGameModes();
         createPlayerOrderOptions();
         createAiDifficultlyLevels();
         setGameMode();
-        setBoard();
     }
 
     private void createGameModes() {
         IPlayer playerOne = new Player(symbols.get(0), ui);
         IPlayer playerTwo = new Player(symbols.get(1), ui);
-        IPlayer ai = new Ai(symbols.get(1), symbols.get(0), difficulty);
+        IPlayer ai = new Ai(symbols.get(1), symbols.get(0), difficulty, board);
 
         gameMode.put(Constants.HUMAN_VS_HUMAN, new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
         gameMode.put(Constants.HUMAN_VS_COMPUTER, new ArrayList<>(Arrays.asList(playerOne, ai)));
