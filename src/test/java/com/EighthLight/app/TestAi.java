@@ -16,6 +16,20 @@ public class TestAi {
         assertEquals("X", computer.getSymbol());
     }
 
+
+    @Test
+    void miniMaxShowsTheBoardState() {
+        String symbol = "X";
+        String humanSymbol = "O";
+        String difficulty = "Hard";
+        Ai ai = new Ai(symbol, humanSymbol, difficulty);
+        ArrayList boardWithOpenSpace = new ArrayList(Arrays.asList("O", 1));
+        MockBoard board = new MockBoard(boardWithOpenSpace, new ArrayList(), new ArrayList());
+
+        ai.miniMax(boardWithOpenSpace, 1, symbol);
+    }
+
+
     @Test
     void findAllAvailableSpotsReturnsAllEmptySpots() {
         Ai ai = new Ai("X", "O", "Hard");
