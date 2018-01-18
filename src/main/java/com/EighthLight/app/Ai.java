@@ -34,14 +34,11 @@ public class Ai implements IPlayer{
         return emptySpaces;
     }
 
-    // Inputs
-    // boardState
-    // depth
-    // currentPlayer
     public HashMap miniMax(ArrayList boardState, int depth, String currentPlayer) {
         ArrayList<Integer> emptySpaces = findEmptySpaces(boardState);
         depth++;
 
+        // base cases [EndStates]
         HashMap scoreKeeper = new HashMap();
         if (currentPlayer.equals(humanSymbol) && board.hasAPlayerWon(currentPlayer)) {
             scoreKeeper.put("score", -10);
@@ -56,6 +53,7 @@ public class Ai implements IPlayer{
 
         ArrayList moves = new ArrayList();
 
+        // recursively call minimax on the empty spaces
         for (int space = 0; space < emptySpaces.size(); space++) {
             HashMap<String, Object> singleMove = new HashMap();
             singleMove.put("index", emptySpaces.get(space));
@@ -64,9 +62,13 @@ public class Ai implements IPlayer{
             if (currentPlayer.equals(aiSymbol)) {
                 HashMap result = miniMax(boardState, depth, humanSymbol);
                 singleMove.put("score", result.get("score"));
+            } else {
+                HashMap result = miniMax(boardState, depth, aiSymbol);
+                singleMove.put("score", result.get("score"));
             }
             // reset the board
             boardState.set(emptySpaces.get(space), singleMove.get("index"));
+            moves.add(singleMove);
         }
 
 
