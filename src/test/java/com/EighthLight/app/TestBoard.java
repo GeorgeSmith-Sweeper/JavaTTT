@@ -166,7 +166,7 @@ class TestBoard {
         MockPlayer playerOne = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
-        assertEquals(true, testBoard.hasAPlayerWon(playerOne));
+        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), playerOne.getSymbol()));
     }
 
     @Test
@@ -177,7 +177,7 @@ class TestBoard {
         MockPlayer playerOne = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
-        assertEquals(true, testBoard.hasAPlayerWon(playerOne));
+        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), playerOne.getSymbol()));
     }
 
     @Test
@@ -188,7 +188,7 @@ class TestBoard {
         MockPlayer playerOne = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
-        assertEquals(true, testBoard.hasAPlayerWon(playerOne));
+        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), playerOne.getSymbol()));
     }
 
     @Test
@@ -199,7 +199,7 @@ class TestBoard {
         MockPlayer playerOne = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
-        assertEquals(true, testBoard.hasAPlayerWon(playerOne));
+        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), playerOne.getSymbol()));
     }
 
     @Test
@@ -210,7 +210,7 @@ class TestBoard {
         MockPlayer playerOne = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
-        assertEquals(false, testBoard.hasAPlayerWon(playerOne));
+        assertEquals(false, testBoard.hasAPlayerWon(testBoard.getSpaces(), playerOne.getSymbol()));
     }
 
     @Test
@@ -223,7 +223,7 @@ class TestBoard {
         Board board = new Board(4);
         setBoardState(board, expectedBoard);
 
-        assertEquals(true, board.hasAPlayerWon(playerOne));
+        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), playerOne.getSymbol()));
     }
 
     @Test
@@ -236,7 +236,7 @@ class TestBoard {
         Board board = new Board(4);
         setBoardState(board, expectedBoard);
 
-        assertEquals(true, board.hasAPlayerWon(playerOne));
+        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), playerOne.getSymbol()));
     }
 
     @Test
@@ -249,6 +249,6 @@ class TestBoard {
         Board board = new Board(4);
         setBoardState(board, expectedBoard);
 
-        assertEquals(true, board.hasAPlayerWon(playerOne));
+        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), playerOne.getSymbol()));
     }
 }

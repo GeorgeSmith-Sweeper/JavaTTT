@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class Config implements IConfig{
+public class Config implements IConfig {
 
     private IUserInterface ui;
     private ArrayList<IPlayer> players = new ArrayList();
@@ -23,21 +23,20 @@ public class Config implements IConfig{
     }
 
     private void setUpGame() {
+        setBoard();
         setSymbols();
         createGameModes();
         createPlayerOrderOptions();
         createAiDifficultlyLevels();
         setGameMode();
-        setBoard();
     }
 
     private void createGameModes() {
         IPlayer playerOne = new Player(symbols.get(0), ui);
         IPlayer playerTwo = new Player(symbols.get(1), ui);
-        IPlayer ai = new Ai(symbols.get(1));
 
         gameMode.put(Constants.HUMAN_VS_HUMAN, new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
-        gameMode.put(Constants.HUMAN_VS_COMPUTER, new ArrayList<>(Arrays.asList(playerOne, ai)));
+        gameMode.put(Constants.HUMAN_VS_COMPUTER, new ArrayList<>(Arrays.asList(playerOne)));
     }
 
     private void createPlayerOrderOptions() {
@@ -59,11 +58,13 @@ public class Config implements IConfig{
             ui.display(Constants.INVALID_GAME_MODE_MSG);
             userInput = ui.getInput();
         }
-        players.addAll(gameMode.get(userInput));
+
         if (userInput.equals(Constants.HUMAN_VS_COMPUTER)) {
-            setPlayerOrder();
+            players.addAll(gameMode.get(userInput));
             setAiDifficulty();
+            setPlayerOrder();
         }
+        players.addAll(gameMode.get(userInput));
     }
 
     private void setPlayerOrder() {
@@ -86,6 +87,8 @@ public class Config implements IConfig{
             userInput = ui.getInput();
         }
         difficulty = aiDifficulties.get(userInput);
+        IPlayer ai = new Ai(symbols.get(1), symbols.get(0), difficulty, board);
+        players.add(ai);
     }
 
     private void setSymbols() {

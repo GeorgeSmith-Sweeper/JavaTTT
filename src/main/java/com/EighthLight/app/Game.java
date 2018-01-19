@@ -30,7 +30,7 @@ public class Game implements IGame {
         while (!gameIsTie && !aPlayerWon) {
             ui.display(Constants.PICK_A_SPOT_MSG);
             currentPlayer.makeMove(board);
-            aPlayerWon = board.hasAPlayerWon(currentPlayer);
+            aPlayerWon = board.hasAPlayerWon(board.getSpaces(), currentPlayer.getSymbol());
             gameIsTie = board.gameIsTie(board.getSpaces());
             if (aPlayerWon) {
                 ui.display(currentPlayer.getSymbol() + " WINS!");

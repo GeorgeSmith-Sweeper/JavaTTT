@@ -114,11 +114,11 @@ public class Board implements IBoard {
         return bottomLeftDiagonal;
     }
 
-    public boolean hasAPlayerWon(IPlayer playerOne) {
+    public boolean hasAPlayerWon(ArrayList boardState, String playerSymbol) {
         for (int combo = 0; combo < winningCombos.size(); combo++) {
             boolean playerWon = true;
             for (int spot = 0; spot < size; spot++) {
-                if (spaces.get(winningCombos.get(combo).get(spot)) != playerOne.getSymbol()) {
+                if (boardState.get(winningCombos.get(combo).get(spot)) != playerSymbol) {
                     playerWon = false;
                 }
             }

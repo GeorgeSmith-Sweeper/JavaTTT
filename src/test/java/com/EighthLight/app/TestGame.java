@@ -69,8 +69,8 @@ class gameTests {
 
         assertEquals(board, playerOne.getMakeMoveArgs().get(0));
 
-        assertEquals(3, board.getNumTimesGetSpacesCalled());
-        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(4, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne.getSymbol(), board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
     }
 
@@ -95,8 +95,8 @@ class gameTests {
         assertEquals(Constants.TIE_GAME_MSG, ui.getDisplayArgs().get(2));
         assertEquals(null, ui.getDisplayArgs().get(3));
 
-        assertEquals(3, board.getNumTimesGetSpacesCalled());
-        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(4, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne.getSymbol(), board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
     }
 
@@ -122,11 +122,11 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(3));
 
         assertEquals(2, ui.getPresentBoardArgs().size());
-        assertEquals(3, board.getNumTimesGetSpacesCalled());
-        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(4, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne.getSymbol(), board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
 
-        assertEquals(1, playerOne.getNumTimesGetSymbolCalled());
+        assertEquals(3, playerOne.getNumTimesGetSymbolCalled());
     }
 
     @Test
@@ -153,11 +153,11 @@ class gameTests {
 
         assertEquals(2, ui.getPresentBoardArgs().size());
 
-        assertEquals(3, board.getNumTimesGetSpacesCalled());
-        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(4, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne.getSymbol(), board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
 
-        assertEquals(1, playerOne.getNumTimesGetSymbolCalled());
+        assertEquals(3, playerOne.getNumTimesGetSymbolCalled());
     }
 
     @Test
@@ -187,8 +187,8 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(5));
 
         assertEquals(3, ui.getPresentBoardArgs().size());
-        assertEquals(5, board.getNumTimesGetSpacesCalled());
-        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(7, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne.getSymbol(), board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
     }
 
@@ -219,8 +219,8 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(5));
 
         assertEquals(3, ui.getPresentBoardArgs().size());
-        assertEquals(5, board.getNumTimesGetSpacesCalled());
-        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(7, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne.getSymbol(), board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
     }
 
@@ -252,8 +252,8 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(5));
 
         assertEquals(3, ui.getPresentBoardArgs().size());
-        assertEquals(5, board.getNumTimesGetSpacesCalled());
-        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(7, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne.getSymbol(), board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
     }
 
@@ -284,8 +284,8 @@ class gameTests {
         assertEquals(null, ui.getDisplayArgs().get(5));
 
         assertEquals(3, ui.getPresentBoardArgs().size());
-        assertEquals(5, board.getNumTimesGetSpacesCalled());
-        assertEquals(playerOne, board.getHasPlayerWonArgs().get(0));
+        assertEquals(7, board.getNumTimesGetSpacesCalled());
+        assertEquals(playerOne.getSymbol(), board.getHasPlayerWonArgs().get(0));
         assertEquals(boardState, board.getGameTieArgs().get(0));
     }
 }
