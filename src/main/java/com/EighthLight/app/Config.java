@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class Config implements IConfig{
+public class Config implements IConfig {
 
     private IUserInterface ui;
     private ArrayList<IPlayer> players = new ArrayList();
@@ -61,8 +61,8 @@ public class Config implements IConfig{
         }
         players.addAll(gameMode.get(userInput));
         if (userInput.equals(Constants.HUMAN_VS_COMPUTER)) {
-            setPlayerOrder();
             setAiDifficulty();
+            setPlayerOrder();
         }
     }
 
@@ -85,6 +85,7 @@ public class Config implements IConfig{
             ui.display(Constants.INVALID_CHOICE_PROMPT);
             userInput = ui.getInput();
         }
+
         difficulty = aiDifficulties.get(userInput);
     }
 

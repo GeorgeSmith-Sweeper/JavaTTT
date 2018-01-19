@@ -31,9 +31,9 @@ public class TestConfig {
                 Constants.PLAYER_ONE_SYMBOL_PROMPT,
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
-                Constants.PLAYER_ORDER_PROMPT,
-                Constants.AI_DIFFICULTY_PROMPT
-        ));
+                Constants.AI_DIFFICULTY_PROMPT,
+                Constants.PLAYER_ORDER_PROMPT
+                ));
         for (String prompt : prompts ) {
             assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
         }
@@ -96,7 +96,7 @@ public class TestConfig {
 
     @Test
     void invalidPlayerOrderSelectionDisplaysAWarningAndPrompt() {
-        playerOrderingIncorrectInput = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "7", "2", "1"));
+        playerOrderingIncorrectInput = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "7", "2"));
         MockUi ui = new MockUi(playerOrderingIncorrectInput);
         new Config(ui);
 
@@ -105,9 +105,9 @@ public class TestConfig {
                 Constants.PLAYER_ONE_SYMBOL_PROMPT,
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
+                Constants.AI_DIFFICULTY_PROMPT,
                 Constants.PLAYER_ORDER_PROMPT,
-                Constants.INVALID_CHOICE_PROMPT,
-                Constants.AI_DIFFICULTY_PROMPT
+                Constants.INVALID_CHOICE_PROMPT
         ));
         for (String prompt : prompts ) {
             assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
@@ -116,7 +116,7 @@ public class TestConfig {
 
     @Test
     void invalidDificultySelectionDisplaysAWarningAndPrompt() {
-        playerOrderingIncorrectInput = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "wrong", "1"));
+        playerOrderingIncorrectInput = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "wrong", "1", "1"));
         MockUi ui = new MockUi(playerOrderingIncorrectInput);
         new Config(ui);
 
@@ -125,10 +125,10 @@ public class TestConfig {
                 Constants.PLAYER_ONE_SYMBOL_PROMPT,
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
-                Constants.PLAYER_ORDER_PROMPT,
                 Constants.AI_DIFFICULTY_PROMPT,
-                Constants.INVALID_CHOICE_PROMPT
-        ));
+                Constants.INVALID_CHOICE_PROMPT,
+                Constants.PLAYER_ORDER_PROMPT
+                ));
         for (String prompt : prompts ) {
             assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
         }
@@ -171,7 +171,7 @@ public class TestConfig {
 
     @Test
     void selecting2ForPlayerOrderLetsPlayerTwoGoFirst() {
-        playerOrderingTwoUserInputs = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "2", "1"));
+        playerOrderingTwoUserInputs = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "2"));
         MockUi ui = new MockUi(playerOrderingTwoUserInputs);
         Config config = new Config(ui);
         ArrayList<IPlayer> players = config.getPlayers();
@@ -192,7 +192,7 @@ public class TestConfig {
 
     @Test
     void selecting2ForPlayerDifficultySetsTheAiDifficultlyToMedium() {
-        aiDifficulty1Input = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "2"));
+        aiDifficulty1Input = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "2", "1"));
         MockUi ui = new MockUi(aiDifficulty1Input);
         Config config = new Config(ui);
         String difficulty = config.getDifficulty();
@@ -202,7 +202,7 @@ public class TestConfig {
 
     @Test
     void selecting3ForPlayerDifficultySetsTheAiDifficultlyToHard() {
-        aiDifficulty1Input = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "3"));
+        aiDifficulty1Input = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "3", "1"));
         MockUi ui = new MockUi(aiDifficulty1Input);
         Config config = new Config(ui);
         String difficulty = config.getDifficulty();

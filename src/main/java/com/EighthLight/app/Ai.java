@@ -31,7 +31,7 @@ public class Ai implements IPlayer{
 
     public int findBestMove(Map<Integer, Integer>scoredSpaces)  {
         int bestSpace = 0;
-        int highestScore = -10000;
+        int highestScore = -1000;
 
         for (Map.Entry<Integer, Integer> entry : scoredSpaces.entrySet()) {
             int space = entry.getKey();
@@ -76,30 +76,35 @@ public class Ai implements IPlayer{
         scores.clear();
         return minScore;
     }
-    
+
     public void makeMove(IBoard board) {
-        int depth = 0;
-        ArrayList<Integer> initialSpaces = findEmptySpaces(board.getSpaces());
-        Map<Integer, Integer> scoredSpaces = new HashMap<>();
-        for (int space : initialSpaces) {
-            ArrayList newBoard = new ArrayList();
-            newBoard.addAll(board.getSpaces());
-            newBoard.set(space, this.aiSymbol);
-            int score = miniMax(newBoard, depth, this.aiSymbol);
-            scoredSpaces.put(space, score);
-        }
-        int bestMove = findBestMove(scoredSpaces);
-        board.updateSpace(Integer.toString(bestMove), this.aiSymbol);
+//        if (difficulty.equals("Easy")) {
+//            easyMode(board);
+//        }
+
+//        if (difficulty.equals("Hard")) {
+            int depth = 0;
+            ArrayList<Integer> initialSpaces = findEmptySpaces(board.getSpaces());
+            Map<Integer, Integer> scoredSpaces = new HashMap<>();
+            for (int space : initialSpaces) {
+                ArrayList newBoard = new ArrayList();
+                newBoard.addAll(board.getSpaces());
+                newBoard.set(space, this.aiSymbol);
+                int score = miniMax(newBoard, depth, this.aiSymbol);
+                scoredSpaces.put(space, score);
+            }
+            int bestMove = findBestMove(scoredSpaces);
+            board.updateSpace(Integer.toString(bestMove), this.aiSymbol);
+//        }
     }
 
-
-//    public void makeMove(IBoard board) {
-//        for (Object space : board.getSpaces()) {
-//            if (space instanceof Integer) {
-//                board.updateSpace(space.toString(), this.aiSymbol);
-//                break;
-//            }
-//        }
-//    }
+    public void easyMode(IBoard board) {
+        for (Object space : board.getSpaces()) {
+            if (space instanceof Integer) {
+                board.updateSpace(space.toString(), this.aiSymbol);
+                break;
+            }
+        }
+    }
 }
 
