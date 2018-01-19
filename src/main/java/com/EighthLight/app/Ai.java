@@ -78,11 +78,11 @@ public class Ai implements IPlayer{
     }
 
     public void makeMove(IBoard board) {
-//        if (difficulty.equals("Easy")) {
-//            easyMode(board);
-//        }
+        if (difficulty.equals("Easy")) {
+            easyMode(board);
+        }
 
-//        if (difficulty.equals("Hard")) {
+        if (difficulty.equals("Hard")) {
             int depth = 0;
             ArrayList<Integer> initialSpaces = findEmptySpaces(board.getSpaces());
             Map<Integer, Integer> scoredSpaces = new HashMap<>();
@@ -95,7 +95,7 @@ public class Ai implements IPlayer{
             }
             int bestMove = findBestMove(scoredSpaces);
             board.updateSpace(Integer.toString(bestMove), this.aiSymbol);
-//        }
+        }
     }
 
     public void easyMode(IBoard board) {
