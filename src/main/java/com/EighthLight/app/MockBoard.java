@@ -39,7 +39,7 @@ public class MockBoard implements IBoard {
         return tieValue;
     }
 
-    public boolean hasAPlayerWon(String currentPlayer) {
+    public boolean hasAPlayerWon(ArrayList newBoard, String currentPlayer) {
         boolean winValue = (boolean) this.didAPlayerWin.get(numTimesAPlayerWonCalled);
         numTimesAPlayerWonCalled++;
         hasPlayerWonArgs.add(currentPlayer);

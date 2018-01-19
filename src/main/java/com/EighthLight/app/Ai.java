@@ -1,24 +1,18 @@
 package com.EighthLight.app;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class Ai implements IPlayer{
     private String aiSymbol;
     private String humanSymbol;
     private String difficulty;
-    private IBoard board;
+    private IBoard ourBoard;
 
-    public Ai(String aiSymbol, String humanSymbol, String difficulty, IBoard board) {
+    public Ai(String aiSymbol, String humanSymbol, String difficulty, IBoard ourBoard) {
         this.aiSymbol = aiSymbol;
         this.humanSymbol = humanSymbol;
         this.difficulty = difficulty;
-        this.board = board;
-    }
-
-    //sets the score for the game
-    public int setScore(String player, String computer) {
-        return player.equals(computer) ? -1000 : 1000;
+        this.ourBoard = ourBoard;
     }
 
     public String getSymbol() {
@@ -35,76 +29,67 @@ public class Ai implements IPlayer{
         return emptySpaces;
     }
 
-    public int findBestMove(ArrayList<HashMap<String, Integer>> moves, String currentPlayer)  {
-        int bestMove = 0;
-        int bestScore = setScore(currentPlayer, aiSymbol);
+    public int findBestMove(Map<Integer, Integer>scoredSpaces)  {
+        int bestSpace = 0;
+        int highestScore = -10000;
 
-        for (int move = 0; move < moves.size(); move++) {
-            int currentScore = moves.get(move).get("score");
-            if (currentPlayer.equals(aiSymbol)) {
-                if (currentScore > bestScore) {
-                    bestScore = currentScore;
-                    bestMove = move;
-                }
-            } else {
-                if (currentScore < bestScore) {
-                    bestScore = currentScore;
-                    bestMove = move;
-                }
+        for (Map.Entry<Integer, Integer> entry : scoredSpaces.entrySet()) {
+            int space = entry.getKey();
+            int score = entry.getValue();
+
+            if (score > highestScore) {
+                highestScore = score;
+                bestSpace = space;
             }
         }
-        return bestMove;
+        return bestSpace;
     }
 
-    public HashMap miniMax(ArrayList boardState, int depth, String currentPlayer) {
+    public int miniMax(ArrayList boardState, int depth, String playerWhoMadeLastMove) {
+        depth++;
         ArrayList newBoard = new ArrayList();
         newBoard.addAll(boardState);
-
         ArrayList<Integer> emptySpaces = findEmptySpaces(newBoard);
-        depth++;
+        String playerWhoIsMoving = playerWhoMadeLastMove.equals(aiSymbol) ? humanSymbol : aiSymbol;
+        ArrayList<Integer> scores = new ArrayList<>();
 
-        // base cases [EndStates]
-        HashMap<String, Integer> scoreKeeper = new HashMap();
-        System.out.print(newBoard);
-        System.out.print(this.board);
-        System.out.print(currentPlayer);
-        if (currentPlayer.equals(humanSymbol) && board.hasAPlayerWon(currentPlayer)) {
-            scoreKeeper.put("score", -10 + depth);
-            return scoreKeeper;
-        } else if (currentPlayer.equals(aiSymbol) && board.hasAPlayerWon(currentPlayer)) {
-            scoreKeeper.put("score", 10 - depth);
-            return scoreKeeper;
-        } else if (emptySpaces.size() == 0){
-            scoreKeeper.put("score", 0);
-            return scoreKeeper;
+        if (playerWhoMadeLastMove.equals(humanSymbol) && (ourBoard.hasAPlayerWon(newBoard, playerWhoMadeLastMove))) {
+            return -10 + depth;
+        } else if (playerWhoMadeLastMove.equals(aiSymbol) && (ourBoard.hasAPlayerWon(newBoard, playerWhoMadeLastMove))) {
+            return 10 - depth;
+        } else if (emptySpaces.size() == 0) {
+            return 0;
+        }
+        
+        for (int space : emptySpaces) {
+            newBoard.set(space, playerWhoIsMoving);
+            int score = miniMax(newBoard, depth, playerWhoIsMoving);
+            scores.add(score);
         }
 
-        ArrayList<HashMap<String, Integer>> moves = new ArrayList<>();
-
-        // recursively call minimax on the empty spaces
-        for (int space = 0; space < emptySpaces.size(); space++) {
-            HashMap<String, Integer> singleMove = new HashMap();
-            singleMove.put("index", emptySpaces.get(space));
-            newBoard.set(emptySpaces.get(space), currentPlayer);
-
-            if (currentPlayer.equals(aiSymbol)) {
-                HashMap<String, Integer> result = miniMax(newBoard, depth, humanSymbol);
-                singleMove.put("score", result.get("score"));
-            } else {
-                HashMap<String, Integer> result = miniMax(newBoard, depth, aiSymbol);
-                singleMove.put("score", result.get("score"));
-            }
-            // reset the board
-            newBoard.set(emptySpaces.get(space), singleMove.get("index"));
-            moves.add(singleMove);
+        if (playerWhoMadeLastMove.equals(aiSymbol)) {
+            int maxScore = Collections.max(scores);
+            scores.clear();
+            return maxScore;
         }
-
-        return moves.get(findBestMove(moves, aiSymbol));
+        int minScore = Collections.min(scores);
+        scores.clear();
+        return minScore;
     }
-
+    
     public void makeMove(IBoard board) {
-        Object bestMove = miniMax(board.getSpaces(), 0, aiSymbol).get("index");
-        board.updateSpace(bestMove.toString(), this.aiSymbol);
+        int depth = 0;
+        ArrayList<Integer> initialSpaces = findEmptySpaces(board.getSpaces());
+        Map<Integer, Integer> scoredSpaces = new HashMap<>();
+        for (int space : initialSpaces) {
+            ArrayList newBoard = new ArrayList();
+            newBoard.addAll(board.getSpaces());
+            newBoard.set(space, this.aiSymbol);
+            int score = miniMax(newBoard, depth, this.aiSymbol);
+            scoredSpaces.put(space, score);
+        }
+        int bestMove = findBestMove(scoredSpaces);
+        board.updateSpace(Integer.toString(bestMove), this.aiSymbol);
     }
 
 
@@ -117,3 +102,4 @@ public class Ai implements IPlayer{
 //        }
 //    }
 }
+
