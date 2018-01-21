@@ -90,26 +90,4 @@ public class TestAi {
         assertEquals("1", board.getUpdateSpaceArgs().get(0));
         assertEquals(symbol, board.getUpdateSpaceArgs().get(1));
     }
-
- /*   @Test
-    void generateStateCanMakeOneState() {
-
-        // play a number of games to completion,
-        // assert that the ai wins each game that is played
-        // tally up the number of wins
-        // create every possible game stateS
-        String aiSymbol = "X";
-        String humanSymbol = "O";
-        String difficulty = "Hard";
-        int boardSize = 3;
-        IBoard board = new Board(boardSize);
-
-        Ai ai = new Ai(aiSymbol, humanSymbol, difficulty, board);
-        StateGenerator generator = new StateGenerator(board, ai, boardSize);
-        generator.generateAllGameStates();
-        generator.playAllStates();
-
-        assertEquals(1, generator.getNumGamesPlayed());
-        assertEquals(1, generator.getNumTimesAiWins());
-    }*/
 }
