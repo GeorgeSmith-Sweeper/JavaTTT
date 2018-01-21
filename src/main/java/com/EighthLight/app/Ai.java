@@ -66,6 +66,10 @@ public class Ai implements IPlayer{
             scores.add(score);
             newBoard.set(space, space);
         }
+        return getMaxScore(scores);
+    }
+
+    public int getMaxScore (ArrayList<Integer> scores) {
         int maxScore = Collections.max(scores);
         scores.clear();
         return -maxScore;
