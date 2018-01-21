@@ -56,7 +56,7 @@ public class TestAi {
     }
 
     @Test
-    void aiMakesTheRightMoveWith5SpotsLefts() {
+    void aiBlocksOpponentWhoIsAboutToWin() {
         ArrayList boardState = new ArrayList(Arrays.asList("X", 1, 2,
                                                            "X", "O", 5,
                                                            6, 7, 8));

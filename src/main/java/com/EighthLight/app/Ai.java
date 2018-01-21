@@ -36,7 +36,6 @@ public class Ai implements IPlayer{
         for (Map.Entry<Integer, Integer> entry : scoredSpaces.entrySet()) {
             int space = entry.getKey();
             int score = entry.getValue();
-
             if (score > highestScore) {
                 highestScore = score;
                 bestSpace = space;
@@ -44,6 +43,7 @@ public class Ai implements IPlayer{
         }
         return bestSpace;
     }
+
 
     public int miniMax(ArrayList boardState, String playerWhoMadeLastMove) {
         ArrayList newBoard = new ArrayList();
@@ -60,19 +60,31 @@ public class Ai implements IPlayer{
             return 0;
         }
 
+        addScoreForSpace(emptySpaces, newBoard, playerWhoIsMoving, scores);
+        return getMaxScore(scores);
+    }
+
+    public void addScoreForSpace(ArrayList<Integer> emptySpaces, ArrayList newBoard, String playerWhoIsMoving, ArrayList<Integer> scores) {
         for (int space : emptySpaces) {
             newBoard.set(space, playerWhoIsMoving);
             int score = miniMax(newBoard, playerWhoIsMoving);
             scores.add(score);
             newBoard.set(space, space);
         }
-        return getMaxScore(scores);
     }
-
     public int getMaxScore (ArrayList<Integer> scores) {
         int maxScore = Collections.max(scores);
         scores.clear();
         return -maxScore;
+    }
+
+    public void easyMode(IBoard board) {
+        for (Object space : board.getSpaces()) {
+            if (space instanceof Integer) {
+                board.updateSpace(space.toString(), this.aiSymbol);
+                break;
+            }
+        }
     }
 
     public void makeMove(IBoard board) {
@@ -92,15 +104,6 @@ public class Ai implements IPlayer{
             }
             int bestMove = findBestMove(scoredSpaces);
             board.updateSpace(Integer.toString(bestMove), this.aiSymbol);
-        }
-    }
-
-    public void easyMode(IBoard board) {
-        for (Object space : board.getSpaces()) {
-            if (space instanceof Integer) {
-                board.updateSpace(space.toString(), this.aiSymbol);
-                break;
-            }
         }
     }
 }
