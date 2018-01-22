@@ -92,7 +92,9 @@ public class Ai implements IPlayer{
         if (difficulty.equals("Easy")) {
             easyMode(board);
         }
-
+        if (difficulty.equals("Medium")) {
+            easyMode(board);
+        }
         if (difficulty.equals("Hard")) {
             ArrayList<Integer> initialSpaces = findEmptySpaces(board.getSpaces());
             Map<Integer, Integer> scoredSpaces = new HashMap<>();
