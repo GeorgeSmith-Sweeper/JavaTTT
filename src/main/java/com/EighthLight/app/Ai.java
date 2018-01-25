@@ -45,7 +45,7 @@ public class Ai implements IPlayer{
     }
 
 
-    public int miniMax(ArrayList boardState, String playerWhoMadeLastMove) {
+    public int miniMax(ArrayList boardState, String playerWhoMadeLastMove, int depth, int alpha, int beta) {
         ArrayList newBoard = new ArrayList();
         newBoard.addAll(boardState);
         ArrayList<Integer> emptySpaces = findEmptySpaces(newBoard);
@@ -53,24 +53,35 @@ public class Ai implements IPlayer{
         ArrayList<Integer> scores = new ArrayList<>();
 
         if (ourBoard.hasAPlayerWon(newBoard, playerWhoIsMoving)) {
-            return -10;
+            return -1000 + depth;
         } else if (ourBoard.hasAPlayerWon(newBoard, playerWhoMadeLastMove)) {
-            return 10;
+            return 1000 - depth;
         } else if (emptySpaces.size() == 0) {
             return 0;
         }
 
-        addScoreForSpace(emptySpaces, newBoard, playerWhoIsMoving, scores);
-        return getMaxScore(scores);
-    }
+        int max = -1000;
 
-    public void addScoreForSpace(ArrayList<Integer> emptySpaces, ArrayList newBoard, String playerWhoIsMoving, ArrayList<Integer> scores) {
         for (int space : emptySpaces) {
             newBoard.set(space, playerWhoIsMoving);
-            int score = miniMax(newBoard, playerWhoIsMoving);
+            int score = miniMax(newBoard, playerWhoIsMoving, depth+1, -beta, -alpha);
             scores.add(score);
             newBoard.set(space, space);
+
+            if (score > max) {
+                max = score;
+            }
+            if (depth == 0) {
+                scores.add(max);
+            }
+            if (max > alpha) {
+                alpha = max;
+            }
+            if (alpha >= beta) {
+                return alpha;
+            }
         }
+        return getMaxScore(scores);
     }
 
     public int getMaxScore (ArrayList<Integer> scores) {
@@ -98,11 +109,14 @@ public class Ai implements IPlayer{
         if (difficulty.equals("Hard")) {
             ArrayList<Integer> initialSpaces = findEmptySpaces(board.getSpaces());
             Map<Integer, Integer> scoredSpaces = new HashMap<>();
+            int depth = 0;
+            int alpha = -1000;
+            int beta = 1000;
             for (int space : initialSpaces) {
                 ArrayList newBoard = new ArrayList();
                 newBoard.addAll(board.getSpaces());
                 newBoard.set(space, this.aiSymbol);
-                int score = miniMax(newBoard, this.aiSymbol);
+                int score = miniMax(newBoard, this.aiSymbol, depth, alpha, beta);
                 scoredSpaces.put(space, score);
             }
             int bestMove = findBestMove(scoredSpaces);
