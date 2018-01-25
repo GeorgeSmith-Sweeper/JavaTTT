@@ -122,11 +122,13 @@ public class TestAi {
     // AI moves first
     @Test
     void aiBlocksOpponentWhoIsAboutToWin() {
-        ArrayList boardState = new ArrayList(Arrays.asList("X", 1, 2,
+        ArrayList boardState = new ArrayList(Arrays.asList(
+                "X", 1, 2,
                 "X", "O", 5,
-                6, 7, 8));
+                  6, 7, 8));
 
-        ArrayList expectedBoardState = new ArrayList(Arrays.asList("X", 1, 2,
+        ArrayList expectedBoardState = new ArrayList(Arrays.asList(
+                "X", 1, 2,
                 "X", "O", 5,
                 "O", 7, 8));
         Board board = new Board(3);

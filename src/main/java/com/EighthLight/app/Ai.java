@@ -71,9 +71,9 @@ public class Ai implements IPlayer{
             if (score > max) {
                 max = score;
             }
-            if (depth == 0) {
-                scores.add(max);
-            }
+////            if (depth == 0) {
+////                scores.add(max);
+////            }
             if (max > alpha) {
                 alpha = max;
             }
@@ -81,7 +81,7 @@ public class Ai implements IPlayer{
                 return alpha;
             }
         }
-        return getMaxScore(scores);
+        return -max;
     }
 
     public int getMaxScore (ArrayList<Integer> scores) {
@@ -112,6 +112,7 @@ public class Ai implements IPlayer{
             int depth = 0;
             int alpha = -1000;
             int beta = 1000;
+
             for (int space : initialSpaces) {
                 ArrayList newBoard = new ArrayList();
                 newBoard.addAll(board.getSpaces());
@@ -119,6 +120,7 @@ public class Ai implements IPlayer{
                 int score = miniMax(newBoard, this.aiSymbol, depth, alpha, beta);
                 scoredSpaces.put(space, score);
             }
+            System.out.println(scoredSpaces);
             int bestMove = findBestMove(scoredSpaces);
             board.updateSpace(Integer.toString(bestMove), this.aiSymbol);
         }
