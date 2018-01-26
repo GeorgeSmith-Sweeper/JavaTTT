@@ -37,15 +37,16 @@ public class TestAi {
         assertEquals(expectedSpaces, ai.findEmptySpaces(testBoard.getSpaces()));
     }
 
-
     @Test
     void aiMakesTheRightMoveWithTwoSpotsLeft() {
-        ArrayList boardState = new ArrayList(Arrays.asList("X", 1, 2,
-                                                           "O", "X", "O",
-                                                           "X", "O", "O"));
-        ArrayList expectedBoardState = new ArrayList(Arrays.asList("X", 1, "X",
-                                                                  "O", "X", "O",
-                                                                  "X", "O", "O"));
+        ArrayList boardState = new ArrayList(Arrays.asList(
+                "X", 1, 2,
+                "O", "X", "O",
+                "X", "O", "O"));
+        ArrayList expectedBoardState = new ArrayList(Arrays.asList(
+                "X", 1, "X",
+                "O", "X", "O",
+                "X", "O", "O"));
         Board board = new Board(3);
 
         Ai ai = new Ai("X", "O", "Hard", board);
@@ -54,26 +55,6 @@ public class TestAi {
 
         assertEquals(expectedBoardState, board.getSpaces());
     }
-
-
-    @Test
-    void aiValuesAWinOverABlock() {
-        ArrayList boardState = new ArrayList(Arrays.asList("X", "O", 2,
-                                                           "X", "O", 5,
-                                                           6, 7, 8));
-        ArrayList expectedBoard = new ArrayList(Arrays.asList("X", "O", 2,
-                                                              "X", "O", 5,
-                                                              "X", 7, 8));
-        Board board = new Board(3);
-
-        Ai ai = new Ai("X", "O", "Hard", board);
-        setBoardState(board, boardState);
-        ai.makeMove(board);
-
-        assertEquals(expectedBoard, board.getSpaces());
-    }
-
-
 
     @Test
     void aiBlocksOpponentWhoIsAboutToWin() {
@@ -94,6 +75,7 @@ public class TestAi {
 
         assertEquals(expectedBoardState, board.getSpaces());
     }
+
     @Test
     void aiBlocksDiagonalHumanWin() {
         ArrayList boardState = new ArrayList(Arrays.asList(
@@ -111,6 +93,25 @@ public class TestAi {
         ai.makeMove(board);
 
         assertEquals(expectedBoardState, board.getSpaces());
+    }
+
+    @Test
+    void aiValuesAWinOverABlock() {
+        ArrayList boardState = new ArrayList(Arrays.asList(
+                "X", "O", 2,
+                "X", "O", 5,
+                6, 7, 8));
+        ArrayList expectedBoard = new ArrayList(Arrays.asList(
+                "X", "O", 2,
+                "X", "O", 5,
+                "X", 7, 8));
+        Board board = new Board(3);
+
+        Ai ai = new Ai("X", "O", "Hard", board);
+        setBoardState(board, boardState);
+        ai.makeMove(board);
+
+        assertEquals(expectedBoard, board.getSpaces());
     }
 
     @Test
@@ -137,29 +138,29 @@ public class TestAi {
         assertEquals(expectedBoard, board.getSpaces());
     }
 
-//@Test
-//void aiBlocksPlayerOnA4x4Board9SpotsLeft() {
-//    String aiSymbol = "O";
-//    String humanSymbol = "X";
-//    String difficulty = "Hard";
-//    Board board = new Board(4);
-//
-//    ArrayList boardState = new ArrayList(Arrays.asList(
-//            "X", "O", 2, 3,
-//            4, "X", "O", 7,
-//            8, 9, "X", "O",
-//            12, 13, 14, 15));
-//    ArrayList expectedBoard = new ArrayList(Arrays.asList(
-//            "X", "O", 2, 3,
-//            4, "X", "O", 7,
-//            8, 9, "X", "O",
-//            12, 13, 14, "O"));
-//    setBoardState(board, boardState);
-//
-//    Ai ai = new Ai(aiSymbol, humanSymbol, difficulty, board);
-//    ai.makeMove(board);
-//    assertEquals(expectedBoard, board.getSpaces());
-//}
+    @Test
+    void aiBlocksPlayerOnA4x4Board9SpotsLeft() {
+        String aiSymbol = "O";
+        String humanSymbol = "X";
+        String difficulty = "Hard";
+        Board board = new Board(4);
+
+        ArrayList boardState = new ArrayList(Arrays.asList(
+                "X", "O", 2, 3,
+                4, "X", "O", 7,
+                8, 9, "X", "O",
+                12, 13, 14, 15));
+        ArrayList expectedBoard = new ArrayList(Arrays.asList(
+                "X", "O", 2, 3,
+                4, "X", "O", 7,
+                8, 9, "X", "O",
+                12, 13, 14, "O"));
+        setBoardState(board, boardState);
+
+        Ai ai = new Ai(aiSymbol, humanSymbol, difficulty, board);
+        ai.makeMove(board);
+        assertEquals(expectedBoard, board.getSpaces());
+    }
 
 //    @Test
 //    void aiCanMakeMoveOnAnEmpty4x4Board() {
