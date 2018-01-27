@@ -162,19 +162,19 @@ public class TestAi {
         assertEquals(expectedBoard, board.getSpaces());
     }
 
-    @Test
-    void aiCanMakeMoveOnAnEmpty4x4Board() {
-        String aiSymbol = "X";
-        String humanSymbol = "O";
-        String difficulty = "Hard";
-        Board board = new Board(4);
-        ArrayList expectedBoard = new ArrayList(Arrays.asList("X",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15));
-
-        Ai ai = new Ai(aiSymbol, humanSymbol, difficulty, board);
-        ai.makeMove(board);
-
-        assertEquals(expectedBoard, board.getSpaces());
-    }
+//    @Test
+//    void aiCanMakeMoveOnAnEmpty4x4Board() {
+//        String aiSymbol = "X";
+//        String humanSymbol = "O";
+//        String difficulty = "Hard";
+//        Board board = new Board(4);
+//        ArrayList expectedBoard = new ArrayList(Arrays.asList("X",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15));
+//
+//        Ai ai = new Ai(aiSymbol, humanSymbol, difficulty, board);
+//        ai.makeMove(board);
+//
+//        assertEquals(expectedBoard, board.getSpaces());
+//    }
 
 
     @Test
