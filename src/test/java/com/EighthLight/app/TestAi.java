@@ -162,37 +162,37 @@ public class TestAi {
         assertEquals(expectedBoard, board.getSpaces());
     }
 
-//    @Test
-//    void aiCanMakeMoveOnAnEmpty4x4Board() {
-//        String aiSymbol = "X";
-//        String humanSymbol = "O";
-//        String difficulty = "Hard";
-//        Board board = new Board(4);
-//        ArrayList expectedBoard = new ArrayList(Arrays.asList("X",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15));
-//
-//        Ai ai = new Ai(aiSymbol, humanSymbol, difficulty, board);
-//        ai.makeMove(board);
-//
-//        assertEquals(expectedBoard, board.getSpaces());
-//    }
+    @Test
+    void aiCanMakeMoveOnAnEmpty4x4Board() {
+        String aiSymbol = "X";
+        String humanSymbol = "O";
+        String difficulty = "Hard";
+        Board board = new Board(4);
+        ArrayList expectedBoard = new ArrayList(Arrays.asList("X",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15));
+
+        Ai ai = new Ai(aiSymbol, humanSymbol, difficulty, board);
+        ai.makeMove(board);
+
+        assertEquals(expectedBoard, board.getSpaces());
+    }
 
 
-//    @Test
-//    void makeMoveUpdatesTheBoardWithARandomMoveIfGameHasNotEnded() {
-//        String symbol = "X";
-//        String humanSymbol = "O";
-//        String difficulty = "Easy";
-//        ArrayList boardWithOpenSpace = new ArrayList(Arrays.asList("O", 1));
-//        MockBoard board = new MockBoard(boardWithOpenSpace, new ArrayList(), new ArrayList());
-//
-//        Ai ai = new Ai(symbol, humanSymbol, difficulty, board);
-//
-//        ai.makeMove(board);
-//
-//        assertEquals(1, board.getNumTimesGetSpacesCalled());
-//        assertEquals(1, board.getNumTimesUpdateSpaceIsCalled());
-//        assertEquals("1", board.getUpdateSpaceArgs().get(0));
-//        assertEquals(symbol, board.getUpdateSpaceArgs().get(1));
-//    }
+    @Test
+    void makeMoveUpdatesTheBoardWithARandomMoveIfGameHasNotEnded() {
+        String symbol = "X";
+        String humanSymbol = "O";
+        String difficulty = "Easy";
+        ArrayList boardWithOpenSpace = new ArrayList(Arrays.asList("O", 1));
+        MockBoard board = new MockBoard(boardWithOpenSpace, new ArrayList(), new ArrayList());
+
+        Ai ai = new Ai(symbol, humanSymbol, difficulty, board);
+
+        ai.makeMove(board);
+
+        assertEquals(1, board.getNumTimesGetSpacesCalled());
+        assertEquals(1, board.getNumTimesUpdateSpaceIsCalled());
+        assertEquals("1", board.getUpdateSpaceArgs().get(0));
+        assertEquals(symbol, board.getUpdateSpaceArgs().get(1));
+    }
 
 }
