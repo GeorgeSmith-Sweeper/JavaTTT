@@ -54,7 +54,7 @@ public class Ai implements IPlayer{
         }
     }
 
-    public int miniMax(ArrayList boardState, int depth, int pointOfView, int alpha, int beta) {
+    private int miniMax(ArrayList boardState, int depth, int pointOfView, int alpha, int beta) {
         String playerWhoMovesNow = pointOfView == 1 ? humanSymbol : aiSymbol;
         ArrayList newBoard = new ArrayList();
         newBoard.addAll(boardState);
@@ -87,13 +87,32 @@ public class Ai implements IPlayer{
         return false;
     }
 
-    public void easyMode(IBoard board) {
+    private void easyMode(IBoard board) {
         for (Object space : board.getSpaces()) {
             if (space instanceof Integer) {
                 board.updateSpace(space.toString(), this.aiSymbol);
                 break;
             }
         }
+    }
+
+    private void hardMode(IBoard board) {
+        ArrayList<Integer> initialSpaces = findEmptySpaces(board.getSpaces());
+        Map<Integer, Integer> scoredSpaces = new HashMap<>();
+        int depth = board.getSpaces().size();
+        int pointOfView = 1;
+        int alpha = -1000;
+        int beta = 1000;
+
+        for (int space : initialSpaces) {
+            ArrayList newBoard = new ArrayList();
+            newBoard.addAll(board.getSpaces());
+            newBoard.set(space, aiSymbol);
+            int value = miniMax(newBoard, depth, pointOfView, alpha, beta);
+            scoredSpaces.put(space, value);
+        }
+        int bestMove = findBestMove(scoredSpaces);
+        board.updateSpace(Integer.toString(bestMove), this.aiSymbol);
     }
 
     public void makeMove(IBoard board) {
@@ -104,22 +123,7 @@ public class Ai implements IPlayer{
             easyMode(board);
         }
         if (difficulty.equals("Hard")) {
-            ArrayList<Integer> initialSpaces = findEmptySpaces(board.getSpaces());
-            Map<Integer, Integer> scoredSpaces = new HashMap<>();
-            int depth = board.getSpaces().size();
-            int pointOfView = 1;
-            int alpha = -1000;
-            int beta = 1000;
-
-            for (int space : initialSpaces) {
-                ArrayList newBoard = new ArrayList();
-                newBoard.addAll(board.getSpaces());
-                newBoard.set(space, aiSymbol);
-                int value = miniMax(newBoard, depth, pointOfView, alpha, beta);
-                scoredSpaces.put(space, value);
-            }
-            int bestMove = findBestMove(scoredSpaces);
-            board.updateSpace(Integer.toString(bestMove), this.aiSymbol);
+            hardMode(board);
         }
     }
 }
