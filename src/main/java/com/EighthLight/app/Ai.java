@@ -46,7 +46,7 @@ public class Ai implements IPlayer{
 
     public int heuristicValue(ArrayList boardState, int depth, String player) {
         if (ourBoard.hasAPlayerWon(boardState, player) && player.equals(aiSymbol)) {
-            return 1000 + depth;
+            return 1000 / depth;
         } else if (ourBoard.gameIsTie(boardState)) {
             return 0;
         } else {
@@ -58,23 +58,23 @@ public class Ai implements IPlayer{
         String playerWhoMovesNow = playerWhoJustMoved.equals(aiSymbol) ? humanSymbol : aiSymbol;
         ArrayList<Integer> emptySpaces = findEmptySpaces(boardState);
 
-        if (gameIsOver(boardState)) {
+        if (gameIsOver(boardState) || depth == 0) {
             return pointOfView * heuristicValue(boardState, depth, playerWhoJustMoved);
         }
 
-        int bestValue = 1000;
+        int bestValue = 0;
 
         for (int space : emptySpaces) {
             ArrayList newBoard = new ArrayList();
             newBoard.addAll(boardState);
             newBoard.set(space, playerWhoMovesNow);
             int value = -miniMax(newBoard, depth - 1, -pointOfView, playerWhoMovesNow, -beta, -alpha);
-            newBoard.set(space, space);
+//            newBoard.set(space, space);
             bestValue = Integer.min(bestValue, value);
-//            alpha = Integer.max(alpha, value);
-//            if (alpha >= beta) {
-//                break;
-//            }
+            alpha = Integer.min(alpha, value);
+            if (alpha <= beta) {
+                return alpha;
+            }
         }
         return bestValue;
     }
