@@ -51,6 +51,16 @@ public class Board implements IBoard {
         return spaces;
     }
 
+    public ArrayList<Integer> findEmptySpaces(ArrayList spaces) {
+        ArrayList<Integer> emptySpaces = new ArrayList();
+        for (Object space : spaces) {
+            if (space instanceof Integer) {
+                emptySpaces.add((Integer) space);
+            }
+        }
+        return emptySpaces;
+    }
+
     public void setWinningCombos() {
         List<ArrayList<Integer>> allWinningConditions = new ArrayList<>();
         List<ArrayList<Integer>> winningRows = makeWinningRows();

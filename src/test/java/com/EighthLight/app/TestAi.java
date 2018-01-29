@@ -25,19 +25,6 @@ public class TestAi {
     }
 
     @Test
-    void findAllAvailableSpotsReturnsAllEmptySpots() {
-        ArrayList aPlayerWonValues = new ArrayList(Arrays.asList(false));
-        ArrayList gameIsTiedValues = new ArrayList(Arrays.asList(false));
-        ArrayList boardState = new ArrayList(Arrays.asList(1, "X", 3));
-        MockBoard testBoard = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-
-        Ai ai = new Ai("X", "O", "Hard", testBoard);
-
-        ArrayList expectedSpaces = new ArrayList(Arrays.asList(1, 3));
-        assertEquals(expectedSpaces, ai.findEmptySpaces(testBoard.getSpaces()));
-    }
-
-    @Test
     void aiMakesTheRightMoveWithTwoSpotsLeft() {
         ArrayList boardState = new ArrayList(Arrays.asList(
                 "X", 1, 2,

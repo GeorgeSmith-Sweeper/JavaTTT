@@ -87,6 +87,14 @@ class TestBoard {
     }
 
     @Test
+    void findAllAvailableSpotsReturnsAllEmptySpots() {
+        ArrayList boardState = new ArrayList(Arrays.asList(1, "X", 3));
+        setBoardState(testBoard, boardState);
+        ArrayList expectedSpaces = new ArrayList(Arrays.asList(1, 3));
+        assertEquals(expectedSpaces, testBoard.findEmptySpaces(testBoard.getSpaces()));
+    }
+
+    @Test
     void makeWinningRowsAddsAllSpotsToListFor3x3Board() {
         List<ArrayList<Integer>> expectedSpaces = new ArrayList<>();
         ArrayList<Integer> firstRow = new ArrayList<>(Arrays.asList(0, 1, 2));

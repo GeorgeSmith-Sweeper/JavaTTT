@@ -19,16 +19,6 @@ public class Ai implements IPlayer{
         return this.aiSymbol;
     }
 
-    public ArrayList<Integer> findEmptySpaces(ArrayList board) {
-        ArrayList<Integer> emptySpaces = new ArrayList();
-        for (Object space : board) {
-            if (space instanceof Integer) {
-                emptySpaces.add((Integer) space);
-            }
-        }
-        return emptySpaces;
-    }
-
     public int findBestMove(Map<Integer, Integer>scoredSpaces)  {
         int bestSpace = 0;
         int highestScore = -1000;
@@ -58,7 +48,7 @@ public class Ai implements IPlayer{
         String playerWhoMovesNow = pointOfView == 1 ? humanSymbol : aiSymbol;
         ArrayList newBoard = new ArrayList();
         newBoard.addAll(boardState);
-        ArrayList<Integer> emptySpaces = findEmptySpaces(boardState);
+        ArrayList<Integer> emptySpaces = ourBoard.findEmptySpaces(boardState);
         if (gameIsOver(boardState) || depth == 0) {
             return pointOfView * heuristicValue(boardState, depth);
         }
@@ -97,7 +87,7 @@ public class Ai implements IPlayer{
     }
 
     private void hardMode(IBoard board) {
-        ArrayList<Integer> initialSpaces = findEmptySpaces(board.getSpaces());
+        ArrayList<Integer> initialSpaces = ourBoard.findEmptySpaces(board.getSpaces());
         Map<Integer, Integer> scoredSpaces = new HashMap<>();
         int depth = board.getSpaces().size();
         int pointOfView = 1;
