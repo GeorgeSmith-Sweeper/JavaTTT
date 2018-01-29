@@ -37,10 +37,10 @@ public class Ai implements IPlayer{
     public int heuristicValue(ArrayList boardState, int depth) {
         if (ourBoard.hasAPlayerWon(boardState, aiSymbol)) {
             return 1000 / depth;
-        } else if (ourBoard.gameIsTie(boardState)) {
-            return 0;
-        } else {
+        } else if (ourBoard.hasAPlayerWon(boardState, humanSymbol)) {
             return -1000 / depth;
+        } else {
+            return 0;
         }
     }
 

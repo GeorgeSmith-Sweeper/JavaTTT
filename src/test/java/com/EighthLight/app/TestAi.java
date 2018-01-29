@@ -166,5 +166,4 @@ public class TestAi {
         assertEquals("1", board.getUpdateSpaceArgs().get(0));
         assertEquals(symbol, board.getUpdateSpaceArgs().get(1));
     }
-
 }
