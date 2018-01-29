@@ -44,8 +44,8 @@ public class Ai implements IPlayer{
         return bestSpace;
     }
 
-    public int heuristicValue(ArrayList boardState, int depth, String player) {
-        if (ourBoard.hasAPlayerWon(boardState, player) && player.equals(aiSymbol)) {
+    public int heuristicValue(ArrayList boardState, int depth) {
+        if (ourBoard.hasAPlayerWon(boardState, aiSymbol)) {
             return 1000 / depth;
         } else if (ourBoard.gameIsTie(boardState)) {
             return 0;
@@ -54,27 +54,22 @@ public class Ai implements IPlayer{
         }
     }
 
-    public int miniMax(ArrayList boardState, int depth, int pointOfView, String playerWhoJustMoved, int alpha, int beta) {
-        String playerWhoMovesNow = playerWhoJustMoved.equals(aiSymbol) ? humanSymbol : aiSymbol;
+    public int miniMax(ArrayList boardState, int depth, int pointOfView, int alpha, int beta) {
+        String playerWhoMovesNow = pointOfView == 1 ? humanSymbol : aiSymbol;
+        ArrayList newBoard = new ArrayList();
+        newBoard.addAll(boardState);
         ArrayList<Integer> emptySpaces = findEmptySpaces(boardState);
-
         if (gameIsOver(boardState) || depth == 0) {
-            return pointOfView * heuristicValue(boardState, depth, playerWhoJustMoved);
+            return pointOfView * heuristicValue(boardState, depth);
         }
 
-        int bestValue = 0;
+        int bestValue = 1000;
 
         for (int space : emptySpaces) {
-            ArrayList newBoard = new ArrayList();
-            newBoard.addAll(boardState);
             newBoard.set(space, playerWhoMovesNow);
-            int value = -miniMax(newBoard, depth - 1, -pointOfView, playerWhoMovesNow, -beta, -alpha);
-//            newBoard.set(space, space);
+            int value = -miniMax(newBoard, depth - 1, -pointOfView, -beta, -alpha);
+            newBoard.set(space, space);
             bestValue = Integer.min(bestValue, value);
-            alpha = Integer.min(alpha, value);
-            if (alpha <= beta) {
-                return alpha;
-            }
         }
         return bestValue;
     }
@@ -111,19 +106,18 @@ public class Ai implements IPlayer{
         if (difficulty.equals("Hard")) {
             ArrayList<Integer> initialSpaces = findEmptySpaces(board.getSpaces());
             Map<Integer, Integer> scoredSpaces = new HashMap<>();
-            int depth = initialSpaces.size();
+            int depth = board.getSpaces().size();
             int pointOfView = 1;
-            int alpha = 1000;
-            int beta = -1000;
+            int alpha = -1000;
+            int beta = 1000;
 
             for (int space : initialSpaces) {
                 ArrayList newBoard = new ArrayList();
                 newBoard.addAll(board.getSpaces());
                 newBoard.set(space, aiSymbol);
-                int value = miniMax(newBoard, depth, pointOfView, aiSymbol, alpha, beta);
+                int value = miniMax(newBoard, depth, pointOfView, alpha, beta);
                 scoredSpaces.put(space, value);
             }
-            System.out.println(scoredSpaces);
             int bestMove = findBestMove(scoredSpaces);
             board.updateSpace(Integer.toString(bestMove), this.aiSymbol);
         }

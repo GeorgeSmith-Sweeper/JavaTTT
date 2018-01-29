@@ -15,15 +15,15 @@ public class TestAi {
         currentSpaces.addAll(spaces);
     }
 
-//    @Test
-//    void getPlayerSymbolReturnsThePlayersSymbol() {
-//        ArrayList boardWithOpenSpace = new ArrayList(Arrays.asList("O", 1));
-//        MockBoard board = new MockBoard(boardWithOpenSpace, new ArrayList(), new ArrayList());
-//        Ai computer = new Ai("X", "O", "Hard", board);
-//
-//        assertEquals("X", computer.getSymbol());
-//    }
-//
+    @Test
+    void getPlayerSymbolReturnsThePlayersSymbol() {
+        ArrayList boardWithOpenSpace = new ArrayList(Arrays.asList("O", 1));
+        MockBoard board = new MockBoard(boardWithOpenSpace, new ArrayList(), new ArrayList());
+        Ai computer = new Ai("X", "O", "Hard", board);
+
+        assertEquals("X", computer.getSymbol());
+    }
+
     @Test
     void findAllAvailableSpotsReturnsAllEmptySpots() {
         ArrayList aPlayerWonValues = new ArrayList(Arrays.asList(false));
@@ -161,21 +161,6 @@ public class TestAi {
         ai.makeMove(board);
         assertEquals(expectedBoard, board.getSpaces());
     }
-
-    @Test
-    void aiCanMakeMoveOnAnEmpty4x4Board() {
-        String aiSymbol = "X";
-        String humanSymbol = "O";
-        String difficulty = "Hard";
-        Board board = new Board(4);
-        ArrayList expectedBoard = new ArrayList(Arrays.asList("X",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15));
-
-        Ai ai = new Ai(aiSymbol, humanSymbol, difficulty, board);
-        ai.makeMove(board);
-
-        assertEquals(expectedBoard, board.getSpaces());
-    }
-
 
     @Test
     void makeMoveUpdatesTheBoardWithARandomMoveIfGameHasNotEnded() {
