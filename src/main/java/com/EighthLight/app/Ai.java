@@ -105,17 +105,7 @@ public class Ai implements IPlayer{
     }
 
     public void makeMove(IBoard board) {
-
         difficulty.markBoard(board);
-//        if (difficulty.equals("Easy")) {
-//            easyMode(board);
-//        }
-//        if (difficulty.equals("Medium")) {
-//            easyMode(board);
-//        }
-//        if (difficulty.equals("Hard")) {
-//            hardMode(board);
-//        }
     }
 }
 
