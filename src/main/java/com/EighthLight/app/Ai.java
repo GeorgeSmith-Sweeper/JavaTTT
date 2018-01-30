@@ -87,7 +87,7 @@ public class Ai implements IPlayer{
     }
 
     private void hardMode(IBoard board) {
-        ArrayList<Integer> initialSpaces = ourBoard.findEmptySpaces(board.getSpaces());
+        ArrayList<Integer> initialSpaces = board.findEmptySpaces(board.getSpaces());
         Map<Integer, Integer> scoredSpaces = new HashMap<>();
         int depth = board.getSpaces().size();
         int pointOfView = 1;
