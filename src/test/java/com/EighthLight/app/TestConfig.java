@@ -1,5 +1,8 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Interfaces.IBoard;
+import com.EighthLight.app.Interfaces.IPlayer;
+import com.EighthLight.app.Interfaces.IStrategy;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

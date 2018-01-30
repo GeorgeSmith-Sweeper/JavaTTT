@@ -1,6 +1,8 @@
 package com.EighthLight.app;
 
 
+import com.EighthLight.app.Interfaces.*;
+
 import java.util.ArrayList;
 
 public class Game implements IGame {

@@ -1,5 +1,7 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Interfaces.IBoard;
+
 import java.util.ArrayList;
 
 public class MockBoard implements IBoard {

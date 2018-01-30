@@ -1,5 +1,6 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Interfaces.IBoard;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

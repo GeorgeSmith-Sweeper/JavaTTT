@@ -1,6 +1,8 @@
 package com.EighthLight.app;
 
 
+import com.EighthLight.app.Interfaces.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

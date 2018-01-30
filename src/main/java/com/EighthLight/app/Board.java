@@ -1,5 +1,7 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Interfaces.IBoard;
+
 import java.util.ArrayList;
 import java.util.List;
 

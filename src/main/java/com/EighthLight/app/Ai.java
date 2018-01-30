@@ -1,6 +1,10 @@
 package com.EighthLight.app;
 
-public class Ai implements IPlayer{
+import com.EighthLight.app.Interfaces.IBoard;
+import com.EighthLight.app.Interfaces.IPlayer;
+import com.EighthLight.app.Interfaces.IStrategy;
+
+public class Ai implements IPlayer {
     private String aiSymbol;
     private IStrategy difficulty;
 
