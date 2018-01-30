@@ -51,6 +51,11 @@ public class MockBoard implements IBoard {
         return this.spaces;
     }
 
+
+    public ArrayList<Integer> findEmptySpaces(ArrayList boardState) {
+        return boardState;
+    }
+
     public int getNumTimesGetSpacesCalled() {
         return numTimesGetSpacesCalled;
     }

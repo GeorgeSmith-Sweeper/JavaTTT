@@ -15,8 +15,8 @@ public class Constants {
     public static final String DUPLICATE_SYMBOL_ERROR_PROMPT = "Symbol already selected, please pick a different symbol.";
     public static final String INVALID_GAME_MODE_MSG = "That game type doesn't exist.";
     public static final String INVALID_BOARD_SIZE_MSG = "That is not a valid board size. Try a number instead.";
-    public static final String PLAYER_ORDER_PROMPT = "Who should have the first move? 1) Human\n" +
-                                                     "                                2) Computer";
+    public static final String PLAYER_ORDER_PROMPT = "Would you like to go first? 1) Yes\n" +
+                                                     "                            2) No";
     public static final String INVALID_CHOICE_PROMPT = "Sorry that is not a valid choice, please try again.";
     public static final String AI_DIFFICULTY_PROMPT = "How hard should the computer be to beat? 1) EASY\n" +
                                                       "                                         2) MEDIUM\n" +

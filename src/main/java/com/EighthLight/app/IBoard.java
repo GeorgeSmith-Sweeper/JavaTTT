@@ -8,4 +8,5 @@ public interface IBoard {
     boolean gameIsTie(ArrayList spaces);
     boolean hasAPlayerWon(ArrayList newBoard, String currentPlayer);
     ArrayList getSpaces();
+    ArrayList<Integer> findEmptySpaces(ArrayList boardState);
 }
