@@ -22,9 +22,9 @@ public class TestAiDifficulties {
         ArrayList boardWithOpenSpace = new ArrayList(Arrays.asList("O", 1));
         ArrayList expectedBoard = new ArrayList(Arrays.asList("O", "X"));
         IBoard board = new Board(3);
-        easyDifficulty easy = new easyDifficulty();
+        EasyDifficulty easy = new EasyDifficulty(aiSymbol);
         setBoardState(board, boardWithOpenSpace);
-        easy.markBoard(board, aiSymbol, humanSymbol);
+        easy.markBoard(board);
 
         assertEquals(expectedBoard, board.getSpaces());
 

@@ -185,7 +185,7 @@ public class TestConfig {
         aiDifficulty1Input = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "1"));
         MockUi ui = new MockUi(aiDifficulty1Input);
         Config config = new Config(ui);
-        String difficulty = config.getDifficulty();
+        IStrategy difficulty = config.getDifficulty();
 
         assertEquals("Easy", difficulty);
     }

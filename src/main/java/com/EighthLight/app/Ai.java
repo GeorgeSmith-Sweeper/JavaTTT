@@ -5,10 +5,11 @@ import java.util.*;
 public class Ai implements IPlayer{
     private String aiSymbol;
     private String humanSymbol;
-    private String difficulty;
+//    private String difficulty;
+    private IStrategy difficulty;
     private IBoard ourBoard;
 
-    public Ai(String aiSymbol, String humanSymbol, String difficulty, IBoard ourBoard) {
+    public Ai(String aiSymbol, String humanSymbol, IStrategy difficulty, IBoard ourBoard) {
         this.aiSymbol = aiSymbol;
         this.humanSymbol = humanSymbol;
         this.difficulty = difficulty;
@@ -80,7 +81,7 @@ public class Ai implements IPlayer{
     private void easyMode(IBoard board) {
         for (Object space : board.getSpaces()) {
             if (space instanceof Integer) {
-                board.updateSpace(space.toString(), this.aiSymbol);
+                board.updateSpace(space.toString(), aiSymbol);
                 break;
             }
         }
@@ -104,15 +105,17 @@ public class Ai implements IPlayer{
     }
 
     public void makeMove(IBoard board) {
-        if (difficulty.equals("Easy")) {
-            easyMode(board);
-        }
-        if (difficulty.equals("Medium")) {
-            easyMode(board);
-        }
-        if (difficulty.equals("Hard")) {
-            hardMode(board);
-        }
+
+        difficulty.markBoard(board);
+//        if (difficulty.equals("Easy")) {
+//            easyMode(board);
+//        }
+//        if (difficulty.equals("Medium")) {
+//            easyMode(board);
+//        }
+//        if (difficulty.equals("Hard")) {
+//            hardMode(board);
+//        }
     }
 }
 
