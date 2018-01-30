@@ -49,7 +49,7 @@ public class Config implements IConfig {
 
     private void createAiDifficultlyLevels() {
         aiDifficulties.put(Constants.EASY, new EasyDifficulty(symbols.get(1)));
-        aiDifficulties.put(Constants.MEDIUM, new MediumDifficulty());
+        aiDifficulties.put(Constants.MEDIUM, new MediumDifficulty(symbols.get(1)));
         aiDifficulties.put(Constants.HARD, new HardDifficulty(symbols.get(1), symbols.get(0)));
     }
 
