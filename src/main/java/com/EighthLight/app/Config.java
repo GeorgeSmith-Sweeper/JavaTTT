@@ -15,7 +15,6 @@ public class Config implements IConfig {
     private HashMap<String, Object> playerOrder = new HashMap<>();
     private HashMap<String, IStrategy> aiDifficulties = new HashMap<>();
     private IBoard board;
-//    private String difficulty;
 
     private IStrategy difficulty;
 
@@ -47,11 +46,6 @@ public class Config implements IConfig {
     }
 
     private void createAiDifficultlyLevels() {
-
-//        aiDifficulties.put(Constants.EASY, "Easy");
-//        aiDifficulties.put(Constants.MEDIUM, "Medium");
-//        aiDifficulties.put(Constants.HARD, "Hard");
-
         aiDifficulties.put(Constants.EASY, new EasyDifficulty(symbols.get(1)));
         aiDifficulties.put(Constants.MEDIUM, new MediumDifficulty());
         aiDifficulties.put(Constants.HARD, new HardDifficulty(symbols.get(1), symbols.get(0)));
@@ -94,7 +88,7 @@ public class Config implements IConfig {
             userInput = ui.getInput();
         }
         difficulty = aiDifficulties.get(userInput);
-        IPlayer ai = new Ai(symbols.get(1), symbols.get(0), difficulty, board);
+        IPlayer ai = new Ai(symbols.get(1), difficulty);
         players.add(ai);
     }
 
