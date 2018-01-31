@@ -1,5 +1,8 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Interfaces.IBoard;
+import com.EighthLight.app.Interfaces.IPlayer;
+
 import java.util.ArrayList;
 
 public class MockPlayer implements IPlayer {

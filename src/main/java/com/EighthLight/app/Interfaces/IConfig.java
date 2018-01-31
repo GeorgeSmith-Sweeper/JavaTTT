@@ -1,4 +1,4 @@
-package com.EighthLight.app;
+package com.EighthLight.app.Interfaces;
 
 import java.util.ArrayList;
 

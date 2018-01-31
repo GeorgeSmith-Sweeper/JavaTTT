@@ -1,5 +1,7 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Interfaces.IUserInterface;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,5 +1,10 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Interfaces.IBoard;
+import com.EighthLight.app.Interfaces.IConfig;
+import com.EighthLight.app.Interfaces.IPlayer;
+import com.EighthLight.app.Interfaces.IUserInterface;
+
 import java.util.ArrayList;
 
 public class MockConfig implements IConfig {

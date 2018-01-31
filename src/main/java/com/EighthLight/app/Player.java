@@ -1,5 +1,9 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Interfaces.IBoard;
+import com.EighthLight.app.Interfaces.IPlayer;
+import com.EighthLight.app.Interfaces.IUserInterface;
+
 public class Player implements IPlayer {
     private String symbol;
     private IUserInterface ui;

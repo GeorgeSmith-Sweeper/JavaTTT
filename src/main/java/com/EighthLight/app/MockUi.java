@@ -1,5 +1,7 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Interfaces.IUserInterface;
+
 import java.util.ArrayList;
 
 public class MockUi implements IUserInterface {

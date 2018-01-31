@@ -1,5 +1,8 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Interfaces.IBoard;
+import com.EighthLight.app.Interfaces.IPlayer;
+import com.EighthLight.app.Interfaces.IStrategy;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -185,9 +188,9 @@ public class TestConfig {
         aiDifficulty1Input = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "1"));
         MockUi ui = new MockUi(aiDifficulty1Input);
         Config config = new Config(ui);
-        String difficulty = config.getDifficulty();
+        IStrategy difficulty = config.getDifficulty();
 
-        assertEquals("Easy", difficulty);
+        assertTrue(difficulty instanceof EasyDifficulty);
     }
 
     @Test
@@ -195,9 +198,9 @@ public class TestConfig {
         aiDifficulty1Input = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "2", "1"));
         MockUi ui = new MockUi(aiDifficulty1Input);
         Config config = new Config(ui);
-        String difficulty = config.getDifficulty();
+        IStrategy difficulty = config.getDifficulty();
 
-        assertEquals("Medium", difficulty);
+        assertTrue(difficulty instanceof MediumDifficulty);
     }
 
     @Test
@@ -205,9 +208,9 @@ public class TestConfig {
         aiDifficulty1Input = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "3", "1"));
         MockUi ui = new MockUi(aiDifficulty1Input);
         Config config = new Config(ui);
-        String difficulty = config.getDifficulty();
+        IStrategy difficulty = config.getDifficulty();
 
-        assertEquals("Hard", difficulty);
+        assertTrue(difficulty instanceof HardDifficulty);
     }
 
     @Test
