@@ -40,13 +40,12 @@ public class Board implements IBoard {
     }
 
     public boolean gameIsTie(ArrayList spaces) {
-        boolean isTied = true;
         for (Object space : spaces) {
             if (space instanceof Integer) {
-                isTied = false;
+                return false;
             }
         }
-        return isTied;
+        return true;
     }
 
     public ArrayList getSpaces() {
@@ -127,17 +126,20 @@ public class Board implements IBoard {
     }
 
     public boolean hasAPlayerWon(ArrayList boardState, String playerSymbol) {
-        for (int combo = 0; combo < winningCombos.size(); combo++) {
-            boolean playerWon = true;
-            for (int spot = 0; spot < size; spot++) {
-                if (boardState.get(winningCombos.get(combo).get(spot)) != playerSymbol) {
-                    playerWon = false;
-                }
-            }
-            if (playerWon) {
-                return true;
-            }
+        boolean playerWon;
+        for (ArrayList<Integer> winningCombo : winningCombos) {
+            playerWon = occupiesWinningSpots(boardState, playerSymbol, winningCombo);
+            if (playerWon) { return true; }
         }
         return false;
+    }
+
+    private boolean occupiesWinningSpots(ArrayList boardState, String playerSymbol, ArrayList<Integer> winningCombo) {
+        for (int spot = 0; spot < size; spot++) {
+            if (boardState.get(winningCombo.get(spot)) != playerSymbol) {
+                return false;
+            }
+        }
+        return true;
     }
 }

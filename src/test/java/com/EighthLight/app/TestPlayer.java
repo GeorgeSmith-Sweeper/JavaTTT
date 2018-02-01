@@ -1,5 +1,7 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Mocks.MockBoard;
+import com.EighthLight.app.Mocks.MockUi;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,9 +28,9 @@ class TestPlayer {
     @Test
     void getPlayerSymbolReturnsThePlayersSymbol() {
         MockUi ui = new MockUi(new ArrayList());
-        Player playerOne = new Player("X", ui);
+        Player player1 = new Player("X", ui);
 
-        assertEquals("X", playerOne.getSymbol());
+        assertEquals("X", player1.getSymbol());
     }
 
     @Test
@@ -36,15 +38,15 @@ class TestPlayer {
         ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
         MockUi ui = new MockUi(userInputs);
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        Player playerOne = new Player("X", ui);
+        Player player1 = new Player("X", ui);
 
-        playerOne.makeMove(board);
+        player1.makeMove(board);
 
         assertEquals(1, ui.getNumTimesGetInputCalled());
         assertEquals(1, board.getSpaceWithinBoundsArgs().size());
         assertEquals(correctInput, board.getSpaceWithinBoundsArgs().get(0));
         assertEquals(correctInput, board.getUpdateSpaceArgs().get(0));
-        assertEquals(playerOne.getSymbol(), board.getUpdateSpaceArgs().get(1));
+        assertEquals(player1.getSymbol(), board.getUpdateSpaceArgs().get(1));
     }
 
     @Test
@@ -52,9 +54,9 @@ class TestPlayer {
         ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        Player playerOne = new Player("X", ui);
+        Player player1 = new Player("X", ui);
 
-        playerOne.makeMove(board);
+        player1.makeMove(board);
 
         assertEquals(1, ui.getDisplayArgs().size());
         assertEquals(Constants.INVALID_SPOT_MSG, ui.getDisplayArgs().get(0));
@@ -62,6 +64,6 @@ class TestPlayer {
         assertEquals(2, board.getSpaceWithinBoundsArgs().size());
         assertEquals(incorrectInput, board.getSpaceWithinBoundsArgs().get(0));
         assertEquals(correctInput, board.getUpdateSpaceArgs().get(0));
-        assertEquals(playerOne.getSymbol(), board.getUpdateSpaceArgs().get(1));
+        assertEquals(player1.getSymbol(), board.getUpdateSpaceArgs().get(1));
     }
 }

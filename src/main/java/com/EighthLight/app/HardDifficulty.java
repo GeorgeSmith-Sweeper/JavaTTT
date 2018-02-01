@@ -27,18 +27,19 @@ public class HardDifficulty implements IStrategy {
             ArrayList newBoard = new ArrayList();
             newBoard.addAll(board.getSpaces());
             newBoard.set(space, aiSymbol);
-            int value = miniMax(newBoard, depth, pointOfView, board);
+            int value = negamax(newBoard, depth, pointOfView, board);
             scoredSpaces.put(space, value);
         }
         int bestMove = findBestMove(scoredSpaces);
         board.updateSpace(Integer.toString(bestMove), aiSymbol);
     }
 
-    private int miniMax(ArrayList boardState, int depth, int pointOfView, IBoard board) {
+    private int negamax(ArrayList boardState, int depth, int pointOfView, IBoard board) {
         String playerWhoMovesNow = pointOfView == 1 ? humanSymbol : aiSymbol;
         ArrayList newBoard = new ArrayList();
         newBoard.addAll(boardState);
         ArrayList<Integer> emptySpaces = board.findEmptySpaces(boardState);
+
         if (gameIsOver(boardState, board) || depth == 0) {
             return pointOfView * heuristicValue(boardState, depth, board);
         }
@@ -47,7 +48,7 @@ public class HardDifficulty implements IStrategy {
 
         for (int space : emptySpaces) {
             newBoard.set(space, playerWhoMovesNow);
-            int value = -miniMax(newBoard, depth - 1, -pointOfView, board);
+            int value = -negamax(newBoard, depth - 1, -pointOfView, board);
             newBoard.set(space, space);
             bestValue = Integer.min(bestValue, value);
         }
@@ -55,16 +56,9 @@ public class HardDifficulty implements IStrategy {
     }
 
     private boolean gameIsOver(ArrayList boardState, IBoard board) {
-        if (board.gameIsTie(boardState)) {
-            return true;
-        }
-        if (board.hasAPlayerWon(boardState, aiSymbol)) {
-            return true;
-        }
-        if (board.hasAPlayerWon(boardState, humanSymbol)) {
-            return true;
-        }
-        return false;
+        return board.gameIsTie(boardState) ||
+                board.hasAPlayerWon(boardState, aiSymbol) ||
+                board.hasAPlayerWon(boardState, humanSymbol);
     }
 
     private int heuristicValue(ArrayList boardState, int depth, IBoard board) {

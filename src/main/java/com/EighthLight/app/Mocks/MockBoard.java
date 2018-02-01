@@ -1,5 +1,6 @@
-package com.EighthLight.app;
+package com.EighthLight.app.Mocks;
 
+import com.EighthLight.app.Constants;
 import com.EighthLight.app.Interfaces.IBoard;
 
 import java.util.ArrayList;

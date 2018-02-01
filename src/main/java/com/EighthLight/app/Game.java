@@ -10,8 +10,8 @@ public class Game implements IGame {
     private IUserInterface ui;
     private IBoard board;
     private ArrayList<IPlayer> players;
-    private IPlayer playerOne;
-    private IPlayer playerTwo;
+    private IPlayer player1;
+    private IPlayer player2;
     private IPlayer currentPlayer;
 
     public Game(IUserInterface ui, IConfig config) {
@@ -19,9 +19,9 @@ public class Game implements IGame {
         this.config = config;
         this.board = config.getBoard();
         this.players = config.getPlayers();
-        this.playerOne = players.get(0);
-        this.playerTwo = players.get(1);
-        this.currentPlayer = playerOne;
+        this.player1 = players.get(0);
+        this.player2 = players.get(1);
+        this.currentPlayer = player1;
     }
 
     public void start() {
@@ -40,7 +40,7 @@ public class Game implements IGame {
                 ui.display(Constants.TIE_GAME_MSG);
             }
             ui.display(ui.presentBoard(board.getSpaces()));
-            currentPlayer = playerOne.equals(currentPlayer) ? playerTwo : playerOne;
+            currentPlayer = player1.equals(currentPlayer) ? player2 : player1;
         }
     }
 }
