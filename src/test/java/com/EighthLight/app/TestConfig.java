@@ -32,8 +32,8 @@ public class TestConfig {
 
         ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
-                Constants.PLAYER_ONE_SYMBOL_PROMPT,
-                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.PLAYER_1_SYMBOL_PROMPT,
+                Constants.PLAYER_2_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
                 Constants.AI_DIFFICULTY_PROMPT,
                 Constants.PLAYER_ORDER_PROMPT
@@ -52,8 +52,8 @@ public class TestConfig {
 
         ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
-                Constants.PLAYER_ONE_SYMBOL_PROMPT,
-                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.PLAYER_1_SYMBOL_PROMPT,
+                Constants.PLAYER_2_SYMBOL_PROMPT,
                 Constants.DUPLICATE_SYMBOL_ERROR_PROMPT,
                 Constants.GAME_MODE_PROMPT
         ));
@@ -70,8 +70,8 @@ public class TestConfig {
 
         ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
-                Constants.PLAYER_ONE_SYMBOL_PROMPT,
-                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.PLAYER_1_SYMBOL_PROMPT,
+                Constants.PLAYER_2_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
                 Constants.INVALID_GAME_MODE_MSG
         ));
@@ -89,8 +89,8 @@ public class TestConfig {
         ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
                 Constants.INVALID_BOARD_SIZE_MSG,
-                Constants.PLAYER_ONE_SYMBOL_PROMPT,
-                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.PLAYER_1_SYMBOL_PROMPT,
+                Constants.PLAYER_2_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT
         ));
         for (String prompt : prompts ) {
@@ -106,8 +106,8 @@ public class TestConfig {
 
         ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
-                Constants.PLAYER_ONE_SYMBOL_PROMPT,
-                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.PLAYER_1_SYMBOL_PROMPT,
+                Constants.PLAYER_2_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
                 Constants.AI_DIFFICULTY_PROMPT,
                 Constants.PLAYER_ORDER_PROMPT,
@@ -126,8 +126,8 @@ public class TestConfig {
 
         ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
-                Constants.PLAYER_ONE_SYMBOL_PROMPT,
-                Constants.PLAYER_TWO_SYMBOL_PROMPT,
+                Constants.PLAYER_1_SYMBOL_PROMPT,
+                Constants.PLAYER_2_SYMBOL_PROMPT,
                 Constants.GAME_MODE_PROMPT,
                 Constants.AI_DIFFICULTY_PROMPT,
                 Constants.INVALID_CHOICE_PROMPT,

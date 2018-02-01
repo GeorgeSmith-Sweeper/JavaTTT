@@ -2,8 +2,8 @@ package com.EighthLight.app;
 
 public class Constants {
 
-    public static final String PLAYER_ONE_SYMBOL_PROMPT = "Pick a symbol for player 1";
-    public static final String PLAYER_TWO_SYMBOL_PROMPT = "Pick a symbol for player 2";
+    public static final String PLAYER_1_SYMBOL_PROMPT = "Pick a symbol for player 1";
+    public static final String PLAYER_2_SYMBOL_PROMPT = "Pick a symbol for player 2";
     public static final String BOARD_SIZE_PROMPT = "How big should the board be?";
     public static final String PICK_A_SPOT_MSG = "Please pick a spot";
     public static final String TIE_GAME_MSG = "No one wins! Game over!";
