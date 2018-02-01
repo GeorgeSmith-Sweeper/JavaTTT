@@ -14,7 +14,7 @@ public class Config implements IConfig {
     private ArrayList<IPlayer> players = new ArrayList();
     private ArrayList<String> symbols = new ArrayList<>();
     private HashMap<String, ArrayList> gameMode = new HashMap<>();
-    private HashMap<String, Object> playerOrder = new HashMap<>();
+    private ArrayList<String> playerOrder = new ArrayList(Arrays.asList("1", "2"));
     private HashMap<String, IStrategy> aiDifficulties = new HashMap<>();
     private IBoard board;
 
@@ -29,7 +29,6 @@ public class Config implements IConfig {
         setBoard();
         setSymbols();
         createGameModes();
-        createPlayerOrderOptions();
         createAiDifficultlyLevels();
         setGameMode();
     }
@@ -40,11 +39,6 @@ public class Config implements IConfig {
 
         gameMode.put(Constants.HUMAN_VS_HUMAN, new ArrayList<>(Arrays.asList(playerOne, playerTwo)));
         gameMode.put(Constants.HUMAN_VS_COMPUTER, new ArrayList<>(Arrays.asList(playerOne)));
-    }
-
-    private void createPlayerOrderOptions() {
-        playerOrder.put("1", null);
-        playerOrder.put("2", null);
     }
 
     private void createAiDifficultlyLevels() {
@@ -73,7 +67,7 @@ public class Config implements IConfig {
     private void setPlayerOrder() {
         ui.display(Constants.PLAYER_ORDER_PROMPT);
         String userInput = ui.getInput();
-        while (!(playerOrder.containsKey(userInput))) {
+        while (!(playerOrder.contains(userInput))) {
             ui.display(Constants.INVALID_CHOICE_PROMPT);
             userInput = ui.getInput();
         }
