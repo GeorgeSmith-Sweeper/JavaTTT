@@ -75,14 +75,20 @@ class TestBoard {
 
     @Test
     void gameIsTieReturnsTrueIfBoardIsFull() {
-        ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "X", "X", "X", "X", "X", "X", "X", "X"));
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList(
+                "X", "O", "X",
+                "O", "X", "O",
+                "O", "X", "O"));
 
         assertTrue(testBoard.gameIsTie(expectedBoard));
     }
 
     @Test
     void gameIsTieReturnsFalseIfBoardIsNotFull() {
-        ArrayList expectedBoard = new ArrayList<>(Arrays.asList(0, "X", "X", "X", "X", "X", "X", "X", "X"));
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList(
+                0, "O", "X",
+                "O", "X", "O",
+                "O", "X", "O"));
 
         assertFalse(testBoard.gameIsTie(expectedBoard));
     }
@@ -168,96 +174,96 @@ class TestBoard {
     }
 
     @Test
-    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByRow3x3() {
+    void hasAPlayerWonReturnsTrueWhenAPlayerWinsByRow3x3() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "X", "X",
                                                                 "O", "O", 5,
                                                                  6, 7, 8));
-        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer player1 = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
-        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), playerOne.getSymbol()));
+        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), player1.getSymbol()));
     }
 
     @Test
-    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByColumn3x3() {
+    void hasAPlayerWonReturnsTrueWhenAPlayerWinsByColumn3x3() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "O",
                                                                 "X", 4, 5,
                                                                 "X", 7, 8));
-        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer player1 = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
-        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), playerOne.getSymbol()));
+        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), player1.getSymbol()));
     }
 
     @Test
-    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByDiagonal3x3() {
+    void hasAPlayerWonReturnsTrueWhenAPlayerWinsByDiagonal3x3() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "O",
                                                                 3, "X", 5,
                                                                 6, 7, "X"));
-        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer player1 = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
-        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), playerOne.getSymbol()));
+        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), player1.getSymbol()));
     }
 
     @Test
-    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByAlternateDiagonal3x3() {
+    void hasAPlayerWonReturnsTrueWhenAPlayerWinsByAlternateDiagonal3x3() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("0", "O", "X",
                                                                  3, "X", 5,
                                                                 "X", 7, 8));
-        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer player1 = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
-        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), playerOne.getSymbol()));
+        assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), player1.getSymbol()));
     }
 
     @Test
-    void hasAPlayerOneReturnsFalseWhenAPlayerDoesntWin3x3() {
+    void hasAPlayerWonReturnsFalseWhenAPlayerDoesntWin3x3() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "X",
                                                                 "O", "O", 5,
                                                                  6, 7, 8));
-        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer player1 = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
-        assertEquals(false, testBoard.hasAPlayerWon(testBoard.getSpaces(), playerOne.getSymbol()));
+        assertEquals(false, testBoard.hasAPlayerWon(testBoard.getSpaces(), player1.getSymbol()));
     }
 
     @Test
-    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByRow4x4() {
+    void hasAPlayerWonReturnsTrueWhenAPlayerWinsByRow4x4() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "X", "X", "X",
                                                                 "O", "O", 6, 7,
                                                                  8, 9, 10, 11,
                                                                  12, 13, 14, 15));
-        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer player1 = new MockPlayer("X");
         Board board = new Board(4);
         setBoardState(board, expectedBoard);
 
-        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), playerOne.getSymbol()));
+        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), player1.getSymbol()));
     }
 
     @Test
-    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByColumn4x4() {
+    void hasAPlayerWonReturnsTrueWhenAPlayerWinsByColumn4x4() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", 1, 2, 3,
                                                                 "X", "O", 6, 7,
                                                                  "X", 9, 10, 11,
                                                                  "X", 13, 14, 15));
-        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer player1 = new MockPlayer("X");
         Board board = new Board(4);
         setBoardState(board, expectedBoard);
 
-        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), playerOne.getSymbol()));
+        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), player1.getSymbol()));
     }
 
     @Test
-    void hasAPlayerOneReturnsTrueWhenAPlayerWinsByDiag4x4() {
+    void hasAPlayerWonReturnsTrueWhenAPlayerWinsByDiag4x4() {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", 1, 2, 3,
                                                                 4, "X", 6, 7,
                                                                  8, 9, "X", 11,
                                                                  12, 13, 14, "X"));
-        MockPlayer playerOne = new MockPlayer("X");
+        MockPlayer player1 = new MockPlayer("X");
         Board board = new Board(4);
         setBoardState(board, expectedBoard);
 
-        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), playerOne.getSymbol()));
+        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), player1.getSymbol()));
     }
 }
