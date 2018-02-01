@@ -30,8 +30,8 @@ class gameTests {
     void gameIsCreatedWithABoardAndPlayers() {
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList("1", correctInput));
-        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        ArrayList userInputs = new ArrayList<>(Arrays.asList("1", correctInput));
+        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(playerOne, playerTwo));
         MockUi ui = new MockUi(userInputs);
         MockConfig config = new MockConfig(ui, players, board);
         new Game(ui, config);
@@ -52,9 +52,9 @@ class gameTests {
         aPlayerWonValues.add(false);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList("1", correctInput));
+        ArrayList userInputs = new ArrayList<>(Arrays.asList("1", correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(playerOne, playerTwo));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -83,9 +83,9 @@ class gameTests {
         aPlayerWonValues.add(false);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList("1", incorrectInput, correctInput));
+        ArrayList userInputs = new ArrayList<>(Arrays.asList("1", incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(playerOne, playerTwo));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -109,9 +109,9 @@ class gameTests {
         aPlayerWonValues.add(true);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList("1", correctInput));
+        ArrayList userInputs = new ArrayList<>(Arrays.asList("1", correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(playerOne, playerTwo));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -139,9 +139,9 @@ class gameTests {
         aPlayerWonValues.add(true);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList("1", incorrectInput, correctInput));
+        ArrayList userInputs = new ArrayList<>(Arrays.asList("1", incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(playerOne, playerTwo));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -172,9 +172,9 @@ class gameTests {
         aPlayerWonValues.add(false);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList("1", incorrectInput, correctInput, correctInput));
+        ArrayList userInputs = new ArrayList<>(Arrays.asList("1", incorrectInput, correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(playerOne, playerTwo));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -204,9 +204,9 @@ class gameTests {
         aPlayerWonValues.add(false);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList("1", correctInput, correctInput));
+        ArrayList userInputs = new ArrayList<>(Arrays.asList("1", correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(playerOne, playerTwo));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -237,9 +237,9 @@ class gameTests {
 
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList("1", incorrectInput, correctInput, correctInput));
+        ArrayList userInputs = new ArrayList<>(Arrays.asList("1", incorrectInput, correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(playerOne, playerTwo));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -269,9 +269,9 @@ class gameTests {
         aPlayerWonValues.add(true);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
-        ArrayList userInputs = new ArrayList(Arrays.asList("1", correctInput, correctInput));
+        ArrayList userInputs = new ArrayList<>(Arrays.asList("1", correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList(Arrays.asList(playerOne, playerTwo));
+        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(playerOne, playerTwo));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();

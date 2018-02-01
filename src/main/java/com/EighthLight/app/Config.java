@@ -11,10 +11,10 @@ import java.util.HashMap;
 public class Config implements IConfig {
 
     private IUserInterface ui;
-    private ArrayList<IPlayer> players = new ArrayList();
+    private ArrayList<IPlayer> players = new ArrayList<>();
     private ArrayList<String> symbols = new ArrayList<>();
     private HashMap<String, ArrayList> gameModes = new HashMap<>();
-    private ArrayList<String> playerOrder = new ArrayList(Arrays.asList("1", "2"));
+    private ArrayList<String> playerOrder = new ArrayList<>(Arrays.asList("1", "2"));
     private HashMap<String, IStrategy> aiDifficulties = new HashMap<>();
     private IBoard board;
 
@@ -28,12 +28,12 @@ public class Config implements IConfig {
     private void setUpGame() {
         setBoard();
         setSymbols();
-        creategameModes();
+        createGameModes();
         createAiDifficultlyLevels();
         setgameMode();
     }
 
-    private void creategameModes() {
+    private void createGameModes() {
         IPlayer playerOne = new Player(symbols.get(0), ui);
         IPlayer playerTwo = new Player(symbols.get(1), ui);
 
