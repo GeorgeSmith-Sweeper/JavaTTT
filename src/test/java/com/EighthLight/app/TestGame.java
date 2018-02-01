@@ -5,6 +5,7 @@ import com.EighthLight.app.Mocks.MockBoard;
 import com.EighthLight.app.Mocks.MockConfig;
 import com.EighthLight.app.Mocks.MockPlayer;
 import com.EighthLight.app.Mocks.MockUi;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -19,14 +20,21 @@ class gameTests {
     private String correctInput;
     private String incorrectInput;
     private ArrayList boardState;
-    private ArrayList gameIsTiedValues;
-    private ArrayList aPlayerWonValues;
+    private ArrayList gameIsTiedValues = new ArrayList();
+    private ArrayList aPlayerWonValues = new ArrayList();
 
     @BeforeEach
     public void setUp() {
         correctInput = Constants.CORRECT_INPUT;
         incorrectInput = Constants.INCORRECT_INPUT;
         boardState = new ArrayList();
+    }
+
+    @AfterEach
+    public void resetValues() {
+        gameIsTiedValues.clear();
+        aPlayerWonValues.clear();
+
     }
 
     @Test
@@ -47,10 +55,7 @@ class gameTests {
 
     @Test
     void startGameTiedWithCorrectInput() {
-
-        gameIsTiedValues = new ArrayList();
         gameIsTiedValues.add(true);
-        aPlayerWonValues = new ArrayList();
         aPlayerWonValues.add(false);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
@@ -78,9 +83,7 @@ class gameTests {
 
     @Test
     void startGameTiedWithIncorrectInput() {
-        gameIsTiedValues = new ArrayList();
         gameIsTiedValues.add(true);
-        aPlayerWonValues = new ArrayList();
         aPlayerWonValues.add(false);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
@@ -103,9 +106,7 @@ class gameTests {
 
     @Test
     void startGameWithWinningStateAndWithCorrectInput() {
-        gameIsTiedValues = new ArrayList();
         gameIsTiedValues.add(false);
-        aPlayerWonValues = new ArrayList();
         aPlayerWonValues.add(true);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
@@ -131,10 +132,7 @@ class gameTests {
 
     @Test
     void startGameWithWinningStateAndWithIncorrectInput() {
-        gameIsTiedValues = new ArrayList();
         gameIsTiedValues.add(false);
-
-        aPlayerWonValues = new ArrayList();
         aPlayerWonValues.add(true);
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
@@ -161,11 +159,8 @@ class gameTests {
 
     @Test
     void startGameWithAStateTwoAwayFromTiedAndIncorrectInput() {
-        gameIsTiedValues = new ArrayList();
         gameIsTiedValues.add(false);
         gameIsTiedValues.add(true);
-
-        aPlayerWonValues = new ArrayList();
         aPlayerWonValues.add(false);
         aPlayerWonValues.add(false);
 
@@ -192,11 +187,8 @@ class gameTests {
 
     @Test
     void startGameWithAStateTwoAwayFromTiedAndCorrectInput() {
-        gameIsTiedValues = new ArrayList();
         gameIsTiedValues.add(false);
         gameIsTiedValues.add(true);
-
-        aPlayerWonValues = new ArrayList();
         aPlayerWonValues.add(false);
         aPlayerWonValues.add(false);
 
@@ -223,11 +215,8 @@ class gameTests {
 
     @Test
     void startGameWithAStateTwoAwayFromWinAndIncorrectInput() {
-        gameIsTiedValues = new ArrayList();
         gameIsTiedValues.add(false);
         gameIsTiedValues.add(false);
-
-        aPlayerWonValues = new ArrayList();
         aPlayerWonValues.add(false);
         aPlayerWonValues.add(true);
 
@@ -255,11 +244,8 @@ class gameTests {
 
     @Test
     void startGameWithAStateTwoAwayFromWinAndCorrectInput() {
-        gameIsTiedValues = new ArrayList();
         gameIsTiedValues.add(false);
         gameIsTiedValues.add(false);
-
-        aPlayerWonValues = new ArrayList();
         aPlayerWonValues.add(false);
         aPlayerWonValues.add(true);
 
