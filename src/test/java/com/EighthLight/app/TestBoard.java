@@ -13,6 +13,8 @@ class TestBoard {
 
     private Board testBoard;
     private int size;
+    private MockPlayer player1 = new MockPlayer("X");
+    private Board board4x4 = new Board(4);
 
     @BeforeEach
     public void setUp() {
@@ -95,9 +97,9 @@ class TestBoard {
 
     @Test
     void findAllAvailableSpotsReturnsAllEmptySpots() {
-        ArrayList boardState = new ArrayList(Arrays.asList(1, "X", 3));
+        ArrayList boardState = new ArrayList<>(Arrays.asList(1, "X", 3));
         setBoardState(testBoard, boardState);
-        ArrayList expectedSpaces = new ArrayList(Arrays.asList(1, 3));
+        ArrayList expectedSpaces = new ArrayList<>(Arrays.asList(1, 3));
         assertEquals(expectedSpaces, testBoard.findEmptySpaces(testBoard.getSpaces()));
     }
 
@@ -130,22 +132,16 @@ class TestBoard {
 
     @Test
     void makeTopLeftDiagAddsAllSpotsToListFor3x3Board() {
-        ArrayList<Integer> expectedSpaces = new ArrayList<>();
+        ArrayList<Integer> expectedSpaces = new ArrayList<>(Arrays.asList(0, 4, 8));
         List<ArrayList<Integer>> winningRows = testBoard.makeWinningRows();
-        expectedSpaces.add(0);
-        expectedSpaces.add(4);
-        expectedSpaces.add(8);
 
         assertEquals(expectedSpaces, testBoard.makeTopLeftDiag(winningRows));
     }
 
     @Test
     void makeBottomLeftDiagAddsAllSpotsToListFor3x3Board() {
-        ArrayList<Integer> expectedSpaces = new ArrayList<>();
+        ArrayList<Integer> expectedSpaces = new ArrayList<>(Arrays.asList(6, 4, 2));
         List<ArrayList<Integer>> winningRows = testBoard.makeWinningRows();
-        expectedSpaces.add(6);
-        expectedSpaces.add(4);
-        expectedSpaces.add(2);
 
         assertEquals(expectedSpaces, testBoard.makeBottomLeftDiag(winningRows));
     }
@@ -178,7 +174,6 @@ class TestBoard {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "X", "X",
                                                                 "O", "O", 5,
                                                                  6, 7, 8));
-        MockPlayer player1 = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
         assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), player1.getSymbol()));
@@ -189,7 +184,6 @@ class TestBoard {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "O",
                                                                 "X", 4, 5,
                                                                 "X", 7, 8));
-        MockPlayer player1 = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
         assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), player1.getSymbol()));
@@ -200,7 +194,6 @@ class TestBoard {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "O",
                                                                 3, "X", 5,
                                                                 6, 7, "X"));
-        MockPlayer player1 = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
         assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), player1.getSymbol()));
@@ -211,7 +204,6 @@ class TestBoard {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("0", "O", "X",
                                                                  3, "X", 5,
                                                                 "X", 7, 8));
-        MockPlayer player1 = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
         assertEquals(true, testBoard.hasAPlayerWon(testBoard.getSpaces(), player1.getSymbol()));
@@ -222,7 +214,6 @@ class TestBoard {
         ArrayList expectedBoard = new ArrayList<>(Arrays.asList("X", "O", "X",
                                                                 "O", "O", 5,
                                                                  6, 7, 8));
-        MockPlayer player1 = new MockPlayer("X");
         setBoardState(testBoard, expectedBoard);
 
         assertEquals(false, testBoard.hasAPlayerWon(testBoard.getSpaces(), player1.getSymbol()));
@@ -234,11 +225,9 @@ class TestBoard {
                                                                 "O", "O", 6, 7,
                                                                  8, 9, 10, 11,
                                                                  12, 13, 14, 15));
-        MockPlayer player1 = new MockPlayer("X");
-        Board board = new Board(4);
-        setBoardState(board, expectedBoard);
+        setBoardState(board4x4, expectedBoard);
 
-        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), player1.getSymbol()));
+        assertEquals(true, board4x4.hasAPlayerWon(board4x4.getSpaces(), player1.getSymbol()));
     }
 
     @Test
@@ -247,11 +236,9 @@ class TestBoard {
                                                                 "X", "O", 6, 7,
                                                                  "X", 9, 10, 11,
                                                                  "X", 13, 14, 15));
-        MockPlayer player1 = new MockPlayer("X");
-        Board board = new Board(4);
-        setBoardState(board, expectedBoard);
+        setBoardState(board4x4, expectedBoard);
 
-        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), player1.getSymbol()));
+        assertEquals(true, board4x4.hasAPlayerWon(board4x4.getSpaces(), player1.getSymbol()));
     }
 
     @Test
@@ -260,10 +247,8 @@ class TestBoard {
                                                                 4, "X", 6, 7,
                                                                  8, 9, "X", 11,
                                                                  12, 13, 14, "X"));
-        MockPlayer player1 = new MockPlayer("X");
-        Board board = new Board(4);
-        setBoardState(board, expectedBoard);
+        setBoardState(board4x4, expectedBoard);
 
-        assertEquals(true, board.hasAPlayerWon(board.getSpaces(), player1.getSymbol()));
+        assertEquals(true, board4x4.hasAPlayerWon(board4x4.getSpaces(), player1.getSymbol()));
     }
 }
