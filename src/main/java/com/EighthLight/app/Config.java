@@ -30,7 +30,7 @@ public class Config implements IConfig {
         setSymbols();
         createGameModes();
         createAiDifficultlyLevels();
-        setgameMode();
+        setGameMode();
     }
 
     private void createGameModes() {
@@ -47,7 +47,7 @@ public class Config implements IConfig {
         aiDifficulties.put(Constants.HARD, new HardDifficulty(symbols.get(1), symbols.get(0)));
     }
 
-    private void setgameMode() {
+    private void setGameMode() {
         ui.display(Constants.GAME_MODE_PROMPT);
         String userInput = ui.getInput();
 
@@ -89,7 +89,7 @@ public class Config implements IConfig {
     }
 
     private void setSymbols() {
-        ArrayList<String> prompts = new ArrayList(Arrays.asList(Constants.PLAYER_ONE_SYMBOL_PROMPT, Constants.PLAYER_TWO_SYMBOL_PROMPT));
+        ArrayList<String> prompts = new ArrayList<>(Arrays.asList(Constants.PLAYER_ONE_SYMBOL_PROMPT, Constants.PLAYER_TWO_SYMBOL_PROMPT));
         for (String prompt : prompts) {
             ui.display(prompt);
             String symbol = ui.getInput();

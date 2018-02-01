@@ -1,5 +1,7 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Mocks.MockBoard;
+import com.EighthLight.app.Mocks.MockUi;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

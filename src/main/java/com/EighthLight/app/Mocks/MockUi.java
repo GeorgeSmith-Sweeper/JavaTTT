@@ -1,4 +1,4 @@
-package com.EighthLight.app;
+package com.EighthLight.app.Mocks;
 
 import com.EighthLight.app.Interfaces.IUserInterface;
 

@@ -3,6 +3,7 @@ package com.EighthLight.app;
 import com.EighthLight.app.Interfaces.IBoard;
 import com.EighthLight.app.Interfaces.IPlayer;
 import com.EighthLight.app.Interfaces.IStrategy;
+import com.EighthLight.app.Mocks.MockUi;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class TestConfig {
         MockUi ui = new MockUi(defaultUserInputs);
         new Config(ui);
 
-        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+        ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
                 Constants.PLAYER_ONE_SYMBOL_PROMPT,
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
@@ -49,7 +50,7 @@ public class TestConfig {
         MockUi ui = new MockUi(duplicateSymbolUserInputs);
         new Config(ui);
 
-        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+        ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
                 Constants.PLAYER_ONE_SYMBOL_PROMPT,
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
@@ -67,7 +68,7 @@ public class TestConfig {
         MockUi ui = new MockUi(gameModeIncorrectInput);
         new Config(ui);
 
-        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+        ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
                 Constants.PLAYER_ONE_SYMBOL_PROMPT,
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
@@ -85,7 +86,7 @@ public class TestConfig {
         MockUi ui = new MockUi(boardSizeIncorrectInput);
         new Config(ui);
 
-        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+        ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
                 Constants.INVALID_BOARD_SIZE_MSG,
                 Constants.PLAYER_ONE_SYMBOL_PROMPT,
@@ -103,7 +104,7 @@ public class TestConfig {
         MockUi ui = new MockUi(playerOrderingIncorrectInput);
         new Config(ui);
 
-        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+        ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
                 Constants.PLAYER_ONE_SYMBOL_PROMPT,
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,
@@ -123,7 +124,7 @@ public class TestConfig {
         MockUi ui = new MockUi(playerOrderingIncorrectInput);
         new Config(ui);
 
-        ArrayList<String> prompts = new ArrayList(Arrays.asList(
+        ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
                 Constants.BOARD_SIZE_PROMPT,
                 Constants.PLAYER_ONE_SYMBOL_PROMPT,
                 Constants.PLAYER_TWO_SYMBOL_PROMPT,

@@ -1,6 +1,10 @@
 package com.EighthLight.app;
 
 import com.EighthLight.app.Interfaces.IPlayer;
+import com.EighthLight.app.Mocks.MockBoard;
+import com.EighthLight.app.Mocks.MockConfig;
+import com.EighthLight.app.Mocks.MockPlayer;
+import com.EighthLight.app.Mocks.MockUi;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;

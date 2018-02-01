@@ -1,5 +1,6 @@
 package com.EighthLight.app;
 
+import com.EighthLight.app.Mocks.MockDifficulty;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
