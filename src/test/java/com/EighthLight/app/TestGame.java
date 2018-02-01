@@ -13,8 +13,9 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class gameTests {
-    private MockPlayer player1;
-    private MockPlayer player2;
+    private MockPlayer player1 = new MockPlayer("X");
+    private MockPlayer player2 = new MockPlayer("O");
+    private ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(player1, player2));
     private String correctInput;
     private String incorrectInput;
     private ArrayList boardState;
@@ -23,8 +24,6 @@ class gameTests {
 
     @BeforeEach
     public void setUp() {
-        player1 = new MockPlayer("X");
-        player2 = new MockPlayer("O");
         correctInput = Constants.CORRECT_INPUT;
         incorrectInput = Constants.INCORRECT_INPUT;
         boardState = new ArrayList();
@@ -35,7 +34,6 @@ class gameTests {
 
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         ArrayList userInputs = new ArrayList<>(Arrays.asList("1", correctInput));
-        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(player1, player2));
         MockUi ui = new MockUi(userInputs);
         MockConfig config = new MockConfig(ui, players, board);
         new Game(ui, config);
@@ -58,7 +56,6 @@ class gameTests {
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         ArrayList userInputs = new ArrayList<>(Arrays.asList("1", correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(player1, player2));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -89,7 +86,6 @@ class gameTests {
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         ArrayList userInputs = new ArrayList<>(Arrays.asList("1", incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(player1, player2));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -115,7 +111,6 @@ class gameTests {
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         ArrayList userInputs = new ArrayList<>(Arrays.asList("1", correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(player1, player2));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -145,7 +140,6 @@ class gameTests {
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         ArrayList userInputs = new ArrayList<>(Arrays.asList("1", incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(player1, player2));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -178,7 +172,6 @@ class gameTests {
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         ArrayList userInputs = new ArrayList<>(Arrays.asList("1", incorrectInput, correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(player1, player2));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -210,7 +203,6 @@ class gameTests {
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         ArrayList userInputs = new ArrayList<>(Arrays.asList("1", correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(player1, player2));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -243,7 +235,6 @@ class gameTests {
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         ArrayList userInputs = new ArrayList<>(Arrays.asList("1", incorrectInput, correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(player1, player2));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
@@ -275,7 +266,6 @@ class gameTests {
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         ArrayList userInputs = new ArrayList<>(Arrays.asList("1", correctInput, correctInput));
         MockUi ui = new MockUi(userInputs);
-        ArrayList<IPlayer> players = new ArrayList<>(Arrays.asList(player1, player2));
         MockConfig config = new MockConfig(ui, players, board);
         Game game = new Game(ui, config);
         game.start();
