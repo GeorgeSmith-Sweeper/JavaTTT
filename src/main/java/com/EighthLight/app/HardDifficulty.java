@@ -27,14 +27,14 @@ public class HardDifficulty implements IStrategy {
             ArrayList newBoard = new ArrayList();
             newBoard.addAll(board.getSpaces());
             newBoard.set(space, aiSymbol);
-            int value = miniMax(newBoard, depth, pointOfView, board);
+            int value = negamax(newBoard, depth, pointOfView, board);
             scoredSpaces.put(space, value);
         }
         int bestMove = findBestMove(scoredSpaces);
         board.updateSpace(Integer.toString(bestMove), aiSymbol);
     }
 
-    private int miniMax(ArrayList boardState, int depth, int pointOfView, IBoard board) {
+    private int negamax(ArrayList boardState, int depth, int pointOfView, IBoard board) {
         String playerWhoMovesNow = pointOfView == 1 ? humanSymbol : aiSymbol;
         ArrayList newBoard = new ArrayList();
         newBoard.addAll(boardState);
@@ -47,7 +47,7 @@ public class HardDifficulty implements IStrategy {
 
         for (int space : emptySpaces) {
             newBoard.set(space, playerWhoMovesNow);
-            int value = -miniMax(newBoard, depth - 1, -pointOfView, board);
+            int value = -negamax(newBoard, depth - 1, -pointOfView, board);
             newBoard.set(space, space);
             bestValue = Integer.min(bestValue, value);
         }
