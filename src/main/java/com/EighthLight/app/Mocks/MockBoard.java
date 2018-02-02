@@ -45,6 +45,7 @@ public class MockBoard implements IBoard {
     public boolean hasAPlayerWon(ArrayList newBoard, String currentPlayer) {
         boolean winValue = (boolean) this.didAPlayerWin.get(numTimesAPlayerWonCalled);
         numTimesAPlayerWonCalled++;
+        hasPlayerWonArgs.add(newBoard);
         hasPlayerWonArgs.add(currentPlayer);
         return winValue;
     }
@@ -79,7 +80,5 @@ public class MockBoard implements IBoard {
         return updateSpaceArgs;
     }
 
-    public int getNumTimesUpdateSpaceIsCalled() {
-        return numTimesUpdateSpaceIsCalled;
-    }
+    public int getNumTimesUpdateSpaceIsCalled() { return numTimesUpdateSpaceIsCalled; }
 }

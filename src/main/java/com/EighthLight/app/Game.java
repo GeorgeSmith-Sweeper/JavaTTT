@@ -34,17 +34,13 @@ public class Game implements IGame {
             currentPlayer.makeMove(board);
             aPlayerWon = board.hasAPlayerWon(board.getSpaces(), currentPlayer.getSymbol());
             gameIsTie = board.gameIsTie(board.getSpaces());
-            endStates(aPlayerWon, gameIsTie, currentPlayer.getSymbol());
+            if (aPlayerWon) {
+                ui.display(currentPlayer.getSymbol() + " WINS!");
+            } else if (gameIsTie) {
+                ui.display(Constants.TIE_GAME_MSG);
+            }
             ui.display(ui.presentBoard(board.getSpaces()));
             currentPlayer = player1.equals(currentPlayer) ? player2 : player1;
-        }
-    }
-
-    private void endStates(boolean aPlayerWon, boolean gameIsTie, String currentPlayer) {
-        if (aPlayerWon) {
-            ui.display(currentPlayer + " WINS!");
-        } else if (gameIsTie) {
-            ui.display(Constants.TIE_GAME_MSG);
         }
     }
 }

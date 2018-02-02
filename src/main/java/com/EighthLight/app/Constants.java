@@ -29,4 +29,5 @@ public class Constants {
     public static final String MEDIUM = "2";
     public static final String HARD = "3";
 
+    public static final String DISPLAYED_STRING = null;
 }
