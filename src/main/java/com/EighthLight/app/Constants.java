@@ -24,6 +24,7 @@ public class Constants {
     public static final String HUMAN_VS_HUMAN = "1";
     public static final String HUMAN_VS_COMPUTER = "2";
     public static final String COMPUTER_GOES_FIRST = "2";
+    public static final String HUMAN_GOES_FIRST = "1";
     public static final String EASY = "1";
     public static final String MEDIUM = "2";
     public static final String HARD = "3";

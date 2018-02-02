@@ -1,6 +1,6 @@
 # TIC TAC TOE - Java Edition
 
-### Requirements
+### Dependencies
 This game requires that you have `java` and `maven` installed on your machine.
 
 Please run `java -version` from the commandline to check if you have java.
@@ -11,21 +11,20 @@ If you have Java, your output should be similar to the one below.
 
 If you don't get a different output, then follow the instructions at this link: [Getting Java 9](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html)
 
-In order to run the test suites for this game you'll need to have Maven installed.
+In order to run the test suites for this game, and create a game package you'll need to have Maven installed.
 
 Please run `mvn --version` from the commandline to check if it is installed.
 
-If you have mvn, your output should be similar to the one below.
+If you have Maven, your output should be similar to the one below.
 
 ![YouHaveMaven](/images/YouHaveMaven.png?raw=true)
 
-If you get a different output, then there are a couple of ways for you to get up and running with maven.
+If you get a different output, then the easiest way to get started is with the package manager Homebrew. 
+To check if you have Homebrew, please run `brew --version`. 
 
-I personally believe that the eaisest way to get started is through `homebrew`, using the command `brew install maven`.
+If you don't, installation is very easy, just follow the instructions at this link: [Installing brew](https://brew.sh/).
 
-[Installing brew](https://brew.sh/)
-
-The other, less user friendly way is to follow the instructions at this link: [Installing Maven](https://maven.apache.org/download.cgi)
+Once you have Homebrew, you can install maven using the command `brew install maven`.
 
 
 ### Getting started
@@ -36,17 +35,32 @@ The other, less user friendly way is to follow the instructions at this link: [I
 
 3. Run `mvn package` at the root.
 
-4. Run `java -cp target/JavaTicTacToe-1.0-SNAPSHOT.jar com.EighthLight.app.App` at the root to start the game.
+4. Run `java -jar target/JavaTicTacToe-1.0-SNAPSHOT.jar` at the root to start the game.
 
 
 ### Playing the Game
 
-The game will begin by displaying prompts for player symbols, game mode, and board size.
+The game will begin by displaying a prompt for a board size.
 
-The current game modes available are human vs human, and human vs AI.
+// add image
+
+Next you can select symbols for the player 1, and player 2.
+
+// add image
+
+Next is a game mode prompt
+
+// add image
+
+If you've chosen to play against the Ai you will be giveen the option of three difficulty levels.
+
+// add image
+
+Finally you will be asked if you would like to have the first move.
+
+// add image
+
 
 ### Tests
 
-There are 57 tests for this game, and currently they all pass.
-
-The tests for this game can be run with the command `mvn test`, at the root.
+There are 65 tests for this game. The tests can be run with the command `mvn test`, at the root.
