@@ -15,6 +15,15 @@ class TestBoard {
     private int size;
     private MockPlayer player1 = new MockPlayer("X");
     private Board board4x4 = new Board(4);
+    private ArrayList<Integer> firstRow = new ArrayList<>(Arrays.asList(0, 1, 2));
+    private ArrayList<Integer> secondRow = new ArrayList<>(Arrays.asList(3, 4, 5));
+    private ArrayList<Integer> thirdRow = new ArrayList<>(Arrays.asList(6, 7, 8));
+    private ArrayList<Integer> firstColumn = new ArrayList<>(Arrays.asList(0, 3, 6));
+    private ArrayList<Integer> secondColumn = new ArrayList<>(Arrays.asList(1, 4, 7));
+    private ArrayList<Integer> thirdColumn = new ArrayList<>(Arrays.asList(2, 5, 8));
+    private ArrayList<Integer> firstDiagonal = new ArrayList<>(Arrays.asList(0, 4, 8));
+    private ArrayList<Integer> secondDiagonal = new ArrayList<>(Arrays.asList(6, 4, 2));
+
 
     @BeforeEach
     public void setUp() {
@@ -70,7 +79,10 @@ class TestBoard {
     void updateSpaceUpdatesSpaceWithUserInput() {
         String userInput = "1";
         String userSymbol = "X";
-        ArrayList expectedBoard = new ArrayList<>(Arrays.asList(0, "X", 2, 3, 4, 5, 6, 7, 8));
+        ArrayList expectedBoard = new ArrayList<>(Arrays.asList(
+                0, "X", 2,
+                3, 4, 5,
+                6, 7, 8));
         testBoard.updateSpace(userInput, userSymbol);
         assertEquals(expectedBoard, testBoard.getSpaces());
     }
@@ -106,9 +118,6 @@ class TestBoard {
     @Test
     void makeWinningRowsAddsAllSpotsToListFor3x3Board() {
         List<ArrayList<Integer>> expectedSpaces = new ArrayList<>();
-        ArrayList<Integer> firstRow = new ArrayList<>(Arrays.asList(0, 1, 2));
-        ArrayList<Integer> secondRow = new ArrayList<>(Arrays.asList(3, 4, 5));
-        ArrayList<Integer> thirdRow = new ArrayList<>(Arrays.asList(6, 7, 8));
         expectedSpaces.add(firstRow);
         expectedSpaces.add(secondRow);
         expectedSpaces.add(thirdRow);
@@ -120,9 +129,6 @@ class TestBoard {
     void makeWinningColumnsAddsAllSpotsToListFor3x3Board() {
         List<ArrayList<Integer>> expectedSpaces = new ArrayList<>();
         List<ArrayList<Integer>> winningRows = testBoard.makeWinningRows();
-        ArrayList<Integer> firstColumn = new ArrayList<>(Arrays.asList(0, 3, 6));
-        ArrayList<Integer> secondColumn = new ArrayList<>(Arrays.asList(1, 4, 7));
-        ArrayList<Integer> thirdColumn = new ArrayList<>(Arrays.asList(2, 5, 8));
         expectedSpaces.add(firstColumn);
         expectedSpaces.add(secondColumn);
         expectedSpaces.add(thirdColumn);
@@ -148,14 +154,6 @@ class TestBoard {
 
     @Test
     void createWinningCombosWillGenerateAllWinStatesForAGiven3x3Board() {
-        ArrayList<Integer> firstRow = new ArrayList<>(Arrays.asList(0, 1, 2));
-        ArrayList<Integer> secondRow = new ArrayList<>(Arrays.asList(3, 4, 5));
-        ArrayList<Integer> thirdRow = new ArrayList<>(Arrays.asList(6, 7, 8));
-        ArrayList<Integer> firstColumn = new ArrayList<>(Arrays.asList(0, 3, 6));
-        ArrayList<Integer> secondColumn = new ArrayList<>(Arrays.asList(1, 4, 7));
-        ArrayList<Integer> thirdColumn = new ArrayList<>(Arrays.asList(2, 5, 8));
-        ArrayList<Integer> firstDiagonal = new ArrayList<>(Arrays.asList(0, 4, 8));
-        ArrayList<Integer> secondDiagonal = new ArrayList<>(Arrays.asList(6, 4, 2));
         ArrayList<ArrayList<Integer>> allWinningConditions = new ArrayList<ArrayList<Integer>>(Arrays.asList(firstRow,
                 secondRow,
                 thirdRow,
@@ -164,8 +162,6 @@ class TestBoard {
                 thirdColumn,
                 firstDiagonal,
                 secondDiagonal));
-
-
         assertEquals(allWinningConditions, testBoard.getWinningCombos());
     }
 
