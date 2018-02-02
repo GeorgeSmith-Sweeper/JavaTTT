@@ -1,9 +1,10 @@
 # TIC TAC TOE - Java Edition
 
+
 ### Dependencies
 This game requires that you have `java` and `maven` installed on your machine.
 
-Please run `java -version` from the commandline to check if you have java.
+Please run `java -version` from the command line to check if you have java.
 
 If you have Java, your output should be similar to the one below.
 
@@ -13,7 +14,7 @@ If you don't get a different output, then follow the instructions at this link: 
 
 In order to run the test suites for this game, and create a game package you'll need to have Maven installed.
 
-Please run `mvn --version` from the commandline to check if it is installed.
+Please run `mvn --version` from the command line to check if it is installed.
 
 If you have Maven, your output should be similar to the one below.
 
@@ -42,25 +43,44 @@ Once you have Homebrew, you can install maven using the command `brew install ma
 
 The game will begin by displaying a prompt for a board size.
 
-// add image
+![Board Size Prompt](/images/boardSizePrompt.png?raw=true)
 
 Next you can select symbols for the player 1, and player 2.
 
-// add image
+![Player 1 Symbol](/images/player1Symbol.png?raw=true)
+
+![Player 2 Symbol](/images/player2Symbol.png?raw=true)
 
 Next is a game mode prompt
 
-// add image
+![Game Mode Prompt](/images/gameModePrompt.png?raw=true)
 
-If you've chosen to play against the Ai you will be giveen the option of three difficulty levels.
+If you've chosen to play against the Ai you will be given the option of three difficulty levels.
 
-// add image
+![Difficulty Level Prompt](/images/difficultylevelPrompt.png?raw=true)
 
 Finally you will be asked if you would like to have the first move.
 
-// add image
-
+![Who Move First](/images/whoMovesFirstPrompt.png?raw=true)
 
 ### Tests
 
-There are 65 tests for this game. The tests can be run with the command `mvn test`, at the root.
+There are 61 tests for this game! The tests can executed my running `mvn test` at the root.
+
+### Points of interest
+
+The computer is unbeatable when played on a standard 3x3 board (seriously it's kind of a jerk),
+however when played on boards of 4x4 or greater, it gets bogged down in move computations, and fails
+to make a move in an acceptable time. The next version of Tic-Tac-Toe will add Alpha-Beta pruning to my negaMax function,
+in order to prune number of branches that the computer must search for the 'best move'. 
+This will allow the computer to handle larger board sizes while remaining unbeatable.
+
+Posts by crafters at 8th-Light who also did negamax: 
+
+[Joys of minimax and negamax](https://medium.com/@indykidd/joys-of-minimax-and-negamax-ee5e456977e2)
+
+[Ruby tic tac toe negamax with alpha beta pruning](https://medium.com/@pelensky/ruby-tic-tac-toe-negamax-with-alpha-beta-pruning-c1126172fb5a)
+
+
+
+
