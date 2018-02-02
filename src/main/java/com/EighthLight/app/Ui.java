@@ -31,11 +31,11 @@ public class Ui implements IUserInterface {
     }
 
     public String makeDivider(String rowString) {
-        String divider = "";
+        StringBuilder divider = new StringBuilder();
         for (int space = 1; space < rowString.length(); space++) {
-            divider+="-";
+            divider.append("-");
         }
-        return divider;
+        return divider.toString();
     }
 
     public String presentBoard(ArrayList spaces) {
@@ -49,15 +49,14 @@ public class Ui implements IUserInterface {
             fullBoard = addRow(row, fullBoard, numRows);
         }
         fullBoard.remove(fullBoard.size() - 1);
-        String finalBoard = String.join("", fullBoard);
-        return finalBoard;
+        return String.join("", fullBoard);
     }
 
     private ArrayList addRow(ArrayList rowHolder, ArrayList fullBoard, int numRows) {
 
         if (rowHolder.size() == (numRows * 2)) {
             rowHolder.remove(rowHolder.size() - 1);
-            String rowString = String.join("", rowHolder) + "\n";
+            String rowString = String.format("%s\n", String.join("", rowHolder));
             String divider = makeDivider(rowString);
             fullBoard.add(rowString);
             fullBoard.add(divider + "\n");
