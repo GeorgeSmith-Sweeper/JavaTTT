@@ -25,7 +25,7 @@ public class TestConfig {
     private ArrayList<String> aiDifficulty1Input;
 
     @Test
-    void promptsUserInCorrectOrder() {
+    void promptsDisplayedIfUserProvidesValidInput() {
         defaultUserInputs = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "1"));
         MockUi ui = new MockUi(defaultUserInputs);
         new Config(ui);
@@ -45,7 +45,7 @@ public class TestConfig {
     }
 
     @Test
-    void promptsUserInCorrectOrderIfSymbolsAreDuplicates() {
+    void diplaysSymbolErrorIfSymbolsAreDuplicates() {
         duplicateSymbolUserInputs = new ArrayList<>(Arrays.asList("3", "X", "X", "O", "1"));
         MockUi ui = new MockUi(duplicateSymbolUserInputs);
         new Config(ui);
@@ -119,7 +119,7 @@ public class TestConfig {
     }
 
     @Test
-    void invalidDificultySelectionDisplaysAWarningAndPrompt() {
+    void invalidDifficultySelectionDisplaysAWarningAndPrompt() {
         playerOrderingIncorrectInput = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "wrong", "1", "1"));
         MockUi ui = new MockUi(playerOrderingIncorrectInput);
         new Config(ui);
@@ -174,7 +174,7 @@ public class TestConfig {
     }
 
     @Test
-    void selecting2ForPlayerOrderLetsPlayerTwoGoFirst() {
+    void selecting2ForPlayerOrderLetsPlayer2GoFirst() {
         playerOrderingTwoUserInputs = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "2"));
         MockUi ui = new MockUi(playerOrderingTwoUserInputs);
         Config config = new Config(ui);

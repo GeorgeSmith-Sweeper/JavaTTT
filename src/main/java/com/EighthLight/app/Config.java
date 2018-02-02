@@ -14,7 +14,8 @@ public class Config implements IConfig {
     private ArrayList<IPlayer> players = new ArrayList<>();
     private ArrayList<String> symbols = new ArrayList<>();
     private HashMap<String, ArrayList> gameModes = new HashMap<>();
-    private ArrayList<String> playerOrder = new ArrayList<>(Arrays.asList("1", "2"));
+    private ArrayList<String> playerOrder = new ArrayList<>(Arrays.asList(Constants.HUMAN_GOES_FIRST, Constants.COMPUTER_GOES_FIRST));
+    private ArrayList<String> prompts = new ArrayList<>(Arrays.asList(Constants.PLAYER_1_SYMBOL_PROMPT, Constants.PLAYER_2_SYMBOL_PROMPT));
     private HashMap<String, IStrategy> aiDifficulties = new HashMap<>();
     private IBoard board;
 
@@ -89,7 +90,6 @@ public class Config implements IConfig {
     }
 
     private void setSymbols() {
-        ArrayList<String> prompts = new ArrayList<>(Arrays.asList(Constants.PLAYER_1_SYMBOL_PROMPT, Constants.PLAYER_2_SYMBOL_PROMPT));
         for (String prompt : prompts) {
             ui.display(prompt);
             String symbol = ui.getInput();

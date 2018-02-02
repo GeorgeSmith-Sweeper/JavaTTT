@@ -45,7 +45,6 @@ public class HardDifficulty implements IStrategy {
         }
 
         int bestValue = 1000;
-
         for (int space : emptySpaces) {
             newBoard.set(space, playerWhoMovesNow);
             int value = -negamax(newBoard, depth - 1, -pointOfView, board);
@@ -66,9 +65,8 @@ public class HardDifficulty implements IStrategy {
             return 1000 / depth;
         } else if (board.hasAPlayerWon(boardState, humanSymbol)) {
             return -1000 / depth;
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     private int findBestMove(Map<Integer, Integer>scoredSpaces)  {
@@ -85,6 +83,4 @@ public class HardDifficulty implements IStrategy {
         }
         return bestSpace;
     }
-
-
 }

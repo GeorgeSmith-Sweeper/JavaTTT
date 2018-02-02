@@ -1,5 +1,7 @@
 package com.EighthLight.app.Mocks;
 
+import com.EighthLight.app.Constants;
+import com.EighthLight.app.Interfaces.IPlayer;
 import com.EighthLight.app.Interfaces.IUserInterface;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class MockUi implements IUserInterface {
     public String presentBoard(ArrayList spaces) {
         Object spacesCopy = spaces.clone();
         presentBoardArgs.add(spacesCopy);
-        return null;
+        return Constants.DISPLAYED_STRING;
     }
 
     public ArrayList getPresentBoardArgs() {

@@ -14,13 +14,11 @@ class TestPlayer {
     private ArrayList gameIsTiedValues = new ArrayList();
     private ArrayList aPlayerWonValues = new ArrayList();
     private ArrayList boardState = new ArrayList();
-    private String correctInput;
-    private String incorrectInput;
+    private String correctInput = Constants.CORRECT_INPUT;
+    private String incorrectInput = Constants.INCORRECT_INPUT;
 
     @BeforeEach
     private void setUp() {
-        correctInput = Constants.CORRECT_INPUT;
-        incorrectInput = Constants.INCORRECT_INPUT;
         gameIsTiedValues.add(false);
         aPlayerWonValues.add(false);
     }
@@ -35,7 +33,7 @@ class TestPlayer {
 
     @Test
     void testExpectedMethodsAreCalledWhenMakeMoveIsExecutedWithCorrectInput() {
-        ArrayList userInputs = new ArrayList(Arrays.asList(correctInput));
+        ArrayList userInputs = new ArrayList<>(Arrays.asList(correctInput));
         MockUi ui = new MockUi(userInputs);
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         Player player1 = new Player("X", ui);
@@ -51,7 +49,7 @@ class TestPlayer {
 
     @Test
     void testExpectedMethodsAreCalledWhenMakeMoveIsExecutedWithIncorrectInput() {
-        ArrayList userInputs = new ArrayList(Arrays.asList(incorrectInput, correctInput));
+        ArrayList userInputs = new ArrayList<>(Arrays.asList(incorrectInput, correctInput));
         MockUi ui = new MockUi(userInputs);
         MockBoard board = new MockBoard(boardState, aPlayerWonValues, gameIsTiedValues);
         Player player1 = new Player("X", ui);
