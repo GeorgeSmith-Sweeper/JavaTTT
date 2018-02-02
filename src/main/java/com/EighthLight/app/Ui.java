@@ -67,6 +67,6 @@ public class Ui implements IUserInterface {
 
     public String formatSpace(ArrayList spaces, int space) {
         String convertedSpace = spaces.get(space).toString();
-        return convertedSpace.length() > 1 ? " " + convertedSpace : " " + convertedSpace + " ";
+        return (convertedSpace.length() > 1) ? (" " + convertedSpace) : (" " + convertedSpace + " ");
     }
 }
