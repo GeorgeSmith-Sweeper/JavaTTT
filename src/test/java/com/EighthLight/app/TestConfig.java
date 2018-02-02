@@ -25,7 +25,7 @@ public class TestConfig {
     private ArrayList<String> aiDifficulty1Input;
 
     @Test
-    void promptsUserInCorrectOrder() {
+    void promptsDisplayedIfUserProvidesValidInput() {
         defaultUserInputs = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "1"));
         MockUi ui = new MockUi(defaultUserInputs);
         new Config(ui);
@@ -44,8 +44,28 @@ public class TestConfig {
         assertEquals(prompts.size(), ui.getNumTimesGetInputCalled());
     }
 
+//    @Test
+//    void ifABoardSizeOf4IsSelectedDisableHardMode() {
+//        defaultUserInputs = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "1"));
+//        MockUi ui = new MockUi(defaultUserInputs);
+//        new Config(ui);
+//
+//        ArrayList<String> prompts = new ArrayList<>(Arrays.asList(
+//                Constants.BOARD_SIZE_PROMPT,
+//                Constants.PLAYER_1_SYMBOL_PROMPT,
+//                Constants.PLAYER_2_SYMBOL_PROMPT,
+//                Constants.GAME_MODE_PROMPT,
+//                Constants.AI_DIFFICULTY_PROMPT,
+//                Constants.PLAYER_ORDER_PROMPT
+//        ));
+//        for (String prompt : prompts ) {
+//            assertEquals(prompt, ui.getDisplayArgs().get(prompts.indexOf(prompt)));
+//        }
+//        assertEquals(prompts.size(), ui.getNumTimesGetInputCalled());
+//    }
+
     @Test
-    void promptsUserInCorrectOrderIfSymbolsAreDuplicates() {
+    void diplaysSymbolErrorIfSymbolsAreDuplicates() {
         duplicateSymbolUserInputs = new ArrayList<>(Arrays.asList("3", "X", "X", "O", "1"));
         MockUi ui = new MockUi(duplicateSymbolUserInputs);
         new Config(ui);
@@ -119,7 +139,7 @@ public class TestConfig {
     }
 
     @Test
-    void invalidDificultySelectionDisplaysAWarningAndPrompt() {
+    void invalidDifficultySelectionDisplaysAWarningAndPrompt() {
         playerOrderingIncorrectInput = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "wrong", "1", "1"));
         MockUi ui = new MockUi(playerOrderingIncorrectInput);
         new Config(ui);
@@ -174,7 +194,7 @@ public class TestConfig {
     }
 
     @Test
-    void selecting2ForPlayerOrderLetsPlayerTwoGoFirst() {
+    void selecting2ForPlayerOrderLetsPlayer2GoFirst() {
         playerOrderingTwoUserInputs = new ArrayList<>(Arrays.asList("3", "X", "O", "2", "1", "2"));
         MockUi ui = new MockUi(playerOrderingTwoUserInputs);
         Config config = new Config(ui);

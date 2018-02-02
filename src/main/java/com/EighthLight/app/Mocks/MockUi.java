@@ -1,5 +1,6 @@
 package com.EighthLight.app.Mocks;
 
+import com.EighthLight.app.Interfaces.IPlayer;
 import com.EighthLight.app.Interfaces.IUserInterface;
 
 import java.util.ArrayList;
