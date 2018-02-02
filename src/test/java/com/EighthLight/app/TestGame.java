@@ -25,7 +25,6 @@ class gameTests {
     private ArrayList aPlayerWonValues = new ArrayList();
     private ArrayList userInputs = new ArrayList();
 
-
     @BeforeEach
     public void setUp() {
         boardState = new ArrayList();
@@ -103,7 +102,7 @@ class gameTests {
     }
 
     @Test
-    void gameSwitchesPlayersWhenThereIsMoreThenOneMoveLeft() {
+    void gameSwitchesPlayersWhenThereAreTwoMoveLeft() {
         gameIsTiedValues.add(false);
         gameIsTiedValues.add(false);
         aPlayerWonValues.add(false);
@@ -154,7 +153,6 @@ class gameTests {
         assertEquals(Constants.TIE_GAME_MSG, ui.getDisplayArgs().get(4));
         assertEquals(Constants.DISPLAYED_STRING, ui.getDisplayArgs().get(5));
 
-        assertEquals(7, board.getNumTimesGetSpacesCalled());
         assertEquals(7, board.getNumTimesGetSpacesCalled());
         assertTrue(board.getHasPlayerWonArgs().get(0) instanceof ArrayList);
         assertEquals(player1Symbol, board.getHasPlayerWonArgs().get(1));
