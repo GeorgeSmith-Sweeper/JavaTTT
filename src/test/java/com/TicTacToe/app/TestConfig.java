@@ -1,5 +1,8 @@
 package com.TicTacToe.app;
 
+import com.TicTacToe.app.Difficulties.EasyDifficulty;
+import com.TicTacToe.app.Difficulties.HardDifficulty;
+import com.TicTacToe.app.Difficulties.MediumDifficulty;
 import com.TicTacToe.app.Interfaces.IBoard;
 import com.TicTacToe.app.Interfaces.IPlayer;
 import com.TicTacToe.app.Interfaces.IStrategy;

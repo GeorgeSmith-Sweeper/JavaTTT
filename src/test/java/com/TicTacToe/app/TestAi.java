@@ -1,5 +1,6 @@
 package com.TicTacToe.app;
 
+import com.TicTacToe.app.Difficulties.EasyDifficulty;
 import com.TicTacToe.app.Mocks.MockDifficulty;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.TicTacToe.app;
+package com.TicTacToe.app.Difficulties;
 
 import com.TicTacToe.app.Interfaces.IBoard;
 import com.TicTacToe.app.Interfaces.IStrategy;

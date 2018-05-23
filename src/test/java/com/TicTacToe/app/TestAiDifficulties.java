@@ -1,5 +1,7 @@
 package com.TicTacToe.app;
 
+import com.TicTacToe.app.Difficulties.EasyDifficulty;
+import com.TicTacToe.app.Difficulties.HardDifficulty;
 import com.TicTacToe.app.Interfaces.IBoard;
 import org.junit.jupiter.api.Test;
 
