@@ -1,7 +1,5 @@
 package com.TicTacToe.app;
 
-
-import com.EighthLight.app.Interfaces.*;
 import com.TicTacToe.app.Interfaces.*;
 
 import java.util.ArrayList;
