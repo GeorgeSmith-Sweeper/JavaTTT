@@ -1,6 +1,7 @@
 package com.TicTacToe.app;
 
 import com.TicTacToe.app.Interfaces.*;
+import com.TicTacToe.app.Ui.IUserInterface;
 
 import java.util.ArrayList;
 

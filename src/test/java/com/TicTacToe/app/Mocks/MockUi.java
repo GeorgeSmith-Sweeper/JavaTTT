@@ -1,7 +1,7 @@
 package com.TicTacToe.app.Mocks;
 
 import com.TicTacToe.app.Constants;
-import com.TicTacToe.app.Interfaces.IUserInterface;
+import com.TicTacToe.app.Ui.IUserInterface;
 
 import java.util.ArrayList;
 

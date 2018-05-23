@@ -3,7 +3,7 @@ package com.TicTacToe.app.Mocks;
 import com.TicTacToe.app.Interfaces.IBoard;
 import com.TicTacToe.app.Interfaces.IConfig;
 import com.TicTacToe.app.Interfaces.IPlayer;
-import com.TicTacToe.app.Interfaces.IUserInterface;
+import com.TicTacToe.app.Ui.IUserInterface;
 
 import java.util.ArrayList;
 

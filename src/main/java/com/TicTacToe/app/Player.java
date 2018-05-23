@@ -2,7 +2,7 @@ package com.TicTacToe.app;
 
 import com.TicTacToe.app.Interfaces.IBoard;
 import com.TicTacToe.app.Interfaces.IPlayer;
-import com.TicTacToe.app.Interfaces.IUserInterface;
+import com.TicTacToe.app.Ui.IUserInterface;
 
 public class Player implements IPlayer {
     private String symbol;

@@ -1,5 +1,6 @@
 package com.TicTacToe.app;
 
+import com.TicTacToe.app.Ui.Ui;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

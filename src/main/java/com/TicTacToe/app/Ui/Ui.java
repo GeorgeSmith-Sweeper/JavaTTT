@@ -1,6 +1,4 @@
-package com.TicTacToe.app;
-
-import com.TicTacToe.app.Interfaces.IUserInterface;
+package com.TicTacToe.app.Ui;
 
 import java.io.BufferedReader;
 import java.io.IOException;
