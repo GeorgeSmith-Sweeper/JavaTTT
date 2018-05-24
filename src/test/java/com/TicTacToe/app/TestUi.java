@@ -41,7 +41,15 @@ class TestUi {
     }
 
     @Test
-    void aDividerMatchesTheWidthOfTheBoard4x4 () {
+    void whenAPlayerHasWonTheirSymbolIsDisplayedInAWinningMessage() {
+        String winningPlayerSymbol = "X";
+        String expectedMsg = "X WINS!";
+
+        assertEquals(expectedMsg, testUi.displayWinningMsg(winningPlayerSymbol));
+    }
+
+    @Test
+    void aDividerMatchesTheWidthOfTheBoard4x4() {
         String expectedDivider = "---------------";
         String rowString = " 0 | 1 | 2 | 3 \n";
 
@@ -49,7 +57,7 @@ class TestUi {
     }
 
     @Test
-    void aDividerMatchesTheWidthOfTheBoard3x3 () {
+    void aDividerMatchesTheWidthOfTheBoard3x3() {
         String expectedDivider = "-----------";
         String rowString = " 0 | 1 | 2 \n";
 
@@ -57,7 +65,7 @@ class TestUi {
     }
 
     @Test
-    void spacesLongerThen1CharLoseRightPadding () {
+    void spacesLongerThen1CharLoseRightPadding() {
         int space = 0;
         String expectedSpace = " 10";
         ArrayList spaces = new ArrayList<>(Arrays.asList("10"));
@@ -66,7 +74,7 @@ class TestUi {
     }
 
     @Test
-    void spacesShorterThen2CharArePaddedWithSpaces () {
+    void spacesShorterThen2CharArePaddedWithSpaces() {
         int space = 0;
         String expectedSpace = " 9 ";
         ArrayList spaces = new ArrayList<>(Arrays.asList("9"));
