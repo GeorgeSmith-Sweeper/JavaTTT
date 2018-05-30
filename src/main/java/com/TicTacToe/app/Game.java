@@ -35,7 +35,7 @@ public class Game implements IGame {
             aPlayerWon = board.hasAPlayerWon(board.getSpaces(), currentPlayer.getSymbol());
             gameIsTie = board.gameIsTie(board.getSpaces());
             if (aPlayerWon) {
-                ui.display(currentPlayer.getSymbol() + " WINS!");
+                ui.display(ui.displayWinningMsg(currentPlayer.getSymbol()));
             } else if (gameIsTie) {
                 ui.display(Constants.TIE_GAME_MSG);
             }

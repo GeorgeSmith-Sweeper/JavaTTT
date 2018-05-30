@@ -67,4 +67,8 @@ public class Ui implements IUserInterface {
         String convertedSpace = spaces.get(space).toString();
         return (convertedSpace.length() > 1) ? (" " + convertedSpace) : (" " + convertedSpace + " ");
     }
+
+    public String displayWinningMsg(String winningPlayerSymbol) {
+        return winningPlayerSymbol + " WINS!";
+    }
 }
