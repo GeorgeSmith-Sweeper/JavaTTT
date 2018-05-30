@@ -28,7 +28,7 @@ public class MockUi implements IUserInterface {
 
     @Override
     public String displayWinningMsg(String winningPlayerSymbol) {
-        return null;
+        return winningPlayerSymbol + " WINS!";
     }
 
     public String presentBoard(ArrayList spaces) {
