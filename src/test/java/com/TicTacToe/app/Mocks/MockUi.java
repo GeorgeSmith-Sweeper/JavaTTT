@@ -26,6 +26,11 @@ public class MockUi implements IUserInterface {
         return userInput;
     }
 
+    @Override
+    public String displayWinningMsg(String winningPlayerSymbol) {
+        return null;
+    }
+
     public String presentBoard(ArrayList spaces) {
         Object spacesCopy = spaces.clone();
         presentBoardArgs.add(spacesCopy);

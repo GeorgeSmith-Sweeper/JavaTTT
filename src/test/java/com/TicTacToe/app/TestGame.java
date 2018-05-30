@@ -116,7 +116,7 @@ class gameTests {
         game.start();
 
         assertEquals(3, ui.getPresentBoardArgs().size());
-        assertEquals(6, ui.getDisplayArgs().size());
+        assertEquals(5, ui.getDisplayArgs().size());
         assertEquals(Constants.DISPLAYED_STRING, ui.getDisplayArgs().get(0));
         assertEquals(Constants.PICK_A_SPOT_MSG, ui.getDisplayArgs().get(1));
         assertEquals(Constants.DISPLAYED_STRING, ui.getDisplayArgs().get(2));
